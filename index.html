@@ -14,16 +14,13 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
   <body>
     <header class="site-header" id="top">
       <div class="container nav-wrap">
         <a href="#drustvo" class="brand" aria-label="Društvo DRITZ">
-          <img
-            src="https://github.com/user-attachments/assets/31b260f1-de9e-4598-9e9d-051065729568"
-            alt="Društvo DRITZ logo"
-          />
+          <img src="./assets/images/dritz-logo-placeholder.svg" alt="Društvo DRITZ logo" />
           <span>Društvo DRITZ</span>
         </a>
 
@@ -62,21 +59,31 @@
 
           <div class="hero-media">
             <div class="carousel" aria-label="Galerija dejavnosti društva">
+              <p id="carousel-status" class="sr-only" aria-live="polite">
+                Prikazana je fotografija 1 od 3.
+              </p>
               <div class="slides">
-                <figure class="slide active">
+                <figure class="slide active" aria-hidden="false">
                   <div class="placeholder-image">Prostor za fotografijo #1</div>
                 </figure>
-                <figure class="slide">
+                <figure class="slide" aria-hidden="true">
                   <div class="placeholder-image">Prostor za fotografijo #2</div>
                 </figure>
-                <figure class="slide">
+                <figure class="slide" aria-hidden="true">
                   <div class="placeholder-image">Prostor za fotografijo #3</div>
                 </figure>
               </div>
-              <div class="carousel-dots" aria-hidden="true">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+              <div class="carousel-dots">
+                <button class="dot active" aria-label="Pokaži fotografijo 1" data-slide-index="0"></button>
+                <button class="dot" aria-label="Pokaži fotografijo 2" data-slide-index="1"></button>
+                <button class="dot" aria-label="Pokaži fotografijo 3" data-slide-index="2"></button>
+              </div>
+              <div class="carousel-controls">
+                <button type="button" class="carousel-btn" data-carousel-action="prev">Nazaj</button>
+                <button type="button" class="carousel-btn" data-carousel-action="next">Naprej</button>
+                <button type="button" class="carousel-btn" data-carousel-action="toggle" aria-pressed="false">
+                  Ustavi vrtenje
+                </button>
               </div>
             </div>
           </div>
@@ -340,6 +347,6 @@
       </div>
     </footer>
 
-    <script src="/assets/js/main.js"></script>
+    <script src="./assets/js/main.js"></script>
   </body>
 </html>

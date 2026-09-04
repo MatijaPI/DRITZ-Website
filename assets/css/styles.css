@@ -36,6 +36,10 @@ a:hover {
   color: var(--accent-2);
 }
 
+button {
+  font: inherit;
+}
+
 .container {
   width: min(1120px, calc(100% - 2.5rem));
   margin: 0 auto;
@@ -236,12 +240,48 @@ blockquote {
 .dot {
   width: 8px;
   height: 8px;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
   border-radius: 50%;
   background: #6584c5;
 }
 
 .dot.active {
   background: var(--accent-2);
+}
+
+.carousel-controls {
+  margin-top: 0.9rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.carousel-btn {
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: transparent;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.carousel-btn:hover {
+  border-color: var(--accent-2);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .quick-cards {
