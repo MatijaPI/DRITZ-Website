@@ -90,11 +90,17 @@ if (slides.length > 1) {
   showSlide(currentSlide);
   startRotation();
 
-  reduceMotionQuery.addEventListener('change', (event) => {
+  const handleReducedMotionChange = (event) => {
     reduceMotion = event.matches;
     stopRotation();
     startRotation();
-  });
+  };
+
+  if (typeof reduceMotionQuery.addEventListener === 'function') {
+    reduceMotionQuery.addEventListener('change', handleReducedMotionChange);
+  } else if (typeof reduceMotionQuery.addListener === 'function') {
+    reduceMotionQuery.addListener(handleReducedMotionChange);
+  }
 }
 
 const yearSpan = document.querySelector('#year');

@@ -23,7 +23,8 @@ Spletna stran Društva DRITZ je pripravljena kot statična GitHub Pages stran v 
      - `185.199.109.153`
      - `185.199.110.153`
      - `185.199.111.153`
-   - po želji **CNAME** za `www` na `<uporabniško-ime>.github.io`
+   - po želji **CNAME** za `www` na `matijapi.github.io`
+   - pred objavo vedno preverite aktualne DNS vrednosti v uradni GitHub Pages dokumentaciji
 5. Počakajte na DNS propagacijo (lahko traja nekaj ur).
 6. V **Settings → Pages** preverite status in vključite **Enforce HTTPS**, ko je na voljo.
 
