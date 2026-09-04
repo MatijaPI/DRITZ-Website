@@ -56,13 +56,20 @@ function startRotation() {
   }, 4500);
 }
 
+function resetRotationAfterManualNavigation() {
+  if (rotationPaused) {
+    return;
+  }
+  stopRotation();
+  startRotation();
+}
+
 if (slides.length > 1) {
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
       currentSlide = i;
       showSlide(currentSlide);
-      stopRotation();
-      startRotation();
+      resetRotationAfterManualNavigation();
     });
   });
 
@@ -72,18 +79,20 @@ if (slides.length > 1) {
       if (action === 'prev') {
         currentSlide = (currentSlide - 1 + slides.length) % slides.length;
         showSlide(currentSlide);
+        resetRotationAfterManualNavigation();
       }
       if (action === 'next') {
         currentSlide = (currentSlide + 1) % slides.length;
         showSlide(currentSlide);
+        resetRotationAfterManualNavigation();
       }
       if (action === 'toggle') {
         rotationPaused = !rotationPaused;
         button.setAttribute('aria-pressed', String(rotationPaused));
         button.textContent = rotationPaused ? 'Nadaljuj vrtenje' : 'Ustavi vrtenje';
+        stopRotation();
+        startRotation();
       }
-      stopRotation();
-      startRotation();
     });
   });
 
