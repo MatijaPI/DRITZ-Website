@@ -32,6 +32,7 @@ function showSlide(index) {
     slide.setAttribute('aria-hidden', String(!isActive));
   });
   dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+  dots.forEach((dot, i) => dot.setAttribute('aria-pressed', String(i === index)));
   if (carouselStatus) {
     carouselStatus.textContent = `Prikazana je fotografija ${index + 1} od ${slides.length}.`;
   }

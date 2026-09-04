@@ -18,7 +18,11 @@ Spletna stran Društva DRITZ je pripravljena kot statična GitHub Pages stran v 
    - **Branch**: *main* (ali vaš produkcijski branch), mapa */root*
 3. Shranite nastavitve in počakajte, da GitHub objavi stran.
 4. V DNS upravljalniku domene `dritz.si` nastavite:
-   - **A zapise** za apex domeno na GitHub Pages IP-je
+   - **A zapise** za apex domeno na GitHub Pages IP-je:
+     - `185.199.108.153`
+     - `185.199.109.153`
+     - `185.199.110.153`
+     - `185.199.111.153`
    - po želji **CNAME** za `www` na `<uporabniško-ime>.github.io`
 5. Počakajte na DNS propagacijo (lahko traja nekaj ur).
 6. V **Settings → Pages** preverite status in vključite **Enforce HTTPS**, ko je na voljo.
