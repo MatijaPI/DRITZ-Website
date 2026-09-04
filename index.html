@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="sl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Društvo DRITZ - Društvo za raziskovanje in izobraževanje o tehnologiji in znanosti."
+    />
+    <title>Društvo DRITZ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <div class="container nav-wrap">
+        <a href="#drustvo" class="brand" aria-label="Društvo DRITZ">
+          <img src="./assets/images/dritz-logo-placeholder.svg" alt="Društvo DRITZ logo" />
+          <span>Društvo DRITZ</span>
+        </a>
+
+        <button class="menu-toggle" aria-expanded="false" aria-controls="main-menu">
+          Meni
+        </button>
+
+        <nav id="main-menu" class="main-nav" aria-label="Glavna navigacija">
+          <a href="#drustvo">Društvo DRITZ</a>
+          <a href="#o-drustvu">O društvu</a>
+          <a href="#aktivnosti">Aktivnosti</a>
+          <a href="#podporniki">Podporniki</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="drustvo" class="hero section">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <p class="eyebrow">Društvo za raziskovanje in izobraževanje o tehnologiji in znanosti</p>
+            <h1>Skupaj gradimo radovedno, ustvarjalno in tehnološko pismeno prihodnost.</h1>
+            <p class="lead">
+              Društvo DRITZ mladim odpira vrata v svet znanosti, robotike in inovacij skozi
+              delavnice, mentorstvo ter tekmovanja doma in v tujini.
+            </p>
+            <blockquote>
+              »Znanje je najmočnejše, ko ga delimo in z njim navdihujemo naslednjo generacijo.«
+            </blockquote>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#o-drustvu">Spoznajte društvo</a>
+              <a class="btn btn-secondary" href="#aktivnosti">Poglejte aktivnosti</a>
+            </div>
+          </div>
+
+          <div class="hero-media">
+            <div class="carousel" aria-label="Galerija dejavnosti društva">
+              <p id="carousel-status" class="sr-only" aria-live="polite">
+                Prikazana je fotografija 1 od 3.
+              </p>
+              <div class="slides">
+                <figure class="slide active" aria-hidden="false">
+                  <div class="placeholder-image">Prostor za fotografijo #1</div>
+                </figure>
+                <figure class="slide" aria-hidden="true">
+                  <div class="placeholder-image">Prostor za fotografijo #2</div>
+                </figure>
+                <figure class="slide" aria-hidden="true">
+                  <div class="placeholder-image">Prostor za fotografijo #3</div>
+                </figure>
+              </div>
+              <div class="carousel-dots">
+                <button type="button" class="dot active" aria-label="Pokaži fotografijo 1" data-slide-index="0"></button>
+                <button type="button" class="dot" aria-label="Pokaži fotografijo 2" data-slide-index="1"></button>
+                <button type="button" class="dot" aria-label="Pokaži fotografijo 3" data-slide-index="2"></button>
+              </div>
+              <div class="carousel-controls">
+                <button type="button" class="carousel-btn" data-carousel-action="prev">Nazaj</button>
+                <button type="button" class="carousel-btn" data-carousel-action="next">Naprej</button>
+                <button type="button" class="carousel-btn" data-carousel-action="toggle" aria-pressed="false">
+                  Ustavi vrtenje
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container quick-cards">
+          <article class="quick-card highlight">
+            <h3>Zadnja novica</h3>
+            <p class="meta">26. 3. 2026</p>
+            <p>
+              Objavili smo poročilo o delu za leto 2025 in poudarili mednarodne uspehe na FLL
+              tekmovanjih ter prostovoljsko delo članov.
+            </p>
+            <a href="#aktivnosti">Preberi več</a>
+          </article>
+
+          <article class="quick-card">
+            <h3>Naše poslanstvo</h3>
+            <p>
+              Spodbujamo raziskovanje, inovacije in ustvarjalnost mladih skozi praktične projekte
+              ter izobraževanje.
+            </p>
+            <a href="#o-drustvu">Več o poslanstvu</a>
+          </article>
+
+          <article class="quick-card">
+            <h3>Podprite naše delo</h3>
+            <p>
+              Hvala vsem podpornikom, ki omogočate izvedbo delavnic, tekmovanj in mednarodnih
+              udeležb.
+            </p>
+            <a href="#podporniki">Podporniki</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="o-drustvu" class="section about">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">O društvu</p>
+            <h2>Kdo smo</h2>
+          </div>
+
+          <div class="about-grid">
+            <div>
+              <p>
+                Društvo DRITZ v Sloveniji deluje od leta 2024 z jasnim ciljem: spodbujati
+                znanstveno raziskovanje, inovacije in izobraževanje na področju tehnologije in
+                znanosti.
+              </p>
+              <p>
+                Naša misija je razvijati radovednost, kreativnost in tehnično znanje med mladimi ter
+                jih usmerjati v razvoj tehnoloških veščin. Skozi delavnice, mentorstvo in
+                tekmovanja gradimo okolje, kjer lahko mladi varno preizkušajo ideje, sodelujejo in
+                rastejo.
+              </p>
+              <div class="pillars">
+                <article>
+                  <h3>Misija</h3>
+                  <p>
+                    Povezovati mlade z znanostjo in tehnologijo skozi praktično učenje in
+                    raziskovanje.
+                  </p>
+                </article>
+                <article>
+                  <h3>Vizija</h3>
+                  <p>
+                    Družba, v kateri so inovativnost, sodelovanje in tehnično znanje dostopni vsakomur.
+                  </p>
+                </article>
+                <article>
+                  <h3>Aktivnosti</h3>
+                  <p>
+                    Delavnice programiranja, lego robotike, raziskovalnih metod in priprave na
+                    tekmovanja doma in v tujini.
+                  </p>
+                </article>
+              </div>
+            </div>
+
+            <aside class="about-photos">
+              <div class="placeholder-image tall">Prostor za skupinsko fotografijo</div>
+              <div class="placeholder-image">Prostor za fotografijo delavnice</div>
+            </aside>
+          </div>
+
+          <div class="founders">
+            <h3>Soustanovitelji</h3>
+            <div class="founder-cards">
+              <article>
+                <h4>Matija Pilko</h4>
+                <p>Predsednik in soustanovitelj</p>
+              </article>
+              <article>
+                <h4>Valentin Šeško</h4>
+                <p>Podpredsednik in soustanovitelj</p>
+              </article>
+              <article>
+                <h4>Lija Kužner</h4>
+                <p>Soustanoviteljica</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="aktivnosti" class="section news">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Aktivnosti / Novice</p>
+            <h2>Dogodki in dosežki</h2>
+          </div>
+
+          <div class="news-grid">
+            <article class="news-card">
+              <div class="placeholder-image">Slika novice</div>
+              <div class="news-content">
+                <p class="meta">26. 3. 2026</p>
+                <h3>Prostovoljstvo – udeležba na mednarodnem tekmovanju FLL v Maroku (2023)</h3>
+                <p>
+                  Člani društva so kot prostovoljci sodelovali na mednarodnem tekmovanju FLL v
+                  Maroku in prispevali k izvedbi dogodka ter podpori ekipam.
+                </p>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="placeholder-image">Slika novice</div>
+              <div class="news-content">
+                <p class="meta">29. 3. 2025</p>
+                <h3>Udeležba na mednarodnem tekmovanju FLL na Norveškem</h3>
+                <p>
+                  Naši člani so sodelovali na FLL Open European Championship v Bodøju ter
+                  pridobivali mednarodne izkušnje in nova partnerstva.
+                </p>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="placeholder-image">Slika novice</div>
+              <div class="news-content">
+                <p class="meta">2025</p>
+                <h3>Udeležba na mednarodnem tekmovanju FLL v Grčiji</h3>
+                <p>
+                  Društvo je sodelovalo na mednarodnem FLL tekmovanju v Grčiji in predstavilo
+                  slovensko znanje ter timsko delo.
+                </p>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="placeholder-image">Slika novice</div>
+              <div class="news-content">
+                <p class="meta">2025</p>
+                <h3>Udeležba na mednarodnem tekmovanju FLL v Angliji</h3>
+                <p>
+                  Udeležba na FLL UK National Final 2025 v Harrogate je okrepila sodelovanje z
+                  mednarodno skupnostjo in organizacijo IET.
+                </p>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="placeholder-image">Slika novice</div>
+              <div class="news-content">
+                <p class="meta">2023–danes</p>
+                <h3>Udeležbe na regijskih in državnih tekmovanjih v Sloveniji</h3>
+                <p>
+                  Redno sodelujemo na regijskih in državnih FLL dogodkih v Sloveniji kot mentorji,
+                  ocenjevalci in podpora ekipam.
+                </p>
+              </div>
+            </article>
+
+            <article class="news-card">
+              <div class="placeholder-image">Slika novice</div>
+              <div class="news-content">
+                <p class="meta">2023–danes</p>
+                <h3>Udeležbe na državnih tekmovanjih na Hrvaškem, v Srbiji in Črni gori</h3>
+                <p>
+                  Aktivno se vključujemo tudi v regionalna tekmovanja in gradimo mrežo sodelovanja
+                  na področju izobraževalne robotike.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="podporniki" class="section supporters">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Podporniki</p>
+            <h2>Donatorji in partnerji</h2>
+          </div>
+
+          <div class="supporter-grid">
+            <article class="supporter-year">
+              <h3>2024/25</h3>
+              <ul>
+                <li>Žan Močivnik</li>
+                <li>Urška Farčnik</li>
+                <li>Trimo d. o. o.</li>
+              </ul>
+              <div class="logo-row">
+                <div class="placeholder-image small">Logo podpornika</div>
+                <div class="placeholder-image small">Logo podpornika</div>
+                <div class="placeholder-image small">Logo podpornika</div>
+              </div>
+            </article>
+
+            <article class="supporter-year">
+              <h3>2025/26</h3>
+              <ul>
+                <li>Sensum, sistemi z računalniškim vidom d. o. o.</li>
+                <li>Dewesoft d. o. o.</li>
+                <li>ETI Elektroelement d. o. o.</li>
+              </ul>
+              <div class="logo-row">
+                <div class="placeholder-image small">Logo podpornika</div>
+                <div class="placeholder-image small">Logo podpornika</div>
+                <div class="placeholder-image small">Logo podpornika</div>
+              </div>
+            </article>
+          </div>
+
+          <article class="thank-you">
+            <h3>Zahvala podpornikom</h3>
+            <p>
+              Spoštovani podporniki, iskrena hvala za vaše zaupanje in podporo. Z vašo pomočjo lahko
+              mladim omogočamo kakovostne izobraževalne programe, mednarodne povezave in razvoj
+              praktičnih znanj, ki oblikujejo prihodnost tehnologije in znanosti.
+            </p>
+            <p>
+              Vaš prispevek ni le finančna pomoč – je naložba v generacije raziskovalcev,
+              inovatorjev in odgovornih ustvarjalcev družbe.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="kontakt" class="section contact">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Kontakt</p>
+            <h2>Stopite v stik z nami</h2>
+          </div>
+          <div class="contact-card">
+            <p><strong>Naslov:</strong> Medlog 52A, 3000 Celje, Slovenia</p>
+            <p><strong>E-pošta:</strong> <a href="mailto:info@dritz.si">info@dritz.si</a></p>
+            <p><strong>Telefon:</strong> <a href="tel:+38631251237">031 251 237</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© <span id="year"></span> Društvo DRITZ. Vse pravice pridržane.</p>
+        <a href="#top">Nazaj na vrh ↑</a>
+      </div>
+    </footer>
+
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
