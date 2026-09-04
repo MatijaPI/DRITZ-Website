@@ -23,7 +23,8 @@ const carouselButtons = Array.from(document.querySelectorAll('[data-carousel-act
 let currentSlide = 0;
 let rotationPaused = false;
 let intervalId = null;
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+let reduceMotion = reduceMotionQuery.matches;
 
 function showSlide(index) {
   slides.forEach((slide, i) => {
@@ -60,6 +61,8 @@ if (slides.length > 1) {
     dot.addEventListener('click', () => {
       currentSlide = i;
       showSlide(currentSlide);
+      stopRotation();
+      startRotation();
     });
   });
 
@@ -86,6 +89,12 @@ if (slides.length > 1) {
 
   showSlide(currentSlide);
   startRotation();
+
+  reduceMotionQuery.addEventListener('change', (event) => {
+    reduceMotion = event.matches;
+    stopRotation();
+    startRotation();
+  });
 }
 
 const yearSpan = document.querySelector('#year');
