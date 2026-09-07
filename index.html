@@ -3,28 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta
       name="description"
       content="Društvo DRITZ - Društvo za raziskovanje in izobraževanje o tehnologiji in znanosti."
     />
+
     <title>Društvo DRITZ</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
+
   <body>
     <header class="site-header" id="top">
       <div class="container nav-wrap">
         <a href="#drustvo" class="brand" aria-label="Društvo DRITZ">
-          <img src="./assets/images/dritz-logo-placeholder.svg" alt="Društvo DRITZ logo" />
+          <img
+            src="./assets/images/Logo_square.png"
+            alt="Društvo DRITZ logo"
+          />
           <span>Društvo DRITZ</span>
         </a>
 
-        <button class="menu-toggle" aria-expanded="false" aria-controls="main-menu">
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="main-menu"
+        >
           Meni
         </button>
 
@@ -42,56 +59,122 @@
       <section id="drustvo" class="hero section">
         <div class="container hero-grid">
           <div class="hero-content">
+
+            <!-- CAROUSEL -->
             <div class="hero-media">
-            <div class="carousel" aria-label="Galerija dejavnosti društva">
-              <p id="carousel-status" class="sr-only" aria-live="polite">
-                Prikazana je fotografija 1 od 3.
-              </p>
-              <div class="slides">
-                <figure class="slide active" aria-hidden="false">
-                  <img src="./assets/images/Logo_transparent.png" alt="Logo društva DRITZ">
-                </figure>
+              <div
+                class="carousel"
+                aria-label="Galerija dejavnosti društva"
+              >
+                <p
+                  id="carousel-status"
+                  class="sr-only"
+                  aria-live="polite"
+                >
+                  Prikazana je fotografija 1 od 3.
+                </p>
 
-                <figure class="slide" aria-hidden="true">
-                  <img src="./assets/images/Maroko.png" alt="Delavnica društva DRITZ">
-                </figure>
+                <div class="slides">
+                  <figure
+                    class="slide active"
+                    aria-hidden="false"
+                  >
+                    <img
+                      src="./assets/images/Logo_transparent.png"
+                      alt="Logo društva DRITZ"
+                    />
+                  </figure>
 
-                <figure class="slide" aria-hidden="true">
-                  <img src="./assets/images/Anglija.png" alt="Člani društva DRITZ">
-                </figure>
-              </div>
-              <div class="carousel-dots">
-                <button type="button" class="dot active" aria-label="Pokaži fotografijo 1" data-slide-index="0"></button>
-                <button type="button" class="dot" aria-label="Pokaži fotografijo 2" data-slide-index="1"></button>
-                <button type="button" class="dot" aria-label="Pokaži fotografijo 3" data-slide-index="2"></button>
+                  <figure
+                    class="slide"
+                    aria-hidden="true"
+                  >
+                    <img
+                      src="./assets/images/Maroko.png"
+                      alt="Delavnica društva DRITZ"
+                    />
+                  </figure>
+
+                  <figure
+                    class="slide"
+                    aria-hidden="true"
+                  >
+                    <img
+                      src="./assets/images/Anglija.png"
+                      alt="Člani društva DRITZ"
+                    />
+                  </figure>
+                </div>
+
+                <div
+                  class="carousel-dots"
+                  aria-label="Izbira fotografije"
+                >
+                  <button
+                    type="button"
+                    class="dot active"
+                    aria-label="Pokaži fotografijo 1"
+                    aria-current="true"
+                    data-slide-index="0"
+                  ></button>
+
+                  <button
+                    type="button"
+                    class="dot"
+                    aria-label="Pokaži fotografijo 2"
+                    aria-current="false"
+                    data-slide-index="1"
+                  ></button>
+
+                  <button
+                    type="button"
+                    class="dot"
+                    aria-label="Pokaži fotografijo 3"
+                    aria-current="false"
+                    data-slide-index="2"
+                  ></button>
+                </div>
               </div>
             </div>
-          </div>
-            <p class="eyebrow">Društvo za raziskovanje in izobraževanje o tehnologiji in znanosti</p>
-            <h1>Skupaj gradimo radovedno, ustvarjalno in tehnološko pismeno prihodnost.</h1>
-            <p class="lead">
-              Društvo DRITZ mladim odpira vrata v svet znanosti, robotike in inovacij skozi
-              delavnice, mentorstvo ter tekmovanja doma in v tujini.
+
+            <p class="eyebrow">
+              Društvo za raziskovanje in izobraževanje o tehnologiji in znanosti
             </p>
+
+            <h1>
+              Skupaj gradimo inovativno, ustvarjalno in tehnološko pismeno
+              prihodnost.
+            </h1>
+
+            <p class="lead">
+              Društvo DRITZ mladim odpira vrata v svet znanosti, robotike in
+              inovacij skozi delavnice, mentorstvo ter tekmovanja doma in v
+              tujini.
+            </p>
+
             <blockquote>
-              »Znanje je najmočnejše, ko ga delimo in z njim navdihujemo naslednjo generacijo.«
+              »Raziskujemo neznano, izobražujemo za prihodnost.«
             </blockquote>
+
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#o-drustvu">Spoznajte društvo</a>
-              <a class="btn btn-secondary" href="#aktivnosti">Poglejte aktivnosti</a>
+              <a class="btn btn-primary" href="#o-drustvu">
+                Spoznajte društvo
+              </a>
+
+              <a class="btn btn-secondary" href="#aktivnosti">
+                Poglejte aktivnosti
+              </a>
             </div>
           </div>
-
-          
         </div>
 
         <div class="container quick-cards">
           <article class="quick-card highlight">
             <h3>Zadnja novica</h3>
-            <p class="meta">26. 3. 2026</p>
+            <p class="meta">12. 5. 2026</p>
             <p>
-              Objavili smo poročilo o delu za leto 2025 in poudarili mednarodne uspehe na FLL
-              tekmovanjih ter prostovoljsko delo članov.
+              Prostovoljci društva so sodelovali na First Lego League 
+              Open International Championship Greece 2026 v Korintu.
             </p>
             <a href="#aktivnosti">Preberi več</a>
           </article>
@@ -99,8 +182,8 @@
           <article class="quick-card">
             <h3>Naše poslanstvo</h3>
             <p>
-              Spodbujamo raziskovanje, inovacije in ustvarjalnost mladih skozi praktične projekte
-              ter izobraževanje.
+              Spodbujamo raziskovanje, inovacije in ustvarjalnost mladih skozi
+              praktične projekte ter izobraževanje.
             </p>
             <a href="#o-drustvu">Več o poslanstvu</a>
           </article>
@@ -108,8 +191,8 @@
           <article class="quick-card">
             <h3>Podprite naše delo</h3>
             <p>
-              Hvala vsem podpornikom, ki omogočate izvedbo delavnic, tekmovanj in mednarodnih
-              udeležb.
+              Hvala vsem podpornikom, ki omogočate izvedbo delavnic,
+              tekmovanj in mednarodnih udeležb.
             </p>
             <a href="#podporniki">Podporniki</a>
           </article>
@@ -126,62 +209,61 @@
           <div class="about-grid">
             <div>
               <p>
-                Društvo DRITZ v Sloveniji deluje od leta 2024 z jasnim ciljem: spodbujati
-                znanstveno raziskovanje, inovacije in izobraževanje na področju tehnologije in
-                znanosti.
+                Društvo DRITZ v Sloveniji deluje od leta 2024 z jasnim ciljem:
+                spodbujati znanstveno raziskovanje, inovacije in izobraževanje
+                na področju tehnologije in znanosti.
               </p>
+
               <p>
-                Naša misija je razvijati radovednost, kreativnost in tehnično znanje med mladimi ter
-                jih usmerjati v razvoj tehnoloških veščin. Skozi delavnice, mentorstvo in
-                tekmovanja gradimo okolje, kjer lahko mladi varno preizkušajo ideje, sodelujejo in
-                rastejo.
+                Naša misija je razvijati radovednost, kreativnost in tehnično
+                znanje med mladimi ter jih usmerjati v razvoj tehnoloških
+                veščin. Skozi delavnice, mentorstvo in tekmovanja gradimo
+                okolje, kjer lahko mladi varno preizkušajo ideje, sodelujejo
+                in rastejo.
               </p>
+
               <div class="pillars">
                 <article>
                   <h3>Misija</h3>
                   <p>
-                    Povezovati mlade z znanostjo in tehnologijo skozi praktično učenje in
-                    raziskovanje.
+                    Povezovati mlade z znanostjo in tehnologijo skozi praktično
+                    učenje in raziskovanje.
                   </p>
                 </article>
+
                 <article>
                   <h3>Vizija</h3>
                   <p>
-                    Družba, v kateri so inovativnost, sodelovanje in tehnično znanje dostopni vsakomur.
+                    Družba, v kateri so inovativnost, sodelovanje in tehnično
+                    znanje dostopni vsakomur.
                   </p>
                 </article>
+
                 <article>
                   <h3>Aktivnosti</h3>
                   <p>
-                    Delavnice programiranja, lego robotike, raziskovalnih metod in priprave na
-                    tekmovanja doma in v tujini.
+                    Delavnice programiranja, lego robotike, raziskovalnih
+                    metod in priprave na tekmovanja doma in v tujini.
                   </p>
                 </article>
               </div>
             </div>
 
             <aside class="about-photos">
-              <div class="placeholder-image tall">Prostor za skupinsko fotografijo</div>
-              <div class="placeholder-image">Prostor za fotografijo delavnice</div>
-            </aside>
-          </div>
+              <div class="placeholder-image tall">
+                <img
+                    src="./assets/images/Delavnice1.jpg"
+                    alt="Delavnice1"
+                  />
+              </div>
 
-          <div class="founders">
-            <h3>Soustanovitelji</h3>
-            <div class="founder-cards">
-              <article>
-                <h4>Matija Pilko</h4>
-                <p>Predsednik in soustanovitelj</p>
-              </article>
-              <article>
-                <h4>Valentin Šeško</h4>
-                <p>Podpredsednik in soustanovitelj</p>
-              </article>
-              <article>
-                <h4>Lija Kužner</h4>
-                <p>Soustanoviteljica</p>
-              </article>
-            </div>
+              <div class="placeholder-image">
+                <img
+                    src="./assets/images/Delavnice.jpg"
+                    alt="Delavnice"
+                  />
+              </div>
+            </aside>
           </div>
         </div>
       </section>
@@ -195,76 +277,163 @@
 
           <div class="news-grid">
             <article class="news-card">
-              <div class="placeholder-image">Slika novice</div>
+              <div class="placeholder-image">
+                <img
+                    src="./assets/images/Grčija.png"
+                    alt="Grčija"
+                  />
+              </div>
+
               <div class="news-content">
-                <p class="meta">26. 3. 2026</p>
-                <h3>Prostovoljstvo – udeležba na mednarodnem tekmovanju FLL v Maroku (2023)</h3>
+                <p class="meta">12. 5. 2026, Korint, Grčija</p>
+
+                <h3>
+                  Ekipa in prostovoljci društva DRITZ z izjemnim uspehom na FLL prvenstvu v Grčiji
+                </h3>
+
                 <p>
-                  Člani društva so kot prostovoljci sodelovali na mednarodnem tekmovanju FLL v
-                  Maroku in prispevali k izvedbi dogodka ter podpori ekipam.
+                  Med 8. in 11. majem 2026 je pri grškem mestu Korint potekalo mednarodno prvenstvo FLL Open 
+                  International Championship Greece 2026, kjer je Slovenija zablestela na vseh področjih. 
+                  Trije prostovoljci, člani društva DRITZ, so kot del ekipe ocenjevalcev in sodnikov opravili 
+                  vrhunsko delo, slovenska ekipa Eco Robots (OŠ Šentvid) pa je v močni svetovni konkurenci osvojila pokal. 
+                  Iskrene čestitke našim prostovoljcem za izjemen trud in ekipi za fantastičen zgodovinski uspeh!
                 </p>
               </div>
             </article>
 
             <article class="news-card">
-              <div class="placeholder-image">Slika novice</div>
+              <div class="placeholder-image">
+                <img
+                    src="./assets/images/Anglija3.jpg"
+                    alt="Anglija"
+                  />
+              </div>
+              
               <div class="news-content">
-                <p class="meta">29. 3. 2025</p>
-                <h3>Udeležba na mednarodnem tekmovanju FLL na Norveškem</h3>
+                <p class="meta">3. 5. 2025, Harrogate, Velika Britanija</p>
+                
+                <h3>
+                  Društvo DRITZ znova s sodniško zastopanostjo na državnem prvenstvu Velike Britanije
+                </h3>
+
                 <p>
-                  Naši člani so sodelovali na FLL Open European Championship v Bodøju ter
-                  pridobivali mednarodne izkušnje in nova partnerstva.
+                  V soboto, 3. maja 2025, je v britanskem mestu Harrogate potekal veliki nacionalni finale 
+                  FIRST LEGO League UK Finals 2025. Na tem odmevnem tehnološkem dogodku, ki ga organizira 
+                  IET Education, sta pomembno vlogo odigrala tudi ocenjevalec in ocenjevalka iz našega društva 
+                  DRITZ. Z delom v mednarodni sodniški žiriji sta prispevala k strokovnemu ocenjevanju 
+                  inovativnih projektov in robotike ter znova dokazala visoko raven znanja naših članov. 
+                  Ponosni smo na naše sodnike, ki s svojim prostovoljnim delom redno soustvarjajo vrhunske 
+                  dogodke FLL tudi na tujih tleh!
                 </p>
               </div>
             </article>
 
             <article class="news-card">
-              <div class="placeholder-image">Slika novice</div>
+              <div class="placeholder-image">
+                <img
+                    src="./assets/images/Norveška.jpg"
+                    alt="Norveška"
+                  />
+              </div>
+
               <div class="news-content">
-                <p class="meta">2025</p>
-                <h3>Udeležba na mednarodnem tekmovanju FLL v Grčiji</h3>
+                <p class="meta">17. 5. 2024</p>
+
+                <h3>
+                  Zgodovinski naslov evropskih prvakov za slovensko ekipo Black&White v Bodøju!
+                </h3>
+
                 <p>
-                  Društvo je sodelovalo na mednarodnem FLL tekmovanju v Grčiji in predstavilo
-                  slovensko znanje ter timsko delo.
+                  Med 13. in 16. majem 2024 je v norveškem mestu Bodø potekalo prestižno evropsko prvenstvo FLL Open European Championship 
+                  2024, ki se bo z zlatimi črkami zapisalo v zgodovino Slovenskega FLL programa in našega društva. Slovenska vrhunska ekipa 
+                  Black&White je namreč v izjemno močni konkurenci ponosno postala evropski prvak! Uspeh sta na prizorišču soustvarjala tudi 
+                  dva ocenjevalca in člana društva DRITZ, ki sta z delom v ocenjevalni ekipi skrbela in strokovno sojenje na najvišji ravni. 
+                  Iskrene čestitke celotni ekipi Black&White za ta neponovljiv, fantastičen evropski uspeh ter našima ocenjevalcema!
                 </p>
               </div>
             </article>
 
             <article class="news-card">
-              <div class="placeholder-image">Slika novice</div>
+              <div class="placeholder-image">
+                <img
+                    src="./assets/images/Anglija.png"
+                    alt="Anglija"
+                  />
+              </div>
+
               <div class="news-content">
-                <p class="meta">2025</p>
-                <h3>Udeležba na mednarodnem tekmovanju FLL v Angliji</h3>
+                <p class="meta">21. 4. 2024</p>
+
+                <h3>
+                  Člani društva DRITZ del sodniške žirije na britanskem FLL finalu
+                </h3>
+
                 <p>
-                  Udeležba na FLL UK National Final 2025 v Harrogate je okrepila sodelovanje z
-                  mednarodno skupnostjo in organizacijo IET.
+                  V soboto, 20. aprila 2024, je v angleškem mestu Harrogate potekal veliki UK National Final 2024 - 
+                  finale FIRST LEGO League tekmovanja za Anglijo, Irsko, Wales in Škotsko. Na tem prestižnem dogodku sezone 
+                  MASTERPIECE so slovensko strokovnost zastopali trije ocenjevalci in člani našega 
+                  društva DRITZ. Kot del uradne žirije so z ocenjevanjem inovativnih projektov in 
+                  robotike pomembno prispevali k uspešni izvedbi tekmovanja. Čestitke naši sodniški 
+                  trojici za odlično opravljeno delo na velikem mednarodnem odru!
                 </p>
               </div>
             </article>
 
             <article class="news-card">
-              <div class="placeholder-image">Slika novice</div>
+              <div class="placeholder-image">
+                <img
+                    src="./assets/images/Najprostovoljec.jpg"
+                    alt="Najprostovoljec"
+                  />
+              </div>
+
               <div class="news-content">
-                <p class="meta">2023–danes</p>
-                <h3>Udeležbe na regijskih in državnih tekmovanjih v Sloveniji</h3>
+                <p class="meta">26. 3. 2023</p>
+                
+                <h3>
+                  Marakeš v znamenju robotike: Naša trojica prvič na afriškem FLL odru z izjemnim priznanjem!
+                </h3>
+
                 <p>
-                  Redno sodelujemo na regijskih in državnih FLL dogodkih v Sloveniji kot mentorji,
-                  ocenjevalci in podpora ekipam.
+                  Ko je Maroko med 18. in 21. majem 2023 gostil sploh prvo mednarodno FLL prvenstvo na 
+                  afriških tleh – Morocco Open International 2023 –, društvo DRITZ ni manjkalo. V vročem 
+                  Marakešu so se sezone SUPERPOWERED udeležili trije naši prostovoljci, ki so zasedli 
+                  mesta v uradni sodniški žiriji. Izjemen turnir pa se je končal s prav posebnim slavjem, 
+                  saj je naš ocenjevalec Valentin Šeško na zaključni ceremoniji prejel prestižni pokal za 
+                  najprostovoljca tekmovanja! To vrhunsko priznanje je odraz njegove izjemne energije, 
+                  strokovnosti in predanosti FLL skupnosti. Velik hvala in iskrene čestitke celotni trojici, 
+                  še posebej pa našemu nagrajenemu najprostovoljcu za ta izjemen mednarodni uspeh!
                 </p>
               </div>
             </article>
 
             <article class="news-card">
-              <div class="placeholder-image">Slika novice</div>
+              <div class="placeholder-image">
+                <img
+                    src="./assets/images/Adria.jpg"
+                    alt="Regija Adrija"
+                  />
+              </div>
+
               <div class="news-content">
-                <p class="meta">2023–danes</p>
-                <h3>Udeležbe na državnih tekmovanjih na Hrvaškem, v Srbiji in Črni gori</h3>
+                <p class="meta">Regija Adrija (Hrvaška, Srbija, Črna gora)</p>
+
+                <h3>
+                  Društvo DRITZ kot steber regijskega FLL gibanja: soustvarjamo državna prvenstva v soseščini
+                </h3>
+
                 <p>
-                  Aktivno se vključujemo tudi v regionalna tekmovanja in gradimo mrežo sodelovanja
-                  na področju izobraževalne robotike.
+                  Povezovanje in širjenje znanja ne poznata meja, kar v društvu DRITZ dokazujemo s svojim 
+                  stalnim delovanjem v širši regiji. Vsako leto aktivno sodelujemo in pomagamo pri organizaciji 
+                  državnih tekmovanj FIRST LEGO League na Hrvaškem, v Srbiji in v Črni gori. Naši člani 
+                  s svojimi bogatimi izkušnjami in strokovnim znanjem na teh turnirjih prevzemajo ključne 
+                  organizacijske ter sodniške vloge. S tem pomembno prispevamo k dvigu ravni mladinske robotike 
+                  na celotnem Balkanu ter utrjujemo partnerske vezi z regijskimi FLL organizatorji. Ponosni smo, 
+                  da lahko soustvarjamo nepozabne tehnološke izkušnje za mlade umane tudi zunaj naših meja!
                 </p>
               </div>
             </article>
+
           </div>
         </div>
       </section>
@@ -279,43 +448,72 @@
           <div class="supporter-grid">
             <article class="supporter-year">
               <h3>2024/25</h3>
+
               <ul>
                 <li>Žan Močivnik</li>
                 <li>Urška Farčnik</li>
                 <li>Trimo d. o. o.</li>
               </ul>
+
               <div class="logo-row">
-                <div class="placeholder-image small">Logo podpornika</div>
-                <div class="placeholder-image small">Logo podpornika</div>
-                <div class="placeholder-image small">Logo podpornika</div>
+                <div class="placeholder-image small">
+                  <img
+                    src="./assets/images/Trimo.png"
+                    alt="Trimo logo"
+                  />
+                </div>
               </div>
             </article>
 
             <article class="supporter-year">
               <h3>2025/26</h3>
+
               <ul>
-                <li>Sensum, sistemi z računalniškim vidom d. o. o.</li>
+                <li>
+                  Sensum, sistemi z računalniškim vidom d. o. o.
+                </li>
                 <li>Dewesoft d. o. o.</li>
                 <li>ETI Elektroelement d. o. o.</li>
               </ul>
+
               <div class="logo-row">
-                <div class="placeholder-image small">Logo podpornika</div>
-                <div class="placeholder-image small">Logo podpornika</div>
-                <div class="placeholder-image small">Logo podpornika</div>
+                <div class="placeholder-image small">
+                  <img
+                    src="./assets/images/ETI.png"
+                    alt="ETI logo"
+                  />
+                </div>
+
+                <div class="placeholder-image small">
+                  <img
+                    src="./assets/images/Dewesoft.png"
+                    alt="Dewesoft logo"
+                  />
+                </div>
+
+                <div class="placeholder-image small">
+                  <img
+                    src="./assets/images/Sensum.png"
+                    alt="Sensum logo"
+                  />
+                </div>
               </div>
             </article>
           </div>
 
           <article class="thank-you">
             <h3>HVALA!</h3>
+
             <p>
-              Spoštovani podporniki, iskrena hvala za vaše zaupanje in podporo. Z vašo pomočjo lahko
-              mladim omogočamo kakovostne izobraževalne programe, mednarodne povezave in razvoj
-              praktičnih znanj, ki oblikujejo prihodnost tehnologije in znanosti.
+              Spoštovani podporniki, iskrena hvala za vaše zaupanje in podporo.
+              Z vašo pomočjo lahko mladim omogočamo kakovostne izobraževalne
+              programe, mednarodne povezave in razvoj praktičnih znanj, ki
+              oblikujejo prihodnost tehnologije in znanosti.
             </p>
+
             <p>
-              Vaš prispevek ni le finančna pomoč – je naložba v generacije raziskovalcev,
-              inovatorjev in odgovornih ustvarjalcev družbe.
+              Vaš prispevek ni le finančna pomoč – je naložba v generacije
+              raziskovalcev, inovatorjev in odgovornih ustvarjalcev družbe.
             </p>
           </article>
         </div>
@@ -327,9 +525,11 @@
             <p class="eyebrow">Kontakt</p>
             <h2>Stopite v stik z nami</h2>
           </div>
+
           <div class="contact-card">
             <div class="contact-item">
               <div class="contact-icon">📍</div>
+
               <div>
                 <strong>Naslov</strong>
                 <span>Medlog 52A, 3000 Celje, Slovenia</span>
@@ -338,6 +538,7 @@
 
             <div class="contact-item">
               <div class="contact-icon">✉</div>
+
               <div>
                 <strong>E-pošta</strong>
                 <a href="mailto:info@dritz.si">info@dritz.si</a>
@@ -346,6 +547,7 @@
 
             <div class="contact-item">
               <div class="contact-icon">☎</div>
+
               <div>
                 <strong>Telefon</strong>
                 <a href="tel:+38631251237">031 251 237</a>
@@ -358,7 +560,10 @@
 
     <footer class="site-footer">
       <div class="container footer-wrap">
-        <p>© <span id="year"></span> Društvo DRITZ. Vse pravice pridržane.</p>
+        <p>
+          © <span id="year"></span> Društvo DRITZ. Vse pravice pridržane.
+        </p>
+
         <a href="#top">Nazaj na vrh ↑</a>
       </div>
     </footer>

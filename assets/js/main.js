@@ -1,118 +1,485 @@
-const menuToggle = document.querySelector('.menu-toggle');
-const mainMenu = document.querySelector('#main-menu');
+document.addEventListener("DOMContentLoaded", () => {
+  /* =====================================================
+     YEAR
+     ===================================================== */
 
-if (menuToggle && mainMenu) {
-  menuToggle.addEventListener('click', () => {
-    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!expanded));
-    mainMenu.classList.toggle('open');
-  });
+  const yearElement = document.getElementById("year");
 
-  mainMenu.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      menuToggle.setAttribute('aria-expanded', 'false');
-      mainMenu.classList.remove('open');
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+
+
+  /* =====================================================
+     MOBILE MENU
+     ===================================================== */
+
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mainMenu = document.querySelector(".main-nav");
+
+  if (menuToggle && mainMenu) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen = mainMenu.classList.toggle("open");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
     });
-  });
-}
 
-const slides = Array.from(document.querySelectorAll('.slide'));
-const dots = Array.from(document.querySelectorAll('.dot'));
-const carouselStatus = document.querySelector('#carousel-status');
-const carouselButtons = Array.from(document.querySelectorAll('[data-carousel-action]'));
-let currentSlide = 0;
-let rotationPaused = false;
-let intervalId = null;
-const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-let reduceMotion = reduceMotionQuery.matches;
+    mainMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mainMenu.classList.remove("open");
 
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    const isActive = i === index;
-    slide.classList.toggle('active', isActive);
-    slide.setAttribute('aria-hidden', String(!isActive));
-  });
-  dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-  dots.forEach((dot, i) => dot.setAttribute('aria-pressed', String(i === index)));
-  if (carouselStatus) {
-    carouselStatus.textContent = `Prikazana je fotografija ${index + 1} od ${slides.length}.`;
+        menuToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+      });
+    });
   }
-}
 
-function stopRotation() {
-  if (intervalId) {
-    clearInterval(intervalId);
-    intervalId = null;
-  }
-}
 
-function startRotation() {
-  if (slides.length <= 1 || reduceMotion || rotationPaused || intervalId) {
+  /* =====================================================
+     CAROUSEL
+     ===================================================== */
+
+  const carousel = document.querySelector(".carousel");
+
+  if (!carousel) {
     return;
   }
-  intervalId = setInterval(() => {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  }, 4500);
-}
 
-function resetRotationAfterManualNavigation() {
-  if (rotationPaused) {
+  const slides = Array.from(
+    carousel.querySelectorAll(".slide")
+  );
+
+  const dots = Array.from(
+    carousel.querySelectorAll(".dot")
+  );
+
+  const status = document.getElementById(
+    "carousel-status"
+  );
+
+  if (slides.length === 0) {
     return;
   }
-  stopRotation();
-  startRotation();
-}
 
-if (slides.length > 1) {
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      currentSlide = i;
-      showSlide(currentSlide);
-      resetRotationAfterManualNavigation();
+
+  /* =====================================================
+     SETTINGS
+     ===================================================== */
+
+  let currentIndex = 0;
+
+  let autoPlayTimer = null;
+
+  let isAnimating = false;
+
+  /*
+   * This matches the new CSS transition duration.
+   *
+   * CSS:
+   * opacity / transform = 0.7s
+   */
+  const TRANSITION_DURATION = 700;
+
+  /*
+   * Time between automatic slide changes.
+   */
+  const AUTO_PLAY_DELAY = 5000;
+
+
+  /* =====================================================
+     ACCESSIBILITY
+     ===================================================== */
+
+  function updateAccessibility(index) {
+    slides.forEach((slide, i) => {
+      const isActive = i === index;
+
+      slide.setAttribute(
+        "aria-hidden",
+        String(!isActive)
+      );
     });
-  });
 
-  carouselButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const action = button.dataset.carouselAction;
-      if (action === 'prev') {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-        resetRotationAfterManualNavigation();
-      }
-      if (action === 'next') {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-        resetRotationAfterManualNavigation();
-      }
-      if (action === 'toggle') {
-        rotationPaused = !rotationPaused;
-        button.setAttribute('aria-pressed', String(rotationPaused));
-        button.textContent = rotationPaused ? 'Nadaljuj vrtenje' : 'Ustavi vrtenje';
-        stopRotation();
-        startRotation();
+
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.add("active");
+
+        dot.setAttribute(
+          "aria-current",
+          "true"
+        );
+      } else {
+        dot.classList.remove("active");
+
+        dot.setAttribute(
+          "aria-current",
+          "false"
+        );
       }
     });
-  });
 
-  showSlide(currentSlide);
-  startRotation();
 
-  const handleReducedMotionChange = (event) => {
-    reduceMotion = event.matches;
-    stopRotation();
-    startRotation();
-  };
-
-  if (typeof reduceMotionQuery.addEventListener === 'function') {
-    reduceMotionQuery.addEventListener('change', handleReducedMotionChange);
-  } else if (typeof reduceMotionQuery.addListener === 'function') {
-    reduceMotionQuery.addListener(handleReducedMotionChange);
+    if (status) {
+      status.textContent =
+        `Prikazana je fotografija ${index + 1} od ${slides.length}.`;
+    }
   }
-}
 
-const yearSpan = document.querySelector('#year');
-if (yearSpan) {
-  yearSpan.textContent = String(new Date().getFullYear());
-}
+
+  /* =====================================================
+     CHANGE SLIDE
+     ===================================================== */
+
+  function showSlide(
+    newIndex,
+    direction = "next"
+  ) {
+    if (isAnimating) {
+      return;
+    }
+
+    if (newIndex === currentIndex) {
+      return;
+    }
+
+
+    if (
+      newIndex < 0 ||
+      newIndex >= slides.length
+    ) {
+      return;
+    }
+
+
+    isAnimating = true;
+
+
+    const oldSlide =
+      slides[currentIndex];
+
+    const newSlide =
+      slides[newIndex];
+
+
+    /* -----------------------------------------------
+       Remove any previous direction state
+       ----------------------------------------------- */
+
+    carousel.classList.remove(
+      "next",
+      "previous"
+    );
+
+
+    /* -----------------------------------------------
+       Set direction
+       ----------------------------------------------- */
+
+    carousel.classList.add(direction);
+
+
+    /* -----------------------------------------------
+       Prepare incoming slide
+       ----------------------------------------------- */
+
+    /*
+     * Make sure the new slide starts from its
+     * normal inactive state before becoming active.
+     */
+
+    newSlide.classList.remove(
+      "previous"
+    );
+
+
+    /* -----------------------------------------------
+       Mark outgoing slide
+       ----------------------------------------------- */
+
+    oldSlide.classList.remove(
+      "active"
+    );
+
+    oldSlide.classList.add(
+      "previous"
+    );
+
+
+    /* -----------------------------------------------
+       Activate incoming slide
+       ----------------------------------------------- */
+
+    newSlide.classList.add(
+      "active"
+    );
+
+
+    /* -----------------------------------------------
+       Update index and accessibility
+       ----------------------------------------------- */
+
+    currentIndex = newIndex;
+
+    updateAccessibility(
+      currentIndex
+    );
+
+
+    /* -----------------------------------------------
+       Finish transition
+       ----------------------------------------------- */
+
+    window.setTimeout(() => {
+      oldSlide.classList.remove(
+        "previous"
+      );
+
+      carousel.classList.remove(
+        "next",
+        "previous"
+      );
+
+      isAnimating = false;
+    }, TRANSITION_DURATION + 50);
+  }
+
+
+  /* =====================================================
+     NEXT SLIDE
+     ===================================================== */
+
+  function nextSlide() {
+    const nextIndex =
+      (currentIndex + 1) %
+      slides.length;
+
+    showSlide(
+      nextIndex,
+      "next"
+    );
+  }
+
+
+  /* =====================================================
+     PREVIOUS SLIDE
+     ===================================================== */
+
+  function previousSlide() {
+    const previousIndex =
+      (currentIndex - 1 + slides.length) %
+      slides.length;
+
+    showSlide(
+      previousIndex,
+      "previous"
+    );
+  }
+
+
+  /* =====================================================
+     DOT NAVIGATION
+     ===================================================== */
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const targetIndex =
+        Number(
+          dot.dataset.slideIndex
+        );
+
+
+      if (
+        Number.isNaN(targetIndex) ||
+        targetIndex < 0 ||
+        targetIndex >= slides.length
+      ) {
+        return;
+      }
+
+
+      if (
+        targetIndex === currentIndex
+      ) {
+        return;
+      }
+
+
+      /*
+       * Determine the direction.
+       *
+       * This keeps the visual movement intuitive:
+       *
+       * 1 → 2 = next
+       * 2 → 3 = next
+       * 3 → 2 = previous
+       * 2 → 1 = previous
+       */
+
+      const direction =
+        targetIndex > currentIndex
+          ? "next"
+          : "previous";
+
+
+      showSlide(
+        targetIndex,
+        direction
+      );
+
+
+      restartAutoPlay();
+    });
+  });
+
+
+  /* =====================================================
+     AUTO PLAY
+     ===================================================== */
+
+  function startAutoPlay() {
+    stopAutoPlay();
+
+    /*
+     * Don't autoplay if there is only one image.
+     */
+
+    if (slides.length <= 1) {
+      return;
+    }
+
+
+    autoPlayTimer =
+      window.setInterval(
+        () => {
+          nextSlide();
+        },
+        AUTO_PLAY_DELAY
+      );
+  }
+
+
+  function stopAutoPlay() {
+    if (
+      autoPlayTimer !== null
+    ) {
+      window.clearInterval(
+        autoPlayTimer
+      );
+
+      autoPlayTimer = null;
+    }
+  }
+
+
+  function restartAutoPlay() {
+    startAutoPlay();
+  }
+
+
+  /* =====================================================
+     PAUSE WHILE HOVERING
+     ===================================================== */
+
+  carousel.addEventListener(
+    "mouseenter",
+    () => {
+      stopAutoPlay();
+    }
+  );
+
+
+  carousel.addEventListener(
+    "mouseleave",
+    () => {
+      startAutoPlay();
+    }
+  );
+
+
+  /* =====================================================
+     PAUSE WHEN TAB IS HIDDEN
+     ===================================================== */
+
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+      if (document.hidden) {
+        stopAutoPlay();
+      } else {
+        startAutoPlay();
+      }
+    }
+  );
+
+
+  /* =====================================================
+     KEYBOARD NAVIGATION
+     ===================================================== */
+
+  carousel.setAttribute(
+    "tabindex",
+    "0"
+  );
+
+
+  carousel.addEventListener(
+    "keydown",
+    (event) => {
+      if (
+        event.key === "ArrowRight"
+      ) {
+        event.preventDefault();
+
+        nextSlide();
+
+        restartAutoPlay();
+      }
+
+
+      if (
+        event.key === "ArrowLeft"
+      ) {
+        event.preventDefault();
+
+        previousSlide();
+
+        restartAutoPlay();
+      }
+    }
+  );
+
+
+  /* =====================================================
+     INITIAL STATE
+     ===================================================== */
+
+  slides.forEach((slide, index) => {
+    slide.classList.toggle(
+      "active",
+      index === currentIndex
+    );
+
+    slide.classList.remove(
+      "previous"
+    );
+
+    slide.setAttribute(
+      "aria-hidden",
+      String(index !== currentIndex)
+    );
+  });
+
+
+  updateAccessibility(
+    currentIndex
+  );
+
+
+  startAutoPlay();
+});
