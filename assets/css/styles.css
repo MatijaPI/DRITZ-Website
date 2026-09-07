@@ -1,11 +1,11 @@
 :root {
-  --bg: #060d1f;
-  --bg-soft: #0d1833;
-  --card: #111f42;
-  --text: #eaf1ff;
-  --muted: #b8c6e6;
-  --accent: #35d0ff;
-  --accent-2: #66ff9d;
+  --bg: #ffb30019;
+  --bg-soft: #0acf0343;
+  --card: #8ac50095;
+  --text: #0000009a;
+  --muted: #556b2fa1;
+  --accent: #ffbb007a;
+  --accent-2: #ae0000;
   --line: #2b3d70;
   --shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
   --radius: 18px;
@@ -25,12 +25,18 @@ body {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   color: var(--text);
-  background: radial-gradient(circle at 20% -10%, #1f3f8a 0%, var(--bg) 45%), var(--bg);
+  background:
+    radial-gradient(
+      circle at 20% -10%,
+      #9cbb045c 0%,
+      var(--bg) 45%
+    ),
+    var(--bg);
   line-height: 1.65;
 }
 
 a {
-  color: var(--accent);
+  color: #ff9100ce;
   text-decoration: none;
 }
 
@@ -43,36 +49,47 @@ button {
 }
 
 .container {
-  width: min(1120px, calc(100% - 2.5rem));
+  width: min(1200px, calc(100% - 6rem));
   margin: 0 auto;
 }
 
 .section {
-  padding: 5.5rem 0;
+  padding: 3.5rem 0;
 }
+
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 10;
+
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  background: rgba(6, 13, 31, 0.8);
+
+  background: #a4be5c83;
+
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .nav-wrap {
   min-height: 4.75rem;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: 1rem;
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
+
   gap: 0.7rem;
+
   color: var(--text);
   font-weight: 700;
 }
@@ -80,8 +97,11 @@ button {
 .brand img {
   width: 44px;
   height: 44px;
+
   object-fit: contain;
+
   border-radius: 12px;
+
   background: #fff;
   padding: 0.2rem;
 }
@@ -94,8 +114,11 @@ button {
 
 .main-nav a {
   color: var(--text);
+
   padding: 0.45rem 0.75rem;
+
   border-radius: 999px;
+
   font-weight: 500;
 }
 
@@ -105,29 +128,49 @@ button {
 
 .menu-toggle {
   display: none;
+
   border: 1px solid var(--line);
+
   background: transparent;
   color: var(--text);
+
   border-radius: 999px;
+
   padding: 0.5rem 0.9rem;
 }
 
+/* =========================================================
+   HERO
+   ========================================================= */
+
 .hero {
-  padding-top: 6.5rem;
+  padding-top: 1.5rem;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
+  grid-template-columns: 1fr;
+
   gap: 2rem;
+}
+
+.hero-content {
+  width: 100%;
 }
 
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-size: 0.75rem;
+
+  font-size: 1rem;
+  font-weight: bold;
+
   color: var(--accent-2);
+
   margin: 0 0 0.7rem;
+  padding-top: 3rem;
+
+  text-align: center;
 }
 
 h1,
@@ -153,11 +196,18 @@ h2 {
 
 blockquote {
   margin: 1rem 0 1.4rem;
+
   padding: 0.9rem 1rem;
+
   border-left: 4px solid var(--accent);
-  background: rgba(53, 208, 255, 0.08);
+
+  background: rgba(255, 208, 53, 0.164);
+
   border-radius: 0 10px 10px 0;
-  color: #d4ecff;
+
+  color: #556b2f;
+
+  text-align: center;
 }
 
 .hero-actions {
@@ -168,60 +218,368 @@ blockquote {
 
 .btn {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
+
   padding: 0.7rem 1.15rem;
+
   border-radius: 999px;
+
   border: 1px solid transparent;
+
   font-weight: 600;
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--accent), #66b3ff);
-  color: #081123;
-}
-
+.btn-primary,
 .btn-secondary {
-  border-color: var(--line);
-  color: var(--text);
+  background:
+    linear-gradient(
+      135deg,
+      var(--accent),
+      #9cbb045c
+    );
+
+  color: #081123;
+
+  text-decoration: none;
 }
 
-.carousel,
-.quick-card,
-.news-card,
-.supporter-year,
-.thank-you,
-.contact-card,
-.pillars article,
-.founder-cards article {
-  background: linear-gradient(160deg, rgba(22, 38, 77, 0.95), rgba(14, 27, 57, 0.95));
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+.logo-row img {
+  width: 100%;
+  height: 100px;
+}
+
+.news-card img {
+  width: 420px;
+  height: 100%;
+}
+
+.about-photos img {
+  width: 450px;
+  height: 100%;
+}
+
+/* =========================================================
+   CAROUSEL
+   =========================================================
+
+   IMPORTANT:
+   The carousel itself is intentionally completely transparent.
+   There is no frame, border, background, glass effect or shadow.
+
+   The shadow belongs ONLY to the images.
+   ========================================================= */
+
+.hero-media {
+  width: 100%;
+  max-width: 630px;
+
+  margin: 0 auto;
 }
 
 .carousel {
-  padding: 1rem;
+  position: relative;
+
+  width: 100%;
+
+  /* No visible frame */
+  padding: 0;
+  margin: 0;
+
+  background: transparent;
+
+  border: 0;
+  border-radius: 0;
+
+  box-shadow: none;
+
+  overflow: visible;
+
+  /* Keep 3D disabled — transitions are intentionally modern
+     and flat rather than rotating in space. */
+  perspective: none;
 }
+
+.slides {
+  position: relative;
+
+  width: 100%;
+  height: 300px;
+
+  overflow: visible;
+
+  perspective: none;
+  transform-style: flat;
+}
+
+/* =========================================================
+   SLIDES
+   ========================================================= */
 
 .slide {
-  display: none;
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   margin: 0;
+  padding: 0;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform:
+    translate3d(18px, 0, 0)
+    scale(0.985);
+
+  transform-origin: center center;
+
+  pointer-events: none;
+
+  z-index: 1;
+
+  /*
+   * The transition is deliberately subtle.
+   * No rotation.
+   * No dramatic perspective.
+   * No blur.
+   */
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.7s;
 }
 
+/* =========================================================
+   ACTIVE SLIDE
+   ========================================================= */
+
 .slide.active {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+
+  transform:
+    translate3d(0, 0, 0)
+    scale(1);
+
+  pointer-events: auto;
+
+  z-index: 2;
+
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s;
 }
+
+/* =========================================================
+   OUTGOING SLIDE — FORWARD
+   ========================================================= */
+
+.carousel.next .slide.previous {
+  opacity: 0;
+
+  visibility: visible;
+
+  transform:
+    translate3d(-18px, 0, 0)
+    scale(0.985);
+
+  z-index: 3;
+
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.7s;
+}
+
+/* =========================================================
+   INCOMING SLIDE — FORWARD
+   ========================================================= */
+
+.carousel.next .slide.active {
+  opacity: 1;
+
+  transform:
+    translate3d(0, 0, 0)
+    scale(1);
+
+  z-index: 2;
+}
+
+/* =========================================================
+   OUTGOING SLIDE — BACKWARD
+   ========================================================= */
+
+.carousel.previous .slide.previous {
+  opacity: 0;
+
+  visibility: visible;
+
+  transform:
+    translate3d(18px, 0, 0)
+    scale(0.985);
+
+  z-index: 3;
+
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.7s;
+}
+
+/* =========================================================
+   INCOMING SLIDE — BACKWARD
+   ========================================================= */
+
+.carousel.previous .slide.active {
+  opacity: 1;
+
+  transform:
+    translate3d(0, 0, 0)
+    scale(1);
+
+  z-index: 2;
+}
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
+.slides img {
+  width: 100%;
+  height: 300px;
+
+  display: block;
+
+  /*
+   * Preserve the original image proportions.
+   * This keeps your existing carousel dimensions.
+   */
+  object-fit: scale-down;
+
+  border-radius: 14px;
+
+  /*
+   * The ONLY visual depth effect of the carousel.
+   * Very subtle, soft shadow — no frame.
+   */
+  filter: drop-shadow(
+    0 12px 20px rgba(0, 0, 0, 0.16)
+  );
+
+  user-select: none;
+  -webkit-user-drag: none;
+
+  /*
+   * Makes the image itself feel slightly elevated.
+   */
+  transition:
+    filter 0.7s ease;
+}
+
+/* Slightly stronger shadow while visible */
+.slide.active img {
+  filter: drop-shadow(
+    0 16px 26px rgba(0, 0, 0, 0.19)
+  );
+}
+
+/* =========================================================
+   DOTS
+   ========================================================= */
+
+.carousel-dots {
+  position: relative;
+
+  margin-top: 0.9rem;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 0.5rem;
+
+  z-index: 20;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+
+  padding: 0;
+
+  border: 0;
+
+  cursor: pointer;
+
+  border-radius: 50%;
+
+  background: rgba(156, 187, 4, 0.35);
+
+  appearance: none;
+
+  transition:
+    width 0.3s ease,
+    height 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.dot:hover {
+  transform: scale(1.3);
+
+  background: rgba(174, 0, 0, 0.65);
+}
+
+.dot:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 4px;
+}
+
+.dot.active {
+  width: 10px;
+  height: 10px;
+
+  background: var(--accent-2);
+
+  transform: scale(1.05);
+
+  box-shadow:
+    0 0 0 4px rgba(174, 0, 0, 0.1);
+}
+
+/* =========================================================
+   PLACEHOLDER IMAGES
+   ========================================================= */
 
 .placeholder-image {
   display: grid;
+
   place-items: center;
+
   min-height: 220px;
+
   border-radius: 14px;
+
   border: 2px dashed rgba(255, 255, 255, 0.3);
-  color: #c9d7ff;
-  background: linear-gradient(135deg, rgba(53, 208, 255, 0.12), rgba(102, 255, 157, 0.07));
+
+  color: #000000;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(53, 208, 255, 0.12),
+      rgba(102, 255, 157, 0.07)
+    );
+
   text-align: center;
+
   padding: 1rem;
 }
 
@@ -233,65 +591,61 @@ blockquote {
   min-height: 110px;
 }
 
-.carousel-dots {
-  margin-top: 0.8rem;
-  display: flex;
-  justify-content: center;
-  gap: 0.4rem;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  border-radius: 50%;
-  background: #6584c5;
-}
-
-.dot.active {
-  background: var(--accent-2);
-}
-
-.carousel-controls {
-  margin-top: 0.9rem;
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.carousel-btn {
-  border: 1px solid var(--line);
-  color: var(--text);
-  background: transparent;
-  padding: 0.4rem 0.75rem;
-  border-radius: 999px;
-  cursor: pointer;
-}
-
-.carousel-btn:hover {
-  border-color: var(--accent-2);
-}
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
 
 .sr-only {
   position: absolute;
+
   width: 1px;
   height: 1px;
+
   padding: 0;
   margin: -1px;
+
   overflow: hidden;
+
   clip: rect(0, 0, 0, 0);
+
   white-space: nowrap;
+
   border: 0;
 }
 
+/* =========================================================
+   QUICK CARDS
+   ========================================================= */
+
 .quick-cards {
   margin-top: 2rem;
+
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
   gap: 1rem;
+}
+
+.quick-card,
+.news-card,
+.supporter-year,
+.contact-card,
+.pillars article,
+.founder-cards article {
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 208, 0, 0.2),
+      rgba(255, 183, 0, 0.6)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+
+  border-radius: var(--radius);
+
+  box-shadow: var(--shadow);
 }
 
 .quick-card {
@@ -299,14 +653,20 @@ blockquote {
 }
 
 .quick-card.highlight {
-  border-color: rgba(102, 255, 157, 0.4);
+  border-color: rgba(255, 102, 102, 0.568);
 }
 
 .meta {
   color: var(--accent-2);
+
   font-size: 0.85rem;
+
   font-weight: 600;
 }
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
 
 .section-head {
   margin-bottom: 1.8rem;
@@ -314,14 +674,20 @@ blockquote {
 
 .about-grid {
   display: grid;
+
   grid-template-columns: 1.3fr 1fr;
+
   gap: 1.25rem;
 }
 
 .pillars {
   display: grid;
-  gap: 0.8rem;
-  margin-top: 1.1rem;
+
+  gap: 3rem;
+
+  margin-top: 3rem;
+
+  width: 80%;
 }
 
 .pillars article,
@@ -331,6 +697,7 @@ blockquote {
 
 .about-photos {
   display: grid;
+
   gap: 1rem;
 }
 
@@ -340,13 +707,23 @@ blockquote {
 
 .founder-cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
   gap: 0.9rem;
 }
 
+/* =========================================================
+   NEWS
+   ========================================================= */
+
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
   gap: 1rem;
 }
 
@@ -358,9 +735,16 @@ blockquote {
   padding: 1rem;
 }
 
+/* =========================================================
+   SUPPORTERS
+   ========================================================= */
+
 .supporter-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
   gap: 1rem;
 }
 
@@ -370,29 +754,147 @@ blockquote {
   padding: 1rem 1.1rem;
 }
 
+.thank-you {
+  padding-top: 3rem;
+
+  text-align: center;
+}
+
 .logo-row {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
   gap: 0.6rem;
+
   margin-top: 1rem;
 }
 
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
 .contact-card {
-  max-width: 640px;
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  padding: 2rem;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 1rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 208, 0, 0.18),
+      rgba(255, 183, 0, 0.45)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.25);
+
+  backdrop-filter: blur(14px);
 }
 
+.contact-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  padding: 1.3rem;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  border-radius: 16px;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-5px);
+
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.contact-icon {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 14px;
+
+  background: rgba(255, 187, 0, 0.35);
+
+  font-size: 1.4rem;
+}
+
+.contact-item strong {
+  display: block;
+
+  margin-bottom: 0.2rem;
+
+  font-size: 0.8rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.08em;
+
+  color: var(--accent-2);
+}
+
+.contact-item a,
+.contact-item span {
+  display: block;
+
+  color: var(--text);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
 .site-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top:
+    1px solid rgba(255, 255, 255, 0.1);
+
   padding: 1.1rem 0 2rem;
 }
 
 .footer-wrap {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
+
   gap: 0.8rem;
+
   color: var(--muted);
 }
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
 
 @media (max-width: 980px) {
   .hero-grid,
@@ -408,6 +910,10 @@ blockquote {
   }
 }
 
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
 @media (max-width: 720px) {
   .menu-toggle {
     display: inline-flex;
@@ -415,17 +921,31 @@ blockquote {
 
   .main-nav {
     position: absolute;
+
     top: 4.9rem;
     left: 0;
     right: 0;
+
     margin: 0 auto;
-    width: min(1120px, calc(100% - 2.5rem));
+
+    width: min(
+      1120px,
+      calc(100% - 2.5rem)
+    );
+
     display: none;
+
     flex-direction: column;
+
     align-items: flex-start;
+
     padding: 0.8rem;
+
     border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border:
+      1px solid rgba(255, 255, 255, 0.12);
+
     background: #0e1d3f;
   }
 
@@ -440,6 +960,53 @@ blockquote {
 
   .footer-wrap {
     flex-direction: column;
+
     align-items: flex-start;
+  }
+
+  /* Keep the original mobile carousel dimensions */
+  .slides {
+    height: 240px;
+  }
+
+  .slides img {
+    height: 240px;
+  }
+
+  .contact-card {
+    grid-template-columns: 1fr;
+
+    padding: 0.5rem;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .slide,
+  .slide.active,
+  .carousel.next .slide.previous,
+  .carousel.next .slide.active,
+  .carousel.previous .slide.previous,
+  .carousel.previous .slide.active {
+    animation: none !important;
+
+    transition:
+      opacity 0.15s ease !important;
+
+    transform: none !important;
+
+    filter: none !important;
+  }
+
+  .dot,
+  .contact-item {
+    transition: none !important;
   }
 }
