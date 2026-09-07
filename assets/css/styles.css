@@ -1106,6 +1106,13 @@ blockquote {
     object-fit: cover;
   }
 
+  .slide:first-child img {
+    object-fit: contain !important;
+    background: transparent;
+    padding: 0.2rem;
+    height: 220px !important;
+  }
+
   .news-card .placeholder-image,
   .supporter-year .placeholder-image {
     overflow: hidden;
