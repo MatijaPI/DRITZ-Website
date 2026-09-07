@@ -6,7 +6,7 @@
   --muted: #556b2fa1;
   --accent: #ffbb007a;
   --accent-2: #ae0000;
-  --line: #2b3d70;
+  --line: #2b3d7018;
   --shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
   --radius: 18px;
 }
@@ -132,7 +132,7 @@ button {
   border: 1px solid var(--line);
 
   background: transparent;
-  color: var(--text);
+  color: var(--line);
 
   border-radius: 999px;
 
@@ -1042,9 +1042,46 @@ blockquote {
     margin-top: 1.5rem;
   }
 
+  .about-grid > div,
+  .about-grid p,
+  .news-card,
+  .news-content,
+  .news-content p,
+  .news-content h3,
+  .supporter-year,
+  .supporter-year ul,
+  .supporter-year li,
+  .thank-you p,
+  .section-head,
+  .section-head h2,
+  .section-head .eyebrow {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
   .about-photos {
     display: grid;
     gap: 0.75rem;
+  }
+
+  .hero-media,
+  .carousel,
+  .slides,
+  .slide {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-media {
+    width: calc(100vw - 2.5rem);
+    max-width: calc(100vw - 2.5rem);
+  }
+
+  .slide {
+    left: 0;
+    right: 0;
+    width: 100% !important;
   }
 
   .slides {
@@ -1059,8 +1096,43 @@ blockquote {
     width: 100%;
     max-width: 100%;
     height: auto;
-    object-fit: cover;
     display: block;
+  }
+
+  .slides img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 220px !important;
+    object-fit: cover;
+  }
+
+  .news-card .placeholder-image,
+  .supporter-year .placeholder-image {
+    overflow: hidden;
+    min-height: 0;
+    height: auto;
+  }
+
+  .news-card .placeholder-image img {
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .supporter-year .placeholder-image img {
+    height: 90px;
+    object-fit: contain;
+    padding: 0.55rem;
+  }
+
+  .logo-row {
+    gap: 0.5rem;
+  }
+
+  .logo-row .placeholder-image {
+    min-height: 0;
+    height: 90px;
+    display: grid;
+    place-items: center;
   }
 
   .placeholder-image,
