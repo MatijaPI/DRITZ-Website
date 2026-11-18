@@ -566,21 +566,21 @@ blockquote {
   min-height: 220px;
 
   border-radius: 14px;
-
-  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border: 0;
 
   color: #000000;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(53, 208, 255, 0.12),
-      rgba(102, 255, 157, 0.07)
-    );
+  background: transparent;
 
   text-align: center;
 
-  padding: 1rem;
+  padding: 0;
+}
+
+.site-header .brand img,
+.placeholder-image img,
+.article-image img {
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
 }
 
 .placeholder-image.tall {
@@ -729,6 +729,35 @@ blockquote {
 
 .news-card {
   overflow: hidden;
+}
+
+.article-page {
+  max-width: 900px;
+  padding: 1.5rem;
+}
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.article-image {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.article-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 640px;
+  object-fit: contain;
+  border-radius: 12px;
 }
 
 .news-content {
@@ -1147,6 +1176,10 @@ blockquote {
   .placeholder-image.small {
     min-height: 0;
     height: auto;
+  }
+
+  .article-page {
+    padding: 1rem;
   }
 
   .contact-card {
