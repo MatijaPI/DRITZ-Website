@@ -6,10 +6,10 @@
 
     <meta
       name="description"
-      content="Društvo DRITZ - Društvo za raziskovanje in izobraževanje o tehnologiji in znanosti."
+      content="Društvo DRITZ iz Celja mladim približuje znanost, robotiko in inovacije: delavnice, mentorstvo in tekmovanja FIRST LEGO League doma in v tujini."
     />
 
-    <title>Društvo DRITZ</title>
+    <title>Društvo DRITZ – znanost, tehnologija in robotika za mlade</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
@@ -23,16 +23,69 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <link rel="canonical" href="https://dritz.si/" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#ffb300" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Društvo DRITZ" />
+    <meta property="og:locale" content="sl_SI" />
+    <meta property="og:title" content="Društvo DRITZ – znanost, tehnologija in robotika za mlade" />
+    <meta property="og:description" content="Društvo DRITZ iz Celja mladim približuje znanost, robotiko in inovacije: delavnice, mentorstvo in tekmovanja FIRST LEGO League doma in v tujini." />
+    <meta property="og:url" content="https://dritz.si/" />
+    <meta property="og:image" content="https://dritz.si/assets/images/logo-horizontal.png" />
+    <meta property="og:image:alt" content="Logotip Društva DRITZ" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Društvo DRITZ – znanost, tehnologija in robotika za mlade" />
+    <meta name="twitter:description" content="Društvo DRITZ iz Celja mladim približuje znanost, robotiko in inovacije: delavnice, mentorstvo in tekmovanja FIRST LEGO League doma in v tujini." />
+    <meta name="twitter:image" content="https://dritz.si/assets/images/logo-horizontal.png" />
+
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "NGO",
+            "name": "Društvo DRITZ",
+            "alternateName": "DRITZ",
+            "legalName": "Društvo za raziskovanje in izobraževanje o tehnologiji in znanosti",
+            "url": "https://dritz.si/",
+            "logo": "https://dritz.si/assets/images/logo-square.png",
+            "email": "info@dritz.si",
+            "telephone": "+386 31 251 237",
+            "foundingDate": "2024",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Medlog 52A",
+              "postalCode": "3000",
+              "addressLocality": "Celje",
+              "addressCountry": "SI"
+            },
+            "areaServed": "Slovenija"
+          },
+          {
+            "@type": "WebSite",
+            "name": "Društvo DRITZ",
+            "url": "https://dritz.si/",
+            "inLanguage": "sl"
+          }
+        ]
+      }
+    </script>
   </head>
 
   <body>
+    <a class="skip-link" href="#main-content">Preskoči na vsebino</a>
     <header class="site-header" id="top">
       <div class="container nav-wrap">
-        <a href="#drustvo" class="brand" aria-label="Društvo DRITZ">
+        <a href="/" class="brand" aria-label="Društvo DRITZ">
           <img
-            src="./assets/images/Logo_square.png"
-            alt="Društvo DRITZ logo"
+            src="/assets/images/logo-square.png"
+            alt="Logotip Društva DRITZ"
+            width="500"
+            height="500"
+            loading="lazy"
+            decoding="async"
           />
           <span>Društvo DRITZ</span>
         </a>
@@ -46,16 +99,17 @@
         </button>
 
         <nav id="main-menu" class="main-nav" aria-label="Glavna navigacija">
-          <a href="#drustvo">Društvo DRITZ</a>
-          <a href="#o-drustvu">O društvu</a>
-          <a href="#aktivnosti">Aktivnosti</a>
-          <a href="#podporniki">Podporniki</a>
-          <a href="#kontakt">Kontakt</a>
+          <a href="/#drustvo">Društvo DRITZ</a>
+          <a href="/#o-drustvu">O društvu</a>
+          <a href="/#aktivnosti">Aktivnosti</a>
+          <a href="/novice/">Novice</a>
+          <a href="/#podporniki">Podporniki</a>
+          <a href="/#kontakt">Kontakt</a>
         </nav>
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <section id="drustvo" class="hero section">
         <div class="container hero-grid">
           <div class="hero-content">
@@ -80,8 +134,11 @@
                     aria-hidden="false"
                   >
                     <img
-                      src="./assets/images/Logo_transparent.png"
-                      alt="Logo društva DRITZ"
+                      src="/assets/images/logo-transparent.png"
+                      alt="Logotip Društva DRITZ"
+                      width="1774"
+                      height="887"
+                      fetchpriority="high"
                     />
                   </figure>
 
@@ -90,8 +147,12 @@
                     aria-hidden="true"
                   >
                     <img
-                      src="./assets/images/Maroko.png"
-                      alt="Delavnica društva DRITZ"
+                      src="/assets/images/fll-maroko.png"
+                      alt="Člani sodniške žirije v črtastih majicah na tekmovanju FIRST LEGO League v Maroku"
+                      width="1000"
+                      height="500"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </figure>
 
@@ -100,8 +161,12 @@
                     aria-hidden="true"
                   >
                     <img
-                      src="./assets/images/Anglija.png"
-                      alt="Člani društva DRITZ"
+                      src="/assets/images/fll-uk-final-2024.png"
+                      alt="Trije člani društva DRITZ v majicah z logotipom pred ozadjem tekmovanja FIRST LEGO League UK"
+                      width="1000"
+                      height="500"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </figure>
                 </div>
@@ -142,9 +207,13 @@
             </p>
 
             <h1>
+              Društvo DRITZ – znanost, tehnologija in robotika za mlade
+            </h1>
+
+            <h2 class="hero-slogan">
               Skupaj gradimo inovativno, ustvarjalno in tehnološko pismeno
               prihodnost.
-            </h1>
+            </h2>
 
             <p class="lead">
               Društvo DRITZ mladim odpira vrata v svet znanosti, robotike in
@@ -171,12 +240,14 @@
         <div class="container quick-cards">
           <article class="quick-card highlight">
             <h3>Zadnja novica</h3>
-            <p class="meta">12. 5. 2026</p>
+            <p class="meta"><time datetime="2026-05-12">12. 5. 2026</time></p>
             <p>
               Prostovoljci društva so sodelovali na First Lego League 
               Open International Championship Greece 2026 v Korintu.
             </p>
-            <a href="#aktivnosti">Preberi več</a>
+            <a href="/novice/fll-open-international-grcija-2026/">
+              Preberi več<span class="sr-only"> o prvenstvu FIRST LEGO League v Grčiji</span>
+            </a>
           </article>
 
           <article class="quick-card">
@@ -252,15 +323,23 @@
             <aside class="about-photos">
               <div class="placeholder-image tall">
                 <img
-                    src="./assets/images/Delavnice1.jpg"
-                    alt="Delavnice1"
+                    src="/assets/images/fll-delavnica-robot.jpg"
+                    alt="Otroci sestavljajo in preizkušajo LEGO robota na delavnici društva DRITZ"
+                    width="4080"
+                    height="3060"
+                    loading="lazy"
+                    decoding="async"
                   />
               </div>
 
               <div class="placeholder-image">
                 <img
-                    src="./assets/images/Delavnice.jpg"
-                    alt="Delavnice"
+                    src="/assets/images/fll-delavnica.jpg"
+                    alt="Otroci in mentor ob tekmovalni mizi FIRST LEGO League na delavnici društva DRITZ"
+                    width="4080"
+                    height="3060"
+                    loading="lazy"
+                    decoding="async"
                   />
               </div>
             </aside>
@@ -276,164 +355,60 @@
           </div>
 
           <div class="news-grid">
-            <article class="news-card">
-              <div class="placeholder-image">
-                <img
-                    src="./assets/images/Grčija.png"
-                    alt="Grčija"
-                  />
-              </div>
-
-              <div class="news-content">
-                <p class="meta">12. 5. 2026, Korint, Grčija</p>
-
-                <h3>
-                  Ekipa in prostovoljci društva DRITZ z izjemnim uspehom na FLL prvenstvu v Grčiji
-                </h3>
-
-                <p>
-                  Med 8. in 11. majem 2026 je pri grškem mestu Korint potekalo mednarodno prvenstvo FLL Open 
-                  International Championship Greece 2026, kjer je Slovenija zablestela na vseh področjih. 
-                  Trije prostovoljci, člani društva DRITZ, so kot del ekipe ocenjevalcev in sodnikov opravili 
-                  vrhunsko delo, slovenska ekipa Eco Robots (OŠ Šentvid) pa je v močni svetovni konkurenci osvojila pokal. 
-                  Iskrene čestitke našim prostovoljcem za izjemen trud in ekipi za fantastičen zgodovinski uspeh!
-                </p>
-              </div>
-            </article>
-
-            <article class="news-card">
-              <div class="placeholder-image">
-                <img
-                    src="./assets/images/Anglija3.jpg"
-                    alt="Anglija"
-                  />
-              </div>
-              
-              <div class="news-content">
-                <p class="meta">3. 5. 2025, Harrogate, Velika Britanija</p>
-                
-                <h3>
-                  Društvo DRITZ znova s sodniško zastopanostjo na državnem prvenstvu Velike Britanije
-                </h3>
-
-                <p>
-                  V soboto, 3. maja 2025, je v britanskem mestu Harrogate potekal veliki nacionalni finale 
-                  FIRST LEGO League UK Finals 2025. Na tem odmevnem tehnološkem dogodku, ki ga organizira 
-                  IET Education, sta pomembno vlogo odigrala tudi ocenjevalec in ocenjevalka iz našega društva 
-                  DRITZ. Z delom v mednarodni sodniški žiriji sta prispevala k strokovnemu ocenjevanju 
-                  inovativnih projektov in robotike ter znova dokazala visoko raven znanja naših članov. 
-                  Ponosni smo na naše sodnike, ki s svojim prostovoljnim delom redno soustvarjajo vrhunske 
-                  dogodke FLL tudi na tujih tleh!
-                </p>
-              </div>
-            </article>
-
-            <article class="news-card">
-              <div class="placeholder-image">
-                <img
-                    src="./assets/images/Norveška.jpg"
-                    alt="Norveška"
-                  />
-              </div>
-
-              <div class="news-content">
-                <p class="meta">17. 5. 2024</p>
-
-                <h3>
-                  Zgodovinski naslov evropskih prvakov za slovensko ekipo Black&White v Bodøju!
-                </h3>
-
-                <p>
-                  Med 13. in 16. majem 2024 je v norveškem mestu Bodø potekalo prestižno evropsko prvenstvo FLL Open European Championship 
-                  2024, ki se bo z zlatimi črkami zapisalo v zgodovino Slovenskega FLL programa in našega društva. Slovenska vrhunska ekipa 
-                  Black&White je namreč v izjemno močni konkurenci ponosno postala evropski prvak! Uspeh sta na prizorišču soustvarjala tudi 
-                  dva ocenjevalca in člana društva DRITZ, ki sta z delom v ocenjevalni ekipi skrbela in strokovno sojenje na najvišji ravni. 
-                  Iskrene čestitke celotni ekipi Black&White za ta neponovljiv, fantastičen evropski uspeh ter našima ocenjevalcema!
-                </p>
-              </div>
-            </article>
-
-            <article class="news-card">
-              <div class="placeholder-image">
-                <img
-                    src="./assets/images/Anglija.png"
-                    alt="Anglija"
-                  />
-              </div>
-
-              <div class="news-content">
-                <p class="meta">21. 4. 2024</p>
-
-                <h3>
-                  Člani društva DRITZ del sodniške žirije na britanskem FLL finalu
-                </h3>
-
-                <p>
-                  V soboto, 20. aprila 2024, je v angleškem mestu Harrogate potekal veliki UK National Final 2024 - 
-                  finale FIRST LEGO League tekmovanja za Anglijo, Irsko, Wales in Škotsko. Na tem prestižnem dogodku sezone 
-                  MASTERPIECE so slovensko strokovnost zastopali trije ocenjevalci in člani našega 
-                  društva DRITZ. Kot del uradne žirije so z ocenjevanjem inovativnih projektov in 
-                  robotike pomembno prispevali k uspešni izvedbi tekmovanja. Čestitke naši sodniški 
-                  trojici za odlično opravljeno delo na velikem mednarodnem odru!
-                </p>
-              </div>
-            </article>
-
-            <article class="news-card">
-              <div class="placeholder-image">
-                <img
-                    src="./assets/images/Najprostovoljec.jpg"
-                    alt="Najprostovoljec"
-                  />
-              </div>
-
-              <div class="news-content">
-                <p class="meta">26. 3. 2023</p>
-                
-                <h3>
-                  Marakeš v znamenju robotike: Naša trojica prvič na afriškem FLL odru z izjemnim priznanjem!
-                </h3>
-
-                <p>
-                  Ko je Maroko med 18. in 21. majem 2023 gostil sploh prvo mednarodno FLL prvenstvo na 
-                  afriških tleh – Morocco Open International 2023 –, društvo DRITZ ni manjkalo. V vročem 
-                  Marakešu so se sezone SUPERPOWERED udeležili trije naši prostovoljci, ki so zasedli 
-                  mesta v uradni sodniški žiriji. Izjemen turnir pa se je končal s prav posebnim slavjem, 
-                  saj je naš ocenjevalec Valentin Šeško na zaključni ceremoniji prejel prestižni pokal za 
-                  najprostovoljca tekmovanja! To vrhunsko priznanje je odraz njegove izjemne energije, 
-                  strokovnosti in predanosti FLL skupnosti. Velik hvala in iskrene čestitke celotni trojici, 
-                  še posebej pa našemu nagrajenemu najprostovoljcu za ta izjemen mednarodni uspeh!
-                </p>
-              </div>
-            </article>
-
-            <article class="news-card">
-              <div class="placeholder-image">
-                <img
-                    src="./assets/images/Adria.jpg"
-                    alt="Regija Adrija"
-                  />
-              </div>
-
-              <div class="news-content">
-                <p class="meta">Regija Adrija (Hrvaška, Srbija, Črna gora)</p>
-
-                <h3>
-                  Društvo DRITZ kot steber regijskega FLL gibanja: soustvarjamo državna prvenstva v soseščini
-                </h3>
-
-                <p>
-                  Povezovanje in širjenje znanja ne poznata meja, kar v društvu DRITZ dokazujemo s svojim 
-                  stalnim delovanjem v širši regiji. Vsako leto aktivno sodelujemo in pomagamo pri organizaciji 
-                  državnih tekmovanj FIRST LEGO League na Hrvaškem, v Srbiji in v Črni gori. Naši člani 
-                  s svojimi bogatimi izkušnjami in strokovnim znanjem na teh turnirjih prevzemajo ključne 
-                  organizacijske ter sodniške vloge. S tem pomembno prispevamo k dvigu ravni mladinske robotike 
-                  na celotnem Balkanu ter utrjujemo partnerske vezi z regijskimi FLL organizatorji. Ponosni smo, 
-                  da lahko soustvarjamo nepozabne tehnološke izkušnje za mlade umane tudi zunaj naših meja!
-                </p>
-              </div>
-            </article>
-
+<article class="news-card">
+  <div class="placeholder-image"><img src="/assets/images/fll-grcija-2026.png" alt="Dogajanje na prvenstvu FIRST LEGO League Open International Championship Greece 2026 v Korintu" width="2096" height="1179" loading="lazy" decoding="async"></div>
+  <div class="news-content">
+    <p class="meta"><time datetime="2026-05-12">12. 5. 2026</time></p>
+    <h3>Ekipa in prostovoljci društva DRITZ z izjemnim uspehom na FLL prvenstvu v Grčiji</h3>
+    <p>Med 8. in 11. majem 2026 je pri grškem mestu Korint potekalo mednarodno prvenstvo FLL Open International Championship Greece 2026, kjer je Slovenija zablestela na vseh področjih. Trije prostovoljci, člani društva DRITZ, so kot del ekipe ocenjevalcev in sodnikov opravili vrhunsko delo.</p>
+    <a href="/novice/fll-open-international-grcija-2026/">Preberi več<span class="sr-only">: Ekipa in prostovoljci društva DRITZ z izjemnim uspehom na FLL prvenstvu v Grčiji</span></a>
+  </div>
+</article>
+<article class="news-card">
+  <div class="placeholder-image"><img src="/assets/images/fll-uk-finals-2025.jpg" alt="Predstavnika Društva DRITZ na finalu FIRST LEGO League UK Finals 2025 v Harrogateu" width="4032" height="2268" loading="lazy" decoding="async"></div>
+  <div class="news-content">
+    <p class="meta"><time datetime="2025-05-03">3. 5. 2025</time></p>
+    <h3>Društvo DRITZ znova s sodniško zastopanostjo na državnem prvenstvu Velike Britanije</h3>
+    <p>V soboto, 3. maja 2025, je v britanskem mestu Harrogate potekal veliki nacionalni finale FIRST LEGO League UK Finals 2025. Na tem odmevnem tehnološkem dogodku, ki ga organizira IET Education, sta pomembno vlogo odigrala tudi ocenjevalec in ocenjevalka iz našega društva DRITZ.</p>
+    <a href="/novice/fll-uk-finals-harrogate-2025/">Preberi več<span class="sr-only">: Društvo DRITZ znova s sodniško zastopanostjo na državnem prvenstvu Velike Britanije</span></a>
+  </div>
+</article>
+<article class="news-card">
+  <div class="placeholder-image"><img src="/assets/images/fll-bodo-2024.jpg" alt="Dogajanje na evropskem prvenstvu FIRST LEGO League Open European Championship 2024 v Bodøju" width="960" height="540" loading="lazy" decoding="async"></div>
+  <div class="news-content">
+    <p class="meta"><time datetime="2024-05-17">17. 5. 2024</time></p>
+    <h3>Zgodovinski naslov evropskih prvakov za slovensko ekipo Black&amp;White v Bodøju!</h3>
+    <p>Med 13. in 16. majem 2024 je v norveškem mestu Bodø potekalo prestižno evropsko prvenstvo FLL Open European Championship 2024, ki se bo z zlatimi črkami zapisalo v zgodovino Slovenskega FLL programa in našega društva. Slovenska vrhunska ekipa Black&amp;White je namreč v izjemno močni konkurenci ponosno postala evropski prvak!</p>
+    <a href="/novice/fll-open-european-championship-bodo-2024/">Preberi več<span class="sr-only">: Zgodovinski naslov evropskih prvakov za slovensko ekipo Black&amp;White v Bodøju!</span></a>
+  </div>
+</article>
+<article class="news-card">
+  <div class="placeholder-image"><img src="/assets/images/fll-uk-final-2024.png" alt="Trije člani društva DRITZ v majicah z logotipom pred ozadjem tekmovanja FIRST LEGO League UK" width="1000" height="500" loading="lazy" decoding="async"></div>
+  <div class="news-content">
+    <p class="meta"><time datetime="2024-04-20">20. 4. 2024</time></p>
+    <h3>Člani društva DRITZ del sodniške žirije na britanskem FLL finalu</h3>
+    <p>V soboto, 20. aprila 2024, je v angleškem mestu Harrogate potekal veliki UK National Final 2024 - finale FIRST LEGO League tekmovanja za Anglijo, Irsko, Wales in Škotsko. Na tem prestižnem dogodku sezone MASTERPIECE so slovensko strokovnost zastopali trije ocenjevalci in člani našega društva DRITZ.</p>
+    <a href="/novice/fll-uk-national-final-harrogate-2024/">Preberi več<span class="sr-only">: Člani društva DRITZ del sodniške žirije na britanskem FLL finalu</span></a>
+  </div>
+</article>
+<article class="news-card">
+  <div class="placeholder-image"><img src="/assets/images/fll-marakes-2023.jpg" alt="Priznanje za najprostovoljca na tekmovanju FIRST LEGO League Morocco Open International 2023" width="963" height="1453" loading="lazy" decoding="async"></div>
+  <div class="news-content">
+    <p class="meta"><time datetime="2023-05-21">21. 5. 2023</time></p>
+    <h3>Marakeš v znamenju robotike: Naša trojica prvič na afriškem FLL odru z izjemnim priznanjem!</h3>
+    <p>Ko je Maroko med 18. in 21. majem 2023 gostil sploh prvo mednarodno FLL prvenstvo na afriških tleh – Morocco Open International 2023 –, društvo DRITZ ni manjkalo. V vročem Marakešu so se sezone SUPERPOWERED udeležili trije naši prostovoljci, ki so zasedli mesta v uradni sodniški žiriji.</p>
+    <a href="/novice/morocco-open-international-marakes-2023/">Preberi več<span class="sr-only">: Marakeš v znamenju robotike: Naša trojica prvič na afriškem FLL odru z izjemnim priznanjem!</span></a>
+  </div>
+</article>
+<article class="news-card">
+  <div class="placeholder-image"><img src="/assets/images/fll-regija-adrija.jpg" alt="Sodelovanje Društva DRITZ na tekmovanjih FIRST LEGO League v regiji Adrija" width="1440" height="960" loading="lazy" decoding="async"></div>
+  <div class="news-content">
+    <p class="meta">Regija Adrija (Hrvaška, Srbija, Črna gora)</p>
+    <h3>Društvo DRITZ kot steber regijskega FLL gibanja: soustvarjamo državna prvenstva v soseščini</h3>
+    <p>Povezovanje in širjenje znanja ne poznata meja, kar v društvu DRITZ dokazujemo s svojim stalnim delovanjem v širši regiji. Ponosni smo, da lahko soustvarjamo nepozabne tehnološke izkušnje za mlade ume tudi zunaj naših meja!</p>
+    <a href="/novice/fll-regija-adrija/">Preberi več<span class="sr-only">: Društvo DRITZ kot steber regijskega FLL gibanja: soustvarjamo državna prvenstva v soseščini</span></a>
+  </div>
+</article>
           </div>
         </div>
       </section>
@@ -458,8 +433,12 @@
               <div class="logo-row">
                 <div class="placeholder-image small">
                   <img
-                    src="./assets/images/Trimo.png"
-                    alt="Trimo logo"
+                    src="/assets/images/trimo.png"
+                    alt="Logotip podjetja Trimo"
+                    width="320"
+                    height="320"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -479,22 +458,34 @@
               <div class="logo-row">
                 <div class="placeholder-image small">
                   <img
-                    src="./assets/images/ETI.png"
-                    alt="ETI logo"
+                    src="/assets/images/eti.png"
+                    alt="Logotip podjetja ETI"
+                    width="240"
+                    height="240"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
 
                 <div class="placeholder-image small">
                   <img
-                    src="./assets/images/Dewesoft.png"
-                    alt="Dewesoft logo"
+                    src="/assets/images/dewesoft.png"
+                    alt="Logotip podjetja Dewesoft"
+                    width="3334"
+                    height="2709"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
 
                 <div class="placeholder-image small">
                   <img
-                    src="./assets/images/Sensum.png"
-                    alt="Sensum logo"
+                    src="/assets/images/sensum.png"
+                    alt="Logotip podjetja Sensum"
+                    width="346"
+                    height="346"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -526,13 +517,13 @@
             <h2>Stopite v stik z nami</h2>
           </div>
 
-          <div class="contact-card">
+          <address class="contact-card">
             <div class="contact-item">
               <div class="contact-icon">📍</div>
 
               <div>
                 <strong>Naslov</strong>
-                <span>Medlog 52A, 3000 Celje, Slovenia</span>
+                <span>Medlog 52A, 3000 Celje, Slovenija</span>
               </div>
             </div>
 
@@ -553,7 +544,7 @@
                 <a href="tel:+38631251237">031 251 237</a>
               </div>
             </div>
-          </div>
+          </address>
         </div>
       </section>
     </main>
@@ -568,6 +559,6 @@
       </div>
     </footer>
 
-    <script src="./assets/js/main.js"></script>
+    <script src="/assets/js/main.js" defer></script>
   </body>
 </html>
