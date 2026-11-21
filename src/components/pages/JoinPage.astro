@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../ui/PageHero.astro';
+import Icon, { type IconName } from '../ui/Icon.astro';
+import Manifesto from '../sections/Manifesto.astro';
+import { t, routes, path, type Locale } from '../../i18n/index.ts';
+import { ogImagePath } from '../../lib/seo.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const j = d.joinPage;
+const icons: Record<string, IconName> = { youth: 'rocket', volunteer: 'trophy', school: 'school', partner: 'handshake' };
+---
+
+<BaseLayout
+  locale={locale}
+  title={j.meta.title}
+  description={j.meta.description}
+  alternates={routes.join}
+  ogImage={ogImagePath(locale, 'join')}
+  breadcrumbs={[
+    { name: d.breadcrumbs.home, path: path('home', locale) },
+    { name: d.nav.join, path: path('join', locale) },
+  ]}
+>
+  <PageHero eyebrow={j.hero.eyebrow} title={j.hero.title} lead={j.hero.lead} />
+
+  <section class="section section--tight" aria-label={j.hero.eyebrow}>
+    <div class="container">
+      <ul role="list" class="paths" data-stagger>
+        {j.paths.map((p, i) => (
+          <li class="path card card--bracket" id={p.id} data-reveal>
+            <div class="path-top">
+              <span class="path-icon">
+                <Icon name={icons[p.id] ?? 'spark'} size={30} strokeWidth={1.5} />
+              </span>
+              <span class="mono path-idx" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+            </div>
+            <h2 class="path-title">{p.title}</h2>
+            <p>{p.text}</p>
+            <a class="link-arrow" href={`${path('contact', locale)}?topic=${p.id}`}>
+              {p.action}
+              <Icon name="arrow" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="steps-title">
+    <div class="container">
+      <h2 id="steps-title" class="h2 steps-title">
+        {j.steps.title}
+      </h2>
+      <ol role="list" class="steps" data-stagger>
+        {j.steps.items.map((s, i) => (
+          <li class="step" data-reveal>
+            <span class="step-n mono" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3 class="step-title">{s.title}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="steps-cta">
+        <a class="btn btn--primary" href={path('contact', locale)} data-magnetic>
+          {d.cta.contact}
+          <Icon name="arrow" />
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <Manifesto locale={locale} eyebrow={d.home.manifesto.eyebrow} />
+</BaseLayout>
+
+<style>
+  .paths {
+    display: grid;
+    gap: var(--space-m);
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  }
+
+  .path {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+
+  .path-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-s);
+  }
+
+  .path-icon {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  .path:nth-child(even) .path-icon {
+    background: var(--go);
+  }
+
+  .path-idx {
+    font-size: 0.75rem;
+    color: var(--text-subtle);
+  }
+
+  .path-title {
+    font-size: var(--step-2);
+  }
+
+  .path p {
+    color: var(--text-muted);
+  }
+
+  .path .link-arrow {
+    margin-top: auto;
+    padding-top: var(--space-s);
+    align-self: flex-start;
+  }
+
+  .steps-title {
+    margin-bottom: var(--space-l);
+  }
+
+  .steps {
+    display: grid;
+    gap: var(--space-m);
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    counter-reset: step;
+  }
+
+  .step {
+    position: relative;
+    display: grid;
+    gap: var(--space-xs);
+    padding-top: var(--space-m);
+    border-top: 2px solid var(--border-strong);
+  }
+
+  .step::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 3rem;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .step-n {
+    font-size: var(--step-3);
+    font-weight: 700;
+    color: var(--accent-text);
+  }
+
+  .step-title {
+    font-size: var(--step-1);
+  }
+
+  .step p {
+    color: var(--text-muted);
+  }
+
+  .steps-cta {
+    margin-top: var(--space-xl);
+  }
+</style>

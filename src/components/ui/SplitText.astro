@@ -1,0 +1,31 @@
+---
+/**
+ * Heading whose words slide up from a mask when scrolled into view.
+ * Words are real text (readable by screen readers and search engines);
+ * without JS or with reduced motion the heading is simply static.
+ */
+import type { HTMLTag } from 'astro/types';
+
+interface Props {
+  text: string;
+  as?: HTMLTag;
+  class?: string;
+  id?: string;
+  /** Animate immediately on page load (for above-the-fold headings). */
+  onLoad?: boolean;
+}
+
+const { text, as: Tag = 'h2', class: className, id, onLoad = false } = Astro.props;
+const words = text.split(/\s+/).filter(Boolean);
+---
+
+<Tag class={className} id={id} data-split={onLoad ? 'load' : ''}>
+  {words.map((word, i) => (
+    <>
+      <span class="w">
+        <span>{word}</span>
+      </span>
+      {i < words.length - 1 ? ' ' : ''}
+    </>
+  ))}
+</Tag>

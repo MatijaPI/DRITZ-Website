@@ -14,8 +14,8 @@ Spletna stran Društva DRITZ je pripravljena kot statična GitHub Pages stran v 
 
 1. Odprite repozitorij na GitHubu in pojdite na **Settings → Pages**.
 2. V **Build and deployment** izberite:
-   - **Source**: *Deploy from a branch*
-   - **Branch**: *main* (ali vaš produkcijski branch), mapa */root*
+   - **Source**: _Deploy from a branch_
+   - **Branch**: _main_ (ali vaš produkcijski branch), mapa _/root_
 3. Shranite nastavitve in počakajte, da GitHub objavi stran.
 4. V DNS upravljalniku domene `dritz.si` nastavite:
    - **A zapise** za apex domeno na GitHub Pages IP-je:

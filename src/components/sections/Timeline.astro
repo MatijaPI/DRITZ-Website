@@ -1,0 +1,182 @@
+---
+import { timeline } from '../../data/timeline.ts';
+import { t, formatMonth, newsPath, type Locale } from '../../i18n/index.ts';
+import { getNews, entrySlug } from '../../lib/news.ts';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  locale: Locale;
+  headingLevel?: 'h3' | 'h2';
+}
+
+const { locale, headingLevel: H = 'h3' } = Astro.props;
+const d = t(locale).timeline;
+const news = await getNews(locale);
+const linkFor = (key?: string) => {
+  const entry = key ? news.find((n) => n.data.translationKey === key) : undefined;
+  return entry ? newsPath(locale, entrySlug(entry)) : undefined;
+};
+---
+
+<ol role="list" class="timeline" data-inview>
+  {timeline.map((item) => {
+    const href = linkFor('newsKey' in item ? item.newsKey : undefined);
+    const text = d.items[item.id];
+    return (
+      <li class:list={['tl-item', { 'tl-key': item.id === 'founded' }]} data-reveal>
+        <span class="tl-dot" aria-hidden="true" />
+        <div class="tl-card">
+          <p class="tl-date mono">
+            <time datetime={item.date}>{formatMonth(item.date, locale)}</time>
+          </p>
+          <H class="tl-title">{text.title}</H>
+          <p class="tl-text">{text.text}</p>
+          {href && (
+            <a class="link-arrow" href={href}>
+              {d.readStory}
+              <span class="sr-only">: {text.title}</span>
+              <Icon name="arrow" />
+            </a>
+          )}
+        </div>
+      </li>
+    );
+  })}
+</ol>
+
+<style>
+  .timeline {
+    --line-x: 0.6rem;
+    position: relative;
+    display: grid;
+    gap: var(--space-l);
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Track */
+  .timeline::before,
+  .timeline::after {
+    content: '';
+    position: absolute;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    left: var(--line-x);
+    width: 2px;
+    transform: translateX(-50%);
+    background: var(--border-strong);
+  }
+
+  /* Progress fill: scroll-driven where supported, otherwise fully drawn. */
+  .timeline::after {
+    background: linear-gradient(var(--accent), var(--go));
+    transform-origin: top;
+  }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .timeline::after {
+        animation: tl-fill linear both;
+        animation-timeline: view();
+        animation-range: entry 20% cover 70%;
+      }
+    }
+  }
+
+  @keyframes tl-fill {
+    from {
+      transform: translateX(-50%) scaleY(0);
+    }
+    to {
+      transform: translateX(-50%) scaleY(1);
+    }
+  }
+
+  .tl-item {
+    position: relative;
+    padding-left: calc(var(--line-x) + var(--space-l));
+  }
+
+  .tl-dot {
+    position: absolute;
+    top: 0.35rem;
+    left: var(--line-x);
+    z-index: 1;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    background: var(--bg);
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 5px var(--bg);
+  }
+
+  .tl-key .tl-dot {
+    background: var(--accent);
+    box-shadow:
+      0 0 0 5px var(--bg),
+      0 0 18px var(--glow-accent);
+  }
+
+  .tl-card {
+    display: grid;
+    gap: 0.4rem;
+    max-width: 36rem;
+  }
+
+  .tl-date {
+    font-size: 0.8125rem;
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+
+  .tl-title {
+    font-size: var(--step-2);
+  }
+
+  .tl-text {
+    color: var(--text-muted);
+  }
+
+  .link-arrow {
+    justify-self: start;
+    margin-top: 0.25rem;
+  }
+
+  @media (min-width: 56em) {
+    .timeline {
+      --line-x: 50%;
+      gap: var(--space-xl);
+    }
+
+    .tl-item {
+      width: 50%;
+      padding-left: var(--space-xl);
+      margin-left: 50%;
+    }
+
+    .tl-dot {
+      left: 0;
+    }
+
+    .tl-item:nth-child(odd) {
+      margin-left: 0;
+      padding-left: 0;
+      padding-right: var(--space-xl);
+      text-align: right;
+    }
+
+    .tl-item:nth-child(odd) .tl-dot {
+      left: 100%;
+    }
+
+    .tl-item:nth-child(odd) .tl-card {
+      margin-left: auto;
+    }
+
+    .tl-item:nth-child(odd) .link-arrow {
+      justify-self: end;
+    }
+  }
+</style>

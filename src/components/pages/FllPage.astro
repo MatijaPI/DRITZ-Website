@@ -1,0 +1,299 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../ui/PageHero.astro';
+import SectionHead from '../ui/SectionHead.astro';
+import NewsCard from '../ui/NewsCard.astro';
+import Icon, { type IconName } from '../ui/Icon.astro';
+import RegionMap from '../sections/RegionMap.astro';
+import CtaBand from '../sections/CtaBand.astro';
+import { t, routes, path, type Locale } from '../../i18n/index.ts';
+import { getNews } from '../../lib/news.ts';
+import { ogImagePath } from '../../lib/seo.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const f = d.fllPage;
+const international = (await getNews(locale)).filter((n) => n.data.translationKey !== 'adria-region');
+const partIcons: IconName[] = ['robot', 'gear', 'spark', 'heart'];
+const official = 'https://firstlegoleague.org/';
+---
+
+<BaseLayout
+  locale={locale}
+  title={f.meta.title}
+  description={f.meta.description}
+  alternates={routes.fll}
+  ogImage={ogImagePath(locale, 'fll')}
+  breadcrumbs={[
+    { name: d.breadcrumbs.home, path: path('home', locale) },
+    { name: d.nav.fll, path: path('fll', locale) },
+  ]}
+>
+  <PageHero eyebrow={f.hero.eyebrow} title={f.hero.title} lead={f.hero.lead} />
+
+  <section class="section section--tight" aria-labelledby="what-title">
+    <div class="container what">
+      <div class="what-copy">
+        <h2 id="what-title" class="h2">
+          {f.what.title}
+        </h2>
+        {f.what.paragraphs.map((p) => (
+          <p data-reveal>{p}</p>
+        ))}
+      </div>
+      <div>
+        <h3 class="mono parts-title">{f.what.partsTitle}</h3>
+        <ol role="list" class="parts" data-stagger>
+          {f.what.parts.map((part, i) => (
+            <li class="part card card--bracket" data-reveal>
+              <span class="part-icon">
+                <Icon name={partIcons[i] ?? 'spark'} size={24} />
+              </span>
+              <div>
+                <h4 class="part-name">{part.title}</h4>
+                <p>{part.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="role-title">
+    <div class="container role">
+      <div class="role-copy">
+        <SectionHead eyebrow="DRITZ × FLL" title={f.role.title} id="role-title" />
+        <p class="lead" data-reveal>
+          {f.role.text}
+        </p>
+      </div>
+      <div data-reveal="scale">
+        <RegionMap locale={locale} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="countries-title">
+    <div class="container">
+      <h2 id="countries-title" class="h2 block-title">
+        {f.countries.title}
+      </h2>
+      <ul role="list" class="countries" data-stagger>
+        {f.countries.items.map((c) => (
+          <li class="country card card--bracket" data-reveal>
+            <p class="country-code mono">{c.code}</p>
+            <h3 class="country-name">{c.name}</h3>
+            <p>{c.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="intl-title">
+    <div class="container">
+      <SectionHead title={f.international.title} intro={f.international.text} id="intl-title" />
+      <div class="news-grid" data-stagger>
+        {international.map((entry) => (
+          <NewsCard entry={entry} locale={locale} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="faq-title">
+    <div class="container--narrow">
+      <h2 id="faq-title" class="h2 block-title">
+        {f.faq.title}
+      </h2>
+      <div class="faq">
+        {f.faq.items.map((item) => (
+          <details>
+            <summary>
+              <span>{item.q}</span>
+              <Icon name="plus" class="faq-icon" />
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+      <p class="official">
+        <a class="link-arrow" href={official} target="_blank" rel="noopener noreferrer">
+          {f.faq.officialLink}
+          <span class="sr-only">{d.a11y.externalLink}</span>
+          <Icon name="external" />
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <CtaBand locale={locale} />
+</BaseLayout>
+
+<style>
+  .what,
+  .role {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .what-copy {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  .what-copy p {
+    color: var(--text-muted);
+    font-size: var(--step-1);
+    line-height: 1.6;
+  }
+
+  .parts-title {
+    margin-bottom: var(--space-s);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+
+  .parts {
+    display: grid;
+    gap: var(--space-s);
+    padding: 0;
+    list-style: none;
+  }
+
+  .part {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-s);
+    padding: var(--space-m);
+  }
+
+  .part-icon {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-s);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent-text);
+  }
+
+  .part-name {
+    font-size: var(--step-1);
+  }
+
+  .part p {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .role-copy :global(.section-head) {
+    margin-bottom: var(--space-m);
+  }
+
+  .block-title {
+    margin-bottom: var(--space-l);
+  }
+
+  .countries {
+    display: grid;
+    gap: var(--space-m);
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  }
+
+  .country {
+    display: grid;
+    align-content: start;
+    gap: var(--space-xs);
+  }
+
+  .country-code {
+    font-size: var(--step-3);
+    font-weight: 700;
+    color: var(--accent-text);
+    line-height: 1;
+  }
+
+  .country-name {
+    font-size: var(--step-2);
+  }
+
+  .country p:last-child {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .news-grid {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  }
+
+  .faq {
+    border-top: 1px solid var(--border);
+  }
+
+  details {
+    border-bottom: 1px solid var(--border);
+  }
+
+  summary {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-s);
+    align-items: center;
+    padding-block: var(--space-m);
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary :global(.faq-icon) {
+    flex: none;
+    color: var(--accent-text);
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+
+  details[open] summary :global(.faq-icon) {
+    transform: rotate(45deg);
+  }
+
+  details p {
+    padding-bottom: var(--space-m);
+    color: var(--text-muted);
+    max-width: 65ch;
+  }
+
+  .official {
+    margin-top: var(--space-l);
+  }
+
+  @media (min-width: 60em) {
+    .what,
+    .role {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .role {
+      align-items: center;
+    }
+  }
+</style>

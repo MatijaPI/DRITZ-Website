@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../ui/PageHero.astro';
+import Icon from '../ui/Icon.astro';
+import ContactForm from '../sections/ContactForm.astro';
+import { site } from '../../data/site.ts';
+import { t, routes, path, type Locale } from '../../i18n/index.ts';
+import { ogImagePath } from '../../lib/seo.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const c = d.contactPage;
+---
+
+<BaseLayout
+  locale={locale}
+  title={c.meta.title}
+  description={c.meta.description}
+  alternates={routes.contact}
+  ogImage={ogImagePath(locale, 'contact')}
+  pageType="ContactPage"
+  breadcrumbs={[
+    { name: d.breadcrumbs.home, path: path('home', locale) },
+    { name: d.nav.contact, path: path('contact', locale) },
+  ]}
+>
+  <PageHero eyebrow={c.hero.eyebrow} title={c.hero.title} lead={c.hero.lead} />
+
+  <section class="section section--tight" aria-label={c.form.title}>
+    <div class="container contact-layout">
+      <div class="card form-card">
+        <h2 class="h3 form-title">{c.form.title}</h2>
+        <ContactForm locale={locale} />
+      </div>
+
+      <aside class="details" aria-labelledby="details-title">
+        <h2 id="details-title" class="h3">
+          {c.details.title}
+        </h2>
+        <address>
+          <a class="detail" href={`mailto:${site.email}`}>
+            <span class="detail-icon">
+              <Icon name="mail" />
+            </span>
+            <span>
+              <span class="mono detail-label">{c.details.email}</span>
+              <span class="detail-value">{site.email}</span>
+            </span>
+          </a>
+          <a class="detail" href={site.phone.href}>
+            <span class="detail-icon">
+              <Icon name="phone" />
+            </span>
+            <span>
+              <span class="mono detail-label">{c.details.phone}</span>
+              <span class="detail-value">{locale === 'sl' ? site.phone.display : site.phone.international}</span>
+            </span>
+          </a>
+          <div class="detail">
+            <span class="detail-icon">
+              <Icon name="pin" />
+            </span>
+            <span>
+              <span class="mono detail-label">{c.details.address}</span>
+              <span class="detail-value">
+                {site.name}
+                <br />
+                {site.address.street}
+                <br />
+                {site.address.postalCode} {site.address.city}
+              </span>
+            </span>
+          </div>
+        </address>
+        {site.social.length > 0 && (
+          <ul role="list" class="social" aria-label={d.footer.social}>
+            {site.social.map((s) => (
+              <li>
+                <a class="btn btn--ghost" href={s.url} target="_blank" rel="noopener noreferrer me">
+                  {s.label}
+                  <span class="sr-only"> {d.a11y.externalLink}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-layout {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .form-card {
+    padding: clamp(1.25rem, 0.8rem + 2vw, 2.5rem);
+  }
+
+  .form-title {
+    margin-bottom: var(--space-m);
+  }
+
+  .details {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  address {
+    display: grid;
+    gap: var(--space-s);
+    font-style: normal;
+  }
+
+  .detail {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-s);
+    align-items: start;
+    padding: var(--space-m);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-m);
+    text-decoration: none;
+    transition: border-color var(--dur-fast) var(--ease-out);
+  }
+
+  a.detail:hover {
+    border-color: var(--accent);
+  }
+
+  .detail-icon {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent-text);
+  }
+
+  .detail-label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--text-subtle);
+  }
+
+  .detail-value {
+    display: block;
+    font-size: var(--step-1);
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+
+  .social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 60em) {
+    .contact-layout {
+      grid-template-columns: 1.5fr 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,203 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../ui/PageHero.astro';
+import Icon, { type IconName } from '../ui/Icon.astro';
+import SupportersMarquee from '../sections/SupportersMarquee.astro';
+import { seasons } from '../../data/supporters.ts';
+import { t, fmt, routes, path, type Locale } from '../../i18n/index.ts';
+import { ogImagePath } from '../../lib/seo.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const s = d.supportersPage;
+const howIcons: IconName[] = ['heart', 'robot', 'users'];
+---
+
+<BaseLayout
+  locale={locale}
+  title={s.meta.title}
+  description={s.meta.description}
+  alternates={routes.supporters}
+  ogImage={ogImagePath(locale, 'supporters')}
+  breadcrumbs={[
+    { name: d.breadcrumbs.home, path: path('home', locale) },
+    { name: d.nav.supporters, path: path('supporters', locale) },
+  ]}
+>
+  <PageHero eyebrow={s.hero.eyebrow} title={s.hero.title} lead={s.hero.lead} />
+
+  <SupportersMarquee locale={locale} />
+
+  <section class="section section--tight" aria-labelledby="seasons-title">
+    <div class="container">
+      <h2 id="seasons-title" class="h2 block-title">
+        {s.seasonsTitle}
+      </h2>
+      <div class="seasons" data-stagger>
+        {seasons.map((season) => (
+          <article class="season card" data-reveal>
+            <h3 class="season-name mono">{fmt(s.season, { season: season.season })}</h3>
+            <ul role="list" class="season-list">
+              {season.supporters.map((sp) => (
+                <li>
+                  {sp.logo ? (
+                    <span class="logo-tile">
+                      <Image
+                        src={sp.logo}
+                        alt={fmt(s.logoAlt, { name: sp.shortName ?? sp.name })}
+                        width={120}
+                        height={Math.round((120 * sp.logo.height) / sp.logo.width)}
+                        densities={[1, 2]}
+                        format="webp"
+                        loading="lazy"
+                      />
+                    </span>
+                  ) : (
+                    <span class="logo-tile logo-tile--name" aria-hidden="true">
+                      <Icon name="heart" />
+                    </span>
+                  )}
+                  <span class="sp-name">{sp.name}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+      <p class="thanks" data-reveal>
+        {s.thanks}
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="how-title">
+    <div class="container">
+      <h2 id="how-title" class="h2 block-title">
+        {s.how.title}
+      </h2>
+      <ul role="list" class="how" data-stagger>
+        {s.how.items.map((item, i) => (
+          <li class="card card--bracket how-item" data-reveal>
+            <Icon name={howIcons[i] ?? 'heart'} size={28} />
+            <h3 class="how-title">{item.title}</h3>
+            <p>{item.text}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="how-cta">
+        <a class="btn btn--primary" href={`${path('contact', locale)}?topic=partner`} data-magnetic>
+          {d.cta.support}
+          <Icon name="arrow" />
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .block-title {
+    margin-bottom: var(--space-l);
+  }
+
+  .seasons {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  }
+
+  .season {
+    display: grid;
+    align-content: start;
+    gap: var(--space-m);
+  }
+
+  .season-name {
+    font-size: 0.875rem;
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+
+  .season-list {
+    display: grid;
+    gap: var(--space-s);
+    padding: 0;
+    list-style: none;
+  }
+
+  .season-list li {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: var(--space-s);
+    align-items: center;
+  }
+
+  .logo-tile {
+    display: grid;
+    place-items: center;
+    height: 3.5rem;
+    padding: 0.4rem;
+    border-radius: var(--radius-s);
+    background: var(--paper-50);
+  }
+
+  .logo-tile :global(img) {
+    max-height: 100%;
+    width: auto;
+  }
+
+  .logo-tile--name {
+    background: transparent;
+    border: 1px dashed var(--border-strong);
+    color: var(--accent-text);
+  }
+
+  .sp-name {
+    font-weight: 600;
+  }
+
+  .thanks {
+    margin-top: var(--space-xl);
+    font-family: var(--font-display);
+    font-size: var(--step-6);
+    font-weight: 800;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1;
+    color: var(--accent-text);
+  }
+
+  .how {
+    display: grid;
+    gap: var(--space-m);
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  }
+
+  .how-item {
+    display: grid;
+    align-content: start;
+    gap: var(--space-s);
+  }
+
+  .how-item :global(.icon) {
+    color: var(--accent-text);
+  }
+
+  .how-title {
+    font-size: var(--step-1);
+  }
+
+  .how-item p {
+    color: var(--text-muted);
+  }
+
+  .how-cta {
+    margin-top: var(--space-l);
+  }
+</style>

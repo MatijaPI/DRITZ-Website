@@ -1,0 +1,125 @@
+---
+import Icon from '../ui/Icon.astro';
+import RobotArm from '../ui/RobotArm.astro';
+import SplitText from '../ui/SplitText.astro';
+import { t, path, type Locale } from '../../i18n/index.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale).home.cta;
+---
+
+<section class="section cta" aria-labelledby="cta-title">
+  <div class="container">
+    <div class="cta-box">
+      <div class="cta-copy">
+        <SplitText text={d.title} id="cta-title" class="h2" />
+        <p class="lead" data-reveal>
+          {d.body}
+        </p>
+        <div class="cta-actions" data-reveal>
+          <a class="btn btn--primary" href={path('join', locale)} data-magnetic>
+            {d.primary}
+            <Icon name="arrow" />
+          </a>
+          <a class="btn btn--ghost" href={path('supporters', locale)} data-magnetic>
+            {d.secondary}
+          </a>
+        </div>
+      </div>
+      <div class="cta-art" data-reveal="scale">
+        <RobotArm />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-box {
+    position: relative;
+    display: grid;
+    gap: var(--space-xl);
+    align-items: center;
+    padding: clamp(1.75rem, 1rem + 4vw, 4.5rem);
+    border-radius: calc(var(--radius-l) + 8px);
+    background:
+      radial-gradient(ellipse at 100% 0%, var(--glow-accent), transparent 55%),
+      radial-gradient(ellipse at 0% 100%, var(--glow-go), transparent 50%), var(--bg-elevated);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  /* Animated gradient border. */
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    padding: 1px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--cta-angle, 0deg),
+      var(--accent),
+      transparent 30%,
+      var(--go) 50%,
+      transparent 70%,
+      var(--accent)
+    );
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+  }
+
+  @property --cta-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .cta-box::before {
+      animation: cta-spin 10s linear infinite;
+    }
+
+    :global([data-motion='paused']) .cta-box::before {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes cta-spin {
+    to {
+      --cta-angle: 360deg;
+    }
+  }
+
+  .cta-copy {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+  }
+
+  .cta-art {
+    max-width: 18rem;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 56em) {
+    .cta-box {
+      grid-template-columns: 1.5fr 1fr;
+    }
+
+    .cta-art {
+      max-width: 22rem;
+    }
+  }
+</style>

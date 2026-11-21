@@ -1,0 +1,192 @@
+---
+import '../styles/global.css';
+import bricolage from '../assets/fonts/bricolage-grotesque-var.woff2?url';
+import inter from '../assets/fonts/inter-var.woff2?url';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import LangBanner from '../components/layout/LangBanner.astro';
+import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
+import Analytics from '../components/layout/Analytics.astro';
+import { site, env } from '../data/site.ts';
+import { t, localeMeta, locales, type Locale } from '../i18n/index.ts';
+import { absolute, pageTitle, organizationLd, websiteLd, webPageLd, breadcrumbLd, type Crumb } from '../lib/seo.ts';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  /** Paths of this page in every language (used for hreflang + language switcher). */
+  alternates: Partial<Record<Locale, string>>;
+  /** Absolute or root-relative OG image URL (1200×630 JPEG). */
+  ogImage: string;
+  ogImageAlt?: string;
+  ogType?: 'website' | 'article';
+  breadcrumbs?: Crumb[];
+  /** Additional JSON-LD nodes merged into the page @graph. */
+  jsonLd?: Record<string, unknown>[];
+  pageType?: string;
+  noindex?: boolean;
+  /** Override canonical (e.g. 404 has none). */
+  canonical?: string | null;
+  article?: { published?: Date | undefined; modified?: Date | undefined };
+  bodyClass?: string;
+}
+
+const {
+  locale,
+  title,
+  description,
+  alternates,
+  ogImage,
+  ogImageAlt,
+  ogType = 'website',
+  breadcrumbs,
+  jsonLd = [],
+  pageType,
+  noindex = false,
+  article,
+  bodyClass,
+} = Astro.props;
+
+const d = t(locale);
+const fullTitle = pageTitle(title, locale);
+const selfPath = alternates[locale] ?? Astro.url.pathname;
+const canonical = Astro.props.canonical === undefined ? absolute(selfPath) : Astro.props.canonical;
+const ogImageUrl = absolute(ogImage);
+const meta = localeMeta[locale];
+
+const graph = noindex
+  ? []
+  : [
+      organizationLd(locale),
+      websiteLd(locale),
+      webPageLd({
+        locale,
+        url: canonical ?? absolute(selfPath),
+        title: fullTitle,
+        description,
+        image: ogImageUrl,
+        ...(pageType ? { type: pageType } : {}),
+      }),
+      ...(breadcrumbs && breadcrumbs.length > 1 ? [breadcrumbLd(breadcrumbs)] : []),
+      ...jsonLd,
+    ];
+const ldJson = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+---
+
+<!doctype html>
+<html lang={meta.htmlLang} data-theme="dark" data-locale={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
+    {!noindex &&
+      locales.map(
+        (l) => alternates[l] && <link rel="alternate" hreflang={localeMeta[l].htmlLang} href={absolute(alternates[l])} />,
+      )}
+    {!noindex && alternates.sl && <link rel="alternate" hreflang="x-default" href={absolute(alternates.sl)} />}
+
+    <link rel="preload" href={bricolage} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={inter} as="font" type="font/woff2" crossorigin />
+
+    <script is:inline>
+      // Runs before first paint: theme, JS flag and remembered language.
+      (() => {
+        const d = document.documentElement;
+        d.classList.add('js');
+        try {
+          const theme = localStorage.getItem('dritz-theme');
+          if (theme === 'light' || theme === 'dark') d.dataset.theme = theme;
+          const lang = localStorage.getItem('dritz-lang');
+          const internal = document.referrer && new URL(document.referrer).origin === location.origin;
+          if (lang && lang !== d.dataset.locale && !internal && !/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) {
+            const alt = document.querySelector(`link[rel="alternate"][hreflang="${lang}"]`);
+            if (alt && alt.href !== location.href) location.replace(alt.href);
+          }
+        } catch {
+          /* storage blocked: keep defaults */
+        }
+      })();
+    </script>
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content={site.themeColor} />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=no" />
+    {env.googleSiteVerification && <meta name="google-site-verification" content={env.googleSiteVerification} />}
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={d.meta.siteName} />
+    <meta property="og:locale" content={meta.ogLocale} />
+    {locales
+      .filter((l) => l !== locale && alternates[l])
+      .map((l) => (
+        <meta property="og:locale:alternate" content={localeMeta[l].ogLocale} />
+      ))}
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt ?? d.meta.defaultOgAlt} />
+    {article?.published && <meta property="article:published_time" content={article.published.toISOString()} />}
+    {article?.modified && <meta property="article:modified_time" content={article.modified.toISOString()} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt ?? d.meta.defaultOgAlt} />
+
+    {graph.length > 0 && <script type="application/ld+json" set:html={ldJson} />}
+    <Analytics />
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main">
+      {d.a11y.skipToContent}
+    </a>
+    <Header locale={locale} alternates={alternates} />
+    <LangBanner locale={locale} alternates={alternates} />
+    <main id="main" tabindex="-1">
+      {breadcrumbs && breadcrumbs.length > 1 && <Breadcrumbs locale={locale} crumbs={breadcrumbs} />}
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <script>
+      import '../scripts/main.ts';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    padding: 0.75rem 1.1rem;
+    border-radius: var(--radius-s);
+    background: var(--accent);
+    color: var(--accent-contrast);
+    font-weight: 700;
+    text-decoration: none;
+    transform: translateY(-160%);
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+
+  .skip-link:focus {
+    transform: none;
+  }
+
+  main:focus {
+    outline: none;
+  }
+</style>

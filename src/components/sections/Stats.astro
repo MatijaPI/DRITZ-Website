@@ -1,0 +1,86 @@
+---
+import { t, formatNumber, type Locale } from '../../i18n/index.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale).home.stats;
+---
+
+<section class="stats section--tight" aria-labelledby="stats-title">
+  <div class="container">
+    <div class="stats-head">
+      <p class="eyebrow">{d.eyebrow}</p>
+      <h2 id="stats-title" class="h3">
+        {d.title}
+      </h2>
+    </div>
+    <dl class="stats-grid" data-stagger>
+      {d.items.map((item) => (
+        <div class="stat" data-reveal>
+          <dt class="stat-label">{item.label}</dt>
+          <dd class="stat-value">
+            <span data-count={item.value}>{formatNumber(item.value, locale)}</span>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .stats {
+    position: relative;
+    border-block: 1px solid var(--border);
+  }
+
+  .stats-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-s);
+    margin-bottom: var(--space-l);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: 1px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-l);
+    background: var(--border);
+    overflow: hidden;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: var(--space-xs);
+    padding: var(--space-l) var(--space-m);
+    background: var(--bg);
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: var(--step-6);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: var(--tracking-tight);
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+  }
+
+  .stat:nth-child(odd) .stat-value {
+    color: var(--accent-text);
+  }
+
+  .stat-label {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    max-width: 28ch;
+  }
+</style>

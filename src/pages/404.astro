@@ -1,0 +1,173 @@
+---
+/**
+ * GitHub Pages serves this single 404.html for every missing URL, so it carries
+ * both languages: Slovenian first, English below (lang="en").
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/ui/Icon.astro';
+import RobotArm from '../components/ui/RobotArm.astro';
+import { t, path, type Locale, type RouteKey } from '../i18n/index.ts';
+import { ogImagePath } from '../lib/seo.ts';
+
+const sl = t('sl');
+const blocks: { locale: Locale; heading: 'h1' | 'h2' }[] = [
+  { locale: 'sl', heading: 'h1' },
+  { locale: 'en', heading: 'h2' },
+];
+const suggestions: RouteKey[] = ['about', 'fll', 'news', 'join'];
+---
+
+<BaseLayout
+  locale="sl"
+  title={sl.notFound.meta.title}
+  description={sl.notFound.meta.description}
+  alternates={{}}
+  ogImage={ogImagePath('sl', '404')}
+  noindex
+  canonical={null}
+>
+  <section class="nf section">
+    <div class="nf-bg blueprint" aria-hidden="true"></div>
+    <div class="container nf-grid">
+      <div class="nf-art" aria-hidden="true">
+        <p class="nf-code">404</p>
+        <RobotArm />
+      </div>
+      <div class="nf-copy">
+        {blocks.map(({ locale, heading: H }) => {
+          const d = t(locale);
+          return (
+            <div class:list={['nf-block', `nf-${locale}`]} lang={locale}>
+              <p class="eyebrow">{d.notFound.code}</p>
+              <H class:list={[H === 'h1' ? 'h1' : 'h2']}>{d.notFound.title}</H>
+              <p class="lead">{d.notFound.text}</p>
+              <div class="nf-actions">
+                <a class="btn btn--primary" href={path('home', locale)}>
+                  {d.notFound.home}
+                  <Icon name="arrow" />
+                </a>
+                <a class="btn btn--ghost" href={path('news', locale)}>
+                  {d.notFound.news}
+                </a>
+              </div>
+              <p class="mono nf-sugg-title">{d.notFound.suggestions}</p>
+              <ul role="list" class="nf-sugg">
+                {suggestions.map((k) => (
+                  <li>
+                    <a href={path(k, locale)}>{d.nav[k]}</a>
+                  </li>
+                ))}
+                <li>
+                  <a href={path('contact', locale)}>{d.notFound.contact}</a>
+                </li>
+              </ul>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // On English URLs show the English block first.
+  if (location.pathname.startsWith('/en/')) document.querySelector('.nf-copy')?.classList.add('nf-copy--en');
+</script>
+
+<style>
+  .nf {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nf-bg {
+    position: absolute;
+    inset: 0;
+    mask-image: radial-gradient(ellipse at 30% 40%, #000 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 30% 40%, #000 20%, transparent 70%);
+  }
+
+  .nf-grid {
+    position: relative;
+    display: grid;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .nf-art {
+    position: relative;
+    max-width: 22rem;
+    margin-inline: auto;
+  }
+
+  .nf-code {
+    position: absolute;
+    inset: -12% 0 auto;
+    font-family: var(--font-display);
+    font-size: clamp(6rem, 4rem + 10vw, 12rem);
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--accent);
+    opacity: 0.35;
+  }
+
+  .nf-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+
+  .nf-copy--en {
+    flex-direction: column-reverse;
+  }
+
+  .nf-block {
+    display: grid;
+    gap: var(--space-m);
+    justify-items: start;
+  }
+
+  .nf-block + .nf-block,
+  .nf-copy--en .nf-sl {
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border);
+  }
+
+  .nf-copy--en .nf-en {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .nf-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+  }
+
+  .nf-sugg-title {
+    font-size: 0.75rem;
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--text-subtle);
+  }
+
+  .nf-sugg {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nf-sugg a {
+    color: var(--accent-text);
+  }
+
+  @media (min-width: 60em) {
+    .nf-grid {
+      grid-template-columns: 1fr 1.4fr;
+    }
+  }
+</style>

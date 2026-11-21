@@ -1,0 +1,96 @@
+---
+import { t, locales, localeMeta, path, type Locale } from '../../i18n/index.ts';
+
+interface Props {
+  locale: Locale;
+  alternates: Partial<Record<Locale, string>>;
+  variant?: 'compact' | 'large';
+}
+
+const { locale, alternates, variant = 'compact' } = Astro.props;
+const d = t(locale);
+---
+
+<nav class:list={['lang-switch', `lang-switch--${variant}`]} aria-label={d.a11y.languageSwitcher}>
+  <ul role="list">
+    {locales.map((l) => {
+      const meta = localeMeta[l];
+      const href = alternates[l] ?? path('home', l);
+      return (
+        <li>
+          {l === locale ? (
+            <span class="lang-current" aria-current="true" lang={meta.htmlLang}>
+              <abbr title={meta.label}>{meta.short}</abbr>
+              <span class="sr-only">– {d.a11y.currentLanguage}</span>
+            </span>
+          ) : (
+            <a href={href} hreflang={meta.htmlLang} lang={meta.htmlLang} data-set-lang={l} data-cursor="hover">
+              <span aria-hidden="true">{meta.short}</span>
+              <span class="sr-only">{meta.label}</span>
+            </a>
+          )}
+        </li>
+      );
+    })}
+  </ul>
+</nav>
+
+<style>
+  .lang-switch ul {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .lang-switch a,
+  .lang-current {
+    display: grid;
+    place-items: center;
+    min-width: 2.4rem;
+    min-height: 2.2rem;
+    padding-inline: 0.5rem;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+  }
+
+  .lang-current {
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  .lang-current abbr {
+    text-decoration: none;
+  }
+
+  .lang-switch a {
+    color: var(--text-muted);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .lang-switch a:hover {
+    color: var(--accent-text);
+  }
+
+  .lang-switch--large ul {
+    font-size: 1rem;
+  }
+
+  .lang-switch--large a,
+  .lang-switch--large .lang-current {
+    min-width: 3.25rem;
+    min-height: 2.75rem;
+  }
+
+  @media (max-width: 26em) {
+    .lang-switch--compact {
+      display: none;
+    }
+  }
+</style>

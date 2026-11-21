@@ -1,0 +1,45 @@
+---
+/**
+ * The traced DRITZ wordmark. The SVG file is referenced (not inlined) so it is
+ * downloaded once and cached; <use> keeps it themable through currentColor.
+ * `letters` renders one of the five icon-letters (0 = D … 4 = Z).
+ */
+import logoUrl from '../../assets/brand/logo-horizontal.svg?url';
+
+interface Props {
+  label?: string;
+  class?: string;
+  letter?: 0 | 1 | 2 | 3 | 4;
+}
+
+const { label, class: className, letter } = Astro.props;
+
+// Horizontal slices (in SVG units) of each icon-letter inside the wordmark.
+const slices = [
+  [24, 384],
+  [424, 400],
+  [852, 242],
+  [1094, 312],
+  [1408, 334],
+] as const;
+const viewBox = letter === undefined ? '24 302 1718 247' : `${slices[letter][0]} 302 ${slices[letter][1]} 247`;
+---
+
+<svg
+  class:list={['logo', className]}
+  viewBox={viewBox}
+  fill="currentColor"
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+  focusable="false"
+>
+  <use href={`${logoUrl}#dritz`}></use>
+</svg>
+
+<style>
+  .logo {
+    height: auto;
+    overflow: hidden;
+  }
+</style>

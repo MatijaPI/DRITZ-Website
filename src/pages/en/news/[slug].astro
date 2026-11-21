@@ -1,0 +1,12 @@
+---
+import type { GetStaticPaths } from 'astro';
+import NewsArticlePage from '../../../components/pages/NewsArticlePage.astro';
+import { getNews, entrySlug, type NewsEntry } from '../../../lib/news.ts';
+
+export const getStaticPaths = (async () =>
+  (await getNews('en')).map((entry) => ({ params: { slug: entrySlug(entry) }, props: { entry } }))) satisfies GetStaticPaths;
+
+const { entry } = Astro.props as { entry: NewsEntry };
+---
+
+<NewsArticlePage locale="en" entry={entry} />

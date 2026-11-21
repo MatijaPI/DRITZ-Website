@@ -1,0 +1,74 @@
+---
+import SplitText from './SplitText.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+}
+
+const { eyebrow, title, lead } = Astro.props;
+---
+
+<header class="page-hero">
+  <div class="page-hero-bg blueprint" aria-hidden="true"></div>
+  <div class="container page-hero-inner">
+    <p class="eyebrow">{eyebrow}</p>
+    <SplitText as="h1" text={title} class="h1" onLoad />
+    {lead && <p class="lead">{lead}</p>}
+    <slot />
+  </div>
+</header>
+
+<style>
+  .page-hero {
+    position: relative;
+    padding-block: var(--space-2xl) var(--space-xl);
+    overflow: hidden;
+  }
+
+  .page-hero-bg {
+    position: absolute;
+    inset: 0;
+    mask-image: radial-gradient(ellipse 80% 90% at 70% 0%, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 90% at 70% 0%, #000 20%, transparent 75%);
+    pointer-events: none;
+  }
+
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 50%;
+    aspect-ratio: 1;
+    background: radial-gradient(closest-side, var(--glow-accent), transparent);
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  .page-hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-m);
+    max-width: var(--container);
+  }
+
+  .page-hero-inner :global(h1) {
+    max-width: 22ch;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .lead {
+      animation: hero-fade 900ms var(--ease-out) 250ms both;
+    }
+  }
+
+  @keyframes hero-fade {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+  }
+</style>

@@ -1,0 +1,15 @@
+---
+/**
+ * Optional, privacy-friendly analytics. Disabled unless PUBLIC_ANALYTICS_PROVIDER
+ * is set at build time (see .env.example). Both supported providers are cookieless.
+ * If you enable it, update the privacy policy first (src/content/legal/).
+ */
+import { env } from '../../data/site.ts';
+
+const { provider, domain, src, id } = env.analytics;
+---
+
+{provider === 'plausible' && domain && (
+  <script is:inline defer data-domain={domain} src={src || 'https://plausible.io/js/script.js'} />
+)}
+{provider === 'umami' && src && id && <script is:inline defer src={src} data-website-id={id} />}
