@@ -170,6 +170,7 @@ const isActive = (key: RouteKey) => {
   .nav-desktop a {
     position: relative;
     display: block;
+    white-space: nowrap;
     padding: 0.5rem 0.75rem;
     font-size: 0.9375rem;
     font-weight: 500;
@@ -358,7 +359,7 @@ const isActive = (key: RouteKey) => {
     }
   }
 
-  @media (min-width: 72em) {
+  @media (min-width: 80em) {
     .nav-desktop {
       display: block;
     }

@@ -85,5 +85,5 @@ export function initMobileMenu(): void {
       toggle.focus();
     }
   });
-  window.matchMedia('(min-width: 72em)').addEventListener('change', (e) => e.matches && setOpen(false));
+  window.matchMedia('(min-width: 80em)').addEventListener('change', (e) => e.matches && setOpen(false));
 }

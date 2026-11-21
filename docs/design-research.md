@@ -208,3 +208,13 @@ Inspiration only. No branding, copy, code or assets from the sites below go into
   need fast access to competitions, registration and news; experimental IA would get in the way.
 - **Copying any site's visual identity.** We borrow principles (console labels, line drawing, multi-view
   archive, chapter numbering), not layouts, palettes, type pairings or assets.
+
+## Addendum — decisions after research (lead)
+
+- **Smooth scrolling (Lenis):** the research recommended against it; the brief explicitly asks for smooth scrolling,
+  so it is included in a constrained form: lazy-loaded on idle, only for fine pointers (mouse/trackpad), never on
+  touch devices or with `prefers-reduced-motion`, native keyboard/anchor scrolling preserved, ~5 KB gzipped.
+  It can be removed by deleting the `smooth-scroll.ts` import in `src/scripts/main.ts`.
+- **Counters:** numbers count up from the real value already present in the HTML (no-JS and reduced-motion users
+  see the final number immediately).
+- **Everything else** follows section 4 of this document.
