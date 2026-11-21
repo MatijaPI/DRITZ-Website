@@ -52,7 +52,7 @@ Podatke iz sporočil uporabimo samo za odgovor na vaše vprašanje in jih hranim
 
 ## Analitika
 
-Trenutno ne uporabljamo nobenih orodij za spletno analitiko. Če bi se v prihodnje odločili za analitiko, ki varuje zasebnost in ne uporablja piškotkov, bomo to politiko posodobili, še preden jo vključimo.
+Trenutno ne uporabljamo nobenih orodij za spletno analitiko. Če se bomo v prihodnje odločili za analitiko, ki varuje zasebnost in ne uporablja piškotkov, bomo to politiko posodobili, še preden bomo analitiko uvedli.
 
 ## Pravna podlaga
 

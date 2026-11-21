@@ -95,7 +95,7 @@ const en: Dict = {
     meta: {
       title: 'Društvo DRITZ – robotics, science and FIRST LEGO League',
       description:
-        'Društvo DRITZ from Celje, Slovenia opens up robotics, coding and science to young people through workshops, mentoring and FIRST LEGO League competitions.',
+        'Društvo DRITZ from Celje, Slovenia, opens up robotics, coding and science to young people through workshops, mentoring and FIRST LEGO League competitions.',
     },
     hero: {
       eyebrow: 'Društvo DRITZ · robotics · science · FIRST LEGO League',
@@ -122,7 +122,7 @@ const en: Dict = {
     activities: {
       eyebrow: '03 // What we do',
       title: 'From the first brick to the international stage',
-      intro: 'Robotics, coding and science – hands on the table, head in the clouds.',
+      intro: 'Robotics, coding and science – always hands-on, with our heads in the clouds.',
       link: 'All activities',
     },
     stats: {
@@ -239,7 +239,7 @@ const en: Dict = {
       },
       bodo: {
         title: 'European champions in Bodø',
-        text: 'Slovenian team Black&White become European champions, with two of our judges on the judging panel.',
+        text: 'Slovenian team Black&White become European champions, with two of our judges on the panel.',
       },
       harrogate25: {
         title: 'Back in Harrogate',
@@ -370,10 +370,11 @@ const en: Dict = {
           title: 'Innovation Project',
           text: 'Research into a real-world problem linked to the season’s theme, plus a proposed solution.',
         },
-        { title: 'Core Values', text: 'Teamwork, respect and team spirit – in every task and every moment.' },
+        { title: 'Core Values', text: 'Discovery, innovation, impact, inclusion, teamwork and fun – in every task.' },
       ],
     },
     role: {
+      imageAlt: 'Judges in striped referee shirts at a FIRST LEGO League tournament in Morocco',
       title: 'The role of Društvo DRITZ',
       text: 'Our members are experienced volunteers: they help organise competitions, judge them and share their knowledge with teams. This helps raise the standard of youth robotics across the region and strengthens our partnerships with regional FLL organisers.',
     },
@@ -440,7 +441,7 @@ const en: Dict = {
     empty: 'News is on its way. In the meantime, write to us or check back soon.',
     related: 'Related news',
     location: 'Location',
-    count: '{count} stories',
+    count: 'Stories: {count}',
   },
 
   supportersPage: {
@@ -462,7 +463,7 @@ const en: Dict = {
       items: [
         {
           title: 'Donations and sponsorship',
-          text: 'Financial support funds workshops, equipment, and travel for young people and volunteers to competitions.',
+          text: 'Financial support pays for workshops, equipment and competition travel for young people and volunteers.',
         },
         {
           title: 'Equipment and materials',
@@ -501,7 +502,7 @@ const en: Dict = {
       {
         id: 'school',
         title: 'For schools and mentors',
-        text: 'Workshops for students, support for competition teams and swapping experience with other mentors.',
+        text: 'Workshops for students, support for competition teams and sharing experience with other mentors.',
         action: 'Suggest a collaboration',
       },
       {
@@ -515,7 +516,7 @@ const en: Dict = {
       title: 'How it works',
       items: [
         { title: 'Write to us', text: 'Tell us briefly who you are and what interests you.' },
-        { title: 'Let’s meet', text: 'We reply and work out together the best way to collaborate.' },
+        { title: 'Let’s meet', text: 'We get back to you, and together we work out the best way to collaborate.' },
         { title: 'Start building', text: 'A workshop, a competition or a project – we take the first step together.' },
       ],
     },

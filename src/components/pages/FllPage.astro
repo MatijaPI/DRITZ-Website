@@ -1,5 +1,7 @@
 ---
+import { Picture } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import judgesPhoto from '../../assets/images/fll-maroko.png';
 import PageHero from '../ui/PageHero.astro';
 import SectionHead from '../ui/SectionHead.astro';
 import NewsCard from '../ui/NewsCard.astro';
@@ -72,8 +74,19 @@ const official = 'https://firstlegoleague.org/';
           {f.role.text}
         </p>
       </div>
-      <div data-reveal="scale">
-        <RegionMap locale={locale} />
+      <div class="role-photo" data-reveal-image>
+        <Picture
+          src={judgesPhoto}
+          alt={f.role.imageAlt}
+          formats={['avif', 'webp']}
+          fallbackFormat="jpg"
+          widths={[480, 800, 1000]}
+          width={1000}
+          height={500}
+          sizes="(min-width: 60em) 46vw, 100vw"
+          quality={70}
+          loading="lazy"
+        />
       </div>
     </div>
   </section>
@@ -83,15 +96,20 @@ const official = 'https://firstlegoleague.org/';
       <h2 id="countries-title" class="h2 block-title">
         {f.countries.title}
       </h2>
-      <ul role="list" class="countries" data-stagger>
-        {f.countries.items.map((c) => (
-          <li class="country card card--bracket" data-reveal>
-            <p class="country-code mono">{c.code}</p>
-            <h3 class="country-name">{c.name}</h3>
-            <p>{c.text}</p>
-          </li>
-        ))}
-      </ul>
+      <div class="countries-layout">
+        <div class="countries-map" data-reveal="scale">
+          <RegionMap locale={locale} />
+        </div>
+        <ul role="list" class="countries" data-stagger>
+          {f.countries.items.map((c) => (
+            <li class="country card card--bracket" data-reveal>
+              <p class="country-code mono">{c.code}</p>
+              <h3 class="country-name">{c.name}</h3>
+              <p>{c.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -204,12 +222,35 @@ const official = 'https://firstlegoleague.org/';
     margin-bottom: var(--space-l);
   }
 
+  .role-photo {
+    overflow: hidden;
+    border-radius: var(--radius-l);
+    aspect-ratio: 2 / 1;
+    background: var(--surface-strong);
+  }
+
+  .role-photo :global(picture) {
+    height: 100%;
+  }
+
+  .role-photo :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .countries-layout {
+    display: grid;
+    gap: var(--space-m);
+    align-items: start;
+  }
+
   .countries {
     display: grid;
     gap: var(--space-m);
     padding: 0;
     list-style: none;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
   }
 
   .country {
@@ -294,6 +335,15 @@ const official = 'https://firstlegoleague.org/';
 
     .role {
       align-items: center;
+    }
+
+    .countries-layout {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+    }
+
+    .countries-map {
+      position: sticky;
+      top: calc(var(--header-h) + 1rem);
     }
   }
 </style>

@@ -58,7 +58,7 @@ We do not currently use any web analytics. If we decide to introduce privacy-fri
 
 We process personal data in accordance with the General Data Protection Regulation (GDPR):
 
-- **replying to your messages** – Article 6(1)(b) GDPR where your enquiry relates to taking part in or entering into an arrangement with the society; otherwise Article 6(1)(f) GDPR (our legitimate interest in responding to enquiries we receive);
+- **replying to your messages** – Article 6(1)(b) GDPR where your enquiry relates to working with the society or entering into an agreement with it; otherwise Article 6(1)(f) GDPR (our legitimate interest in responding to enquiries we receive);
 - **technical operation and security of the website** – Article 6(1)(f) GDPR (our legitimate interest in running the site securely and reliably).
 
 Storing preferences in your browser's local storage is strictly necessary for features you have chosen to use and is not used for tracking.

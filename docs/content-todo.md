@@ -49,6 +49,12 @@ make the site stronger — each lists where to put it.
 - [ ] **UK National Final 2024** text says the final covers "Anglijo, Irsko, Wales in Škotsko" (as on the old site).
       The UK final covers Northern Ireland — consider "Severno Irsko" / "Northern Ireland" if that is what was meant.
 
+- [ ] **Greece 2026 headline** ("Ekipa in prostovoljci Društva DRITZ z izjemnim uspehom …", kept from the old site)
+      can be read as if Eco Robots (OŠ Šentvid) were a DRITZ team. If they are not, consider "Prostovoljci Društva
+      DRITZ in slovenska ekipa z izjemnim uspehom …" (both language files of that post).
+- [ ] Terminology: "sodnik" vs "ocenjevalec" are used as in the original posts. Pick one if FLL Slovenia has an
+      official term for judges/referees.
+
 ## Legal (please confirm)
 
 The privacy policy (`src/content/legal/*`) reflects how the site actually works. Please confirm these statements

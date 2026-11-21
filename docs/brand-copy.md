@@ -57,12 +57,12 @@ Source: `manifesto`, `values`, `about.mission`, `about.vision` in `src/i18n/sl.t
 
 **Value pillars — "Štirje zobniki, ki poganjajo DRITZ" / "Four gears that drive DRITZ":**
 
-| SL              | EN                | Short description                                                |
-| --------------- | ----------------- | ---------------------------------------------------------------- |
-| Radovednost     | Curiosity         | A good question is the best tool in the workshop.                |
-| Učenje z rokami | Hands-on learning | What you build, code and test yourself is what sticks.           |
-| Sodelovanje     | Teamwork          | The best solutions come from teams — peers, mentors, volunteers. |
-| Dostopnost      | Open to all       | Technology should not be a privilege (the original vision).      |
+| SL              | EN                | Short description                                                                                                            |
+| --------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Radovednost     | Curiosity         | A good question is the best tool in the workshop.                                                                            |
+| Učenje z rokami | Hands-on learning | What you build, code and test yourself is what sticks. (SL: Kar sam sestaviš, sprogramiraš in preizkusiš, si tudi zapomniš.) |
+| Sodelovanje     | Teamwork          | The best solutions come from teams — peers, mentors, volunteers.                                                             |
+| Dostopnost      | Open to all       | Technology should not be a privilege (the original vision).                                                                  |
 
 **Mission:** Mlade povezujemo z znanostjo in tehnologijo – skozi praktično učenje, raziskovanje in tekmovanja.
 **Vision (unchanged in meaning):** Družba, v kateri so inovativnost, sodelovanje in tehnično znanje dostopni vsakomur.
@@ -75,7 +75,7 @@ Source: `manifesto`, `values`, `about.mission`, `about.vision` in `src/i18n/sl.t
 | Contact heading  | Pozdravljeni, človek!                                      | Hello, human!                                              |
 | 404              | Ta robot je zapeljal s proge. … napaka je samo podatek.    | This robot drove off the track. … a mistake is just data.  |
 | Hero console     | STATUS: gradimo prihodnost                                 | STATUS: building the future                                |
-| Activities intro | vedno z rokami na mizi in glavo v oblakih                  | hands on the table, head in the clouds                     |
+| Activities intro | vedno z rokami pri delu in glavo v oblakih                 | always hands-on, with our heads in the clouds              |
 | Join hero        | V tej ekipi je prostor še za enega                         | There is always room for one more on this team             |
 | Form error       | Vpišite veljaven e-poštni naslov, na primer ime@primer.si. | Please enter a valid email address, e.g. name@example.com. |
 | Footer           | brez piškotkov in sledilnikov                              | no cookies, no trackers                                    |

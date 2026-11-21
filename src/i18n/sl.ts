@@ -62,7 +62,7 @@ const sl = {
 
   footer: {
     tagline:
-      'Neprofitno društvo za raziskovanje in izobraževanje o tehnologiji in znanosti. Robotika, delavnice in FIRST LEGO League v Sloveniji, na Hrvaškem, v Srbiji in Črni gori.',
+      'Neprofitno društvo za raziskovanje in izobraževanje o tehnologiji in znanosti. Robotika, delavnice in FIRST LEGO League v Sloveniji, na Hrvaškem, v Srbiji in v Črni gori.',
     explore: 'Raziščite',
     involved: 'Sodelujte',
     reach: 'Stik',
@@ -122,7 +122,7 @@ const sl = {
     activities: {
       eyebrow: '03 // Kaj počnemo',
       title: 'Od prve kocke do mednarodnega odra',
-      intro: 'Robotika, programiranje in znanost – vedno z rokami na mizi in glavo v oblakih.',
+      intro: 'Robotika, programiranje in znanost – vedno z rokami pri delu in glavo v oblakih.',
       link: 'Vse aktivnosti',
     },
     stats: {
@@ -158,7 +158,7 @@ const sl = {
     },
     cta: {
       title: 'Imate ekipo, idejo ali podjetje, ki verjame v mlade?',
-      body: 'Ne glede na to, ali ste učenec, starš, mentor, učitelj ali partner – v DRITZ je prostor za vas.',
+      body: 'Ne glede na to, ali ste učenec, starš, mentor, učitelj ali partner – v Društvu DRITZ je prostor za vas.',
       primary: 'Pridružite se',
       secondary: 'Postanite podpornik',
     },
@@ -190,7 +190,7 @@ const sl = {
       },
       {
         title: 'Učenje z rokami',
-        text: 'Znanje, ki ga sam sestaviš, sprogramiraš in preizkusiš, ostane. Zato se učimo z delom, ne le s poslušanjem.',
+        text: 'Kar sam sestaviš, sprogramiraš in preizkusiš, si tudi zapomniš. Zato se učimo z delom, ne le s poslušanjem.',
       },
       {
         title: 'Sodelovanje',
@@ -206,7 +206,7 @@ const sl = {
   activities: {
     fll: {
       title: 'FIRST LEGO League',
-      text: 'Pomagamo pri organizaciji tekmovanj v Sloveniji, na Hrvaškem, v Srbiji in Črni gori, naši člani pa sodijo tudi na mednarodnih prvenstvih.',
+      text: 'Pomagamo pri organizaciji tekmovanj v Sloveniji, na Hrvaškem, v Srbiji in v Črni gori, naši člani pa sodijo tudi na mednarodnih prvenstvih.',
     },
     workshops: {
       title: 'Delavnice robotike in programiranja',
@@ -227,7 +227,7 @@ const sl = {
     items: {
       marrakech: {
         title: 'Prvi afriški oder FLL',
-        text: 'Trije naši prostovoljci sodijo na prvenstvu Morocco Open International v Marakešu. Valentin Šeško prejme pokal za najprostovoljca tekmovanja.',
+        text: 'Trije naši prostovoljci sodijo na prvenstvu Morocco Open International v Marakešu. Valentin Šeško prejme pokal za najboljšega prostovoljca tekmovanja.',
       },
       founded: {
         title: 'Društvo DRITZ uradno začne delovati',
@@ -264,8 +264,8 @@ const sl = {
       lead: 'Društvo DRITZ povezuje mlade, mentorje in prostovoljce, ki verjamejo, da se najboljše učimo, ko nekaj sestavimo, sprogramiramo in preizkusimo sami.',
     },
     imageAlts: [
-      'Otroci sestavljajo in preizkušajo LEGO robota na delavnici društva DRITZ',
-      'Otroci in mentor ob tekmovalni mizi FIRST LEGO League na delavnici društva DRITZ',
+      'Otroci sestavljajo in preizkušajo LEGO robota na delavnici Društva DRITZ',
+      'Otroci in mentor ob tekmovalni mizi FIRST LEGO League na delavnici Društva DRITZ',
     ],
     story: {
       title: 'Naša zgodba',
@@ -309,13 +309,13 @@ const sl = {
     },
     hero: {
       eyebrow: 'Aktivnosti',
-      title: 'Kjer se ideje premaknejo z mize',
+      title: 'Kjer ideje oživijo',
       lead: 'Naše aktivnosti imajo skupni imenovalec: mladi se učijo tako, da gradijo, programirajo in raziskujejo sami – mi pa poskrbimo za orodje, izziv in podporo.',
     },
     imageAlts: {
       fll: 'Množica tekmovalcev in prostovoljcev na tekmovanju FIRST LEGO League v regiji Adrija',
-      workshops: 'Otroci sestavljajo in preizkušajo LEGO robota na delavnici društva DRITZ',
-      mentoring: 'Otroci in mentor ob tekmovalni mizi FIRST LEGO League na delavnici društva DRITZ',
+      workshops: 'Otroci sestavljajo in preizkušajo LEGO robota na delavnici Društva DRITZ',
+      mentoring: 'Otroci in mentor ob tekmovalni mizi FIRST LEGO League na delavnici Društva DRITZ',
     },
     detail: {
       fll: {
@@ -349,28 +349,32 @@ const sl = {
     meta: {
       title: 'FIRST LEGO League Slovenija in regija – tekmovanje FLL',
       description:
-        'Kaj je FIRST LEGO League in kako Društvo DRITZ pomaga pri tekmovanjih FLL v Sloveniji, na Hrvaškem, v Srbiji in Črni gori ter na mednarodnih prvenstvih.',
+        'Kaj je FIRST LEGO League in kako Društvo DRITZ pomaga pri tekmovanjih FLL v Sloveniji, na Hrvaškem, v Srbiji in v Črni gori ter na mednarodnih prvenstvih.',
     },
     hero: {
       eyebrow: 'FIRST LEGO League',
       title: 'Tekmovanje, kjer robotika sreča domišljijo',
-      lead: 'FIRST LEGO League (FLL) je mednarodni program robotike za otroke in mladostnike. Društvo DRITZ pomaga pri tekmovanjih v Sloveniji, na Hrvaškem, v Srbiji in Črni gori, naši člani pa sodijo tudi na mednarodnih prvenstvih.',
+      lead: 'FIRST LEGO League (FLL) je mednarodni program robotike za otroke in mladostnike. Društvo DRITZ pomaga pri tekmovanjih v Sloveniji, na Hrvaškem, v Srbiji in v Črni gori, naši člani pa sodijo tudi na mednarodnih prvenstvih.',
     },
     what: {
       title: 'Kaj je FIRST LEGO League?',
       paragraphs: [
         'FIRST LEGO League je mednarodni izobraževalni program organizacije FIRST v sodelovanju z LEGO Education. Ekipe mladih vsako sezono dobijo nov tematski izziv: sestavijo in sprogramirajo robota iz kock LEGO ter raziščejo resničen problem in zanj predlagajo inovativno rešitev.',
-        'Na tekmovanju ekipe ne merijo le točk na tekmovalni mizi. Sodniki ocenjujejo tudi zasnovo robota, inovacijski projekt in to, kako ekipa živi temeljne vrednote programa: sodelovanje, vključenost, inovativnost in zabavo.',
+        'Na tekmovanju ne štejejo le točke na tekmovalni mizi. Sodniki ocenjujejo tudi zasnovo robota, inovacijski projekt in to, kako ekipa živi temeljne vrednote programa, kot so timsko delo, vključenost, inovativnost in zabava.',
       ],
       partsTitle: 'Štiri področja ocenjevanja',
       parts: [
         { title: 'Robotska igra', text: 'Avtonomni robot v omejenem času rešuje naloge na tekmovalni mizi.' },
         { title: 'Zasnova robota', text: 'Ekipa sodnikom predstavi, kako je robota zasnovala, sestavila in sprogramirala.' },
         { title: 'Inovacijski projekt', text: 'Raziskava resničnega problema iz teme sezone in predlog rešitve.' },
-        { title: 'Temeljne vrednote', text: 'Sodelovanje, spoštovanje in timski duh – v vsaki nalogi in vsakem trenutku.' },
+        {
+          title: 'Temeljne vrednote',
+          text: 'Odkrivanje, inovativnost, vpliv, vključenost, timsko delo in zabava – pri vsaki nalogi.',
+        },
       ],
     },
     role: {
+      imageAlt: 'Člani sodniške žirije v črtastih majicah na tekmovanju FIRST LEGO League v Maroku',
       title: 'Vloga Društva DRITZ',
       text: 'Naši člani so prostovoljci z bogatimi izkušnjami: tekmovanja pomagajo organizirati, na njih sodijo in z ekipami delijo znanje. Tako prispevamo k dvigu ravni mladinske robotike v regiji in utrjujemo partnerske vezi z regijskimi organizatorji FLL.',
     },
@@ -401,7 +405,7 @@ const sl = {
     },
     international: {
       title: 'Na mednarodnih odrih',
-      text: 'Prostovoljci DRITZ so sodili na prvenstvih v Maroku, Veliki Britaniji, na Norveškem in v Grčiji. O vsakem dogodku smo pripravili novico.',
+      text: 'Prostovoljci DRITZ so sodili na prvenstvih v Maroku, v Veliki Britaniji, na Norveškem in v Grčiji. O vsakem dogodku smo pripravili novico.',
     },
     faq: {
       title: 'Pogosta vprašanja',
@@ -434,17 +438,17 @@ const sl = {
       title: 'Novice iz delavnice in s tekmovalnih odrov',
       lead: 'Kje smo sodili, kdo je zmagal in kaj smo se naučili – vse na enem mestu.',
     },
-    empty: 'Novice so na poti. Medtem nam lahko pišete ali pa se vrnete kmalu.',
+    empty: 'Novice so na poti. Medtem nam lahko pišete ali pa se kmalu vrnete.',
     related: 'Sorodne novice',
     location: 'Kraj',
-    count: '{count} novic',
+    count: 'Število novic: {count}',
   },
 
   supportersPage: {
     meta: {
       title: 'Podporniki in partnerji – podprite mlade v znanosti',
       description:
-        'Hvala donatorjem in partnerjem Društva DRITZ. Preverite, kdo nas podpira, in kako lahko s podporo omogočite delavnice robotike in tekmovanja FLL.',
+        'Hvala donatorjem in partnerjem Društva DRITZ. Preverite, kdo nas podpira in kako lahko s podporo omogočite delavnice robotike in tekmovanja FLL.',
     },
     hero: {
       eyebrow: 'Podporniki',
@@ -467,7 +471,7 @@ const sl = {
         },
         {
           title: 'Znanje in čas',
-          text: 'Strokovnjaki iz industrije in akademije so lahko mentorji, gostujoči predavatelji ali sodniki.',
+          text: 'Strokovnjaki iz industrije in akademskega sveta so lahko mentorji, gostujoči predavatelji ali sodniki.',
         },
       ],
     },
@@ -489,7 +493,7 @@ const sl = {
       {
         id: 'youth',
         title: 'Za mlade',
-        text: 'Rad sestavljaš, programiraš ali raziskuješ? Pridi na delavnico in preizkusi, kako se ideja spremeni v robota.',
+        text: 'Te veseli sestavljanje, programiranje ali raziskovanje? Pridi na delavnico in preizkusi, kako se ideja spremeni v robota.',
         action: 'Vprašajte o delavnicah',
       },
       {
@@ -530,7 +534,7 @@ const sl = {
     hero: {
       eyebrow: 'Kontakt',
       title: 'Pozdravljeni, človek!',
-      lead: 'Imate vprašanje, idejo ali predlog za sodelovanje? Pišite nam – odgovorimo, takoj ko lahko.',
+      lead: 'Imate vprašanje, idejo ali predlog za sodelovanje? Pišite nam – odgovorili bomo čim prej.',
     },
     details: {
       title: 'Kontaktni podatki',
@@ -560,7 +564,7 @@ const sl = {
       mailtoNote:
         'Ob oddaji se odpre vaš e-poštni program s pripravljenim sporočilom. Lahko pa nam pišete neposredno na info@dritz.si.',
       subjectPrefix: 'Sporočilo s spletne strani',
-      success: 'Hvala! Sporočilo je oddano. Odgovorimo vam, takoj ko lahko.',
+      success: 'Hvala! Sporočilo je poslano. Odgovorili vam bomo čim prej.',
       successMailto: 'Odprli smo vaš e-poštni program. Če se ni odprl, nam pišite na info@dritz.si.',
       error: 'Ups, sporočila ni bilo mogoče poslati. Poskusite znova ali nam pišite na info@dritz.si.',
       errors: {
