@@ -43,17 +43,22 @@ const schemaImage = await getImage({ src: image, width: 1200, format: 'jpg', qua
     { name: d.nav.news, path: path('news', locale) },
     { name: title, path: newsPath(locale, slug) },
   ]}
-  jsonLd={[
-    articleLd({
-      locale,
-      url,
-      headline: title,
-      description,
-      images: [absolute(schemaImage.src), absolute(ogImage)],
-      datePublished: date,
-      dateModified: updated,
-    }),
-  ]}
+  jsonLd={
+    // NewsArticle needs a publication date; undated posts keep the generic WebPage node.
+    date
+      ? [
+          articleLd({
+            locale,
+            url,
+            headline: title,
+            description,
+            images: [absolute(schemaImage.src), absolute(ogImage)],
+            datePublished: date,
+            dateModified: updated,
+          }),
+        ]
+      : []
+  }
 >
   <article class="article">
     <header class="container--narrow article-head">

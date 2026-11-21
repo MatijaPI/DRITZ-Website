@@ -47,6 +47,5 @@ export function initLanguage(): void {
   banner.querySelector('[data-lang-dismiss]')?.addEventListener('click', () => {
     banner.hidden = true;
     store(BANNER_KEY, '1');
-    store(LANG_KEY, pageLang ?? 'sl');
   });
 }

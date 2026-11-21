@@ -93,7 +93,7 @@ const sl = {
 
   home: {
     meta: {
-      title: 'Društvo DRITZ – robotika, znanost in FIRST LEGO League za mlade',
+      title: 'Društvo DRITZ – robotika, znanost in FIRST LEGO League',
       description:
         'Društvo DRITZ iz Celja mladim odpira svet robotike, programiranja in znanosti: delavnice, mentorstvo in tekmovanja FIRST LEGO League v Sloveniji in regiji.',
     },
@@ -130,7 +130,7 @@ const sl = {
       title: 'Majhno društvo, velik doseg',
       items: [
         { value: 4, label: 'države v regiji, kjer pomagamo pri tekmovanjih FIRST LEGO League' },
-        { value: 5, label: 'mednarodnih prvenstev FLL s sodniki DRITZ od leta 2023' },
+        { value: 5, label: 'tekmovanj FLL v tujini s sodniki DRITZ od leta 2023' },
         { value: 6, label: 'podpornikov v sezonah 2024/25 in 2025/26' },
         { value: 2024, label: 'leto, od katerega društvo uradno deluje' },
       ],
@@ -231,7 +231,7 @@ const sl = {
       },
       founded: {
         title: 'Društvo DRITZ uradno začne delovati',
-        text: 'Dolgoletno prostovoljno delo dobi formalni okvir: Društvo za raziskovanje in izobraževanje o tehnologiji in znanosti.',
+        text: 'Prostovoljno delo naših članov dobi formalni okvir: Društvo za raziskovanje in izobraževanje o tehnologiji in znanosti.',
       },
       harrogate24: {
         title: 'Sodniki na britanskem finalu',
@@ -268,6 +268,8 @@ const sl = {
       'Otroci in mentor ob tekmovalni mizi FIRST LEGO League na delavnici Društva DRITZ',
     ],
     story: {
+      heritageLabel: 'Naš prvotni moto',
+      heritage: '»Raziskujemo neznano, izobražujemo za prihodnost.«',
       title: 'Naša zgodba',
       paragraphs: [
         'Društvo DRITZ v Sloveniji uradno deluje od leta 2024 z jasnim ciljem: spodbujati znanstveno raziskovanje, inovacije in izobraževanje na področju tehnologije in znanosti.',
@@ -303,7 +305,7 @@ const sl = {
 
   activitiesPage: {
     meta: {
-      title: 'Aktivnosti – delavnice robotike, mentorstvo in FLL',
+      title: 'Aktivnosti – delavnice robotike in FLL',
       description:
         'Delavnice lego robotike in programiranja, mentorstvo, priprave na tekmovanja in FIRST LEGO League: preverite, kaj Društvo DRITZ pripravlja za mlade.',
     },
@@ -347,7 +349,7 @@ const sl = {
 
   fllPage: {
     meta: {
-      title: 'FIRST LEGO League Slovenija in regija – tekmovanje FLL',
+      title: 'FIRST LEGO League Slovenija in regija',
       description:
         'Kaj je FIRST LEGO League in kako Društvo DRITZ pomaga pri tekmovanjih FLL v Sloveniji, na Hrvaškem, v Srbiji in v Črni gori ter na mednarodnih prvenstvih.',
     },
@@ -405,7 +407,7 @@ const sl = {
     },
     international: {
       title: 'Na mednarodnih odrih',
-      text: 'Prostovoljci DRITZ so sodili na prvenstvih v Maroku, v Veliki Britaniji, na Norveškem in v Grčiji. O vsakem dogodku smo pripravili novico.',
+      text: 'Prostovoljci DRITZ so sodili na tekmovanjih v Maroku, v Veliki Britaniji, na Norveškem in v Grčiji. O vsakem dogodku smo pripravili novico.',
     },
     faq: {
       title: 'Pogosta vprašanja',
@@ -429,7 +431,7 @@ const sl = {
 
   newsPage: {
     meta: {
-      title: 'Novice – FIRST LEGO League, robotika in dogodki',
+      title: 'Novice – FIRST LEGO League in robotika',
       description:
         'Novice Društva DRITZ: mednarodna prvenstva FIRST LEGO League, sodelovanje naših sodnikov, uspehi slovenskih ekip in delavnice robotike za mlade.',
     },
@@ -446,7 +448,7 @@ const sl = {
 
   supportersPage: {
     meta: {
-      title: 'Podporniki in partnerji – podprite mlade v znanosti',
+      title: 'Podporniki in partnerji Društva DRITZ',
       description:
         'Hvala donatorjem in partnerjem Društva DRITZ. Preverite, kdo nas podpira in kako lahko s podporo omogočite delavnice robotike in tekmovanja FLL.',
     },
@@ -480,7 +482,7 @@ const sl = {
 
   joinPage: {
     meta: {
-      title: 'Pridružite se – mladi, prostovoljci, šole in partnerji',
+      title: 'Pridružite se – mladi, prostovoljci, šole',
       description:
         'Pridružite se Društvu DRITZ kot mladi raziskovalec, prostovoljec, sodnik FLL, mentor, šola ali partner. Skupaj gradimo prihodnost robotike in znanosti.',
     },

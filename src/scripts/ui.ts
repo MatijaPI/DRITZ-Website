@@ -7,7 +7,6 @@ export function initTheme(): void {
     const light = root.dataset.theme === 'light';
     buttons.forEach((b) => {
       b.setAttribute('aria-label', (light ? b.dataset.labelDark : b.dataset.labelLight) ?? '');
-      b.setAttribute('aria-pressed', String(light));
     });
   };
   buttons.forEach((b) =>
@@ -22,10 +21,12 @@ export function initTheme(): void {
       } catch {
         /* storage unavailable — theme still switches for this page */
       }
-      const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
-      if (doc.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-        doc.startViewTransition(apply);
-      else apply();
+      if ('startViewTransition' in document && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const transition = document.startViewTransition(apply);
+        // Navigating away mid-transition aborts it; that is expected, not an error.
+        transition.ready.catch(() => undefined);
+        transition.finished.catch(() => undefined);
+      } else apply();
     }),
   );
   sync();
@@ -64,6 +65,7 @@ export function initMobileMenu(): void {
   if (!toggle || !menu) return;
   const main = document.getElementById('main');
   const footer = document.querySelector<HTMLElement>('.site-footer');
+  const skip = document.querySelector<HTMLElement>('.skip-link');
 
   const setOpen = (open: boolean) => {
     toggle.setAttribute('aria-expanded', String(open));
@@ -71,7 +73,7 @@ export function initMobileMenu(): void {
     menu.hidden = !open;
     menu.toggleAttribute('data-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
-    [main, footer].forEach((el) => el && (el.inert = open));
+    [main, footer, skip].forEach((el) => el && (el.inert = open));
     if (open) menu.querySelector<HTMLElement>('a')?.focus();
   };
 

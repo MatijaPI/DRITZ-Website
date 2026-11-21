@@ -6,6 +6,7 @@
  */
 import { Image } from 'astro:assets';
 import { seasons } from '../../data/supporters.ts';
+import MotionToggle from '../ui/MotionToggle.astro';
 import { t, fmt, type Locale } from '../../i18n/index.ts';
 
 interface Props {
@@ -17,34 +18,44 @@ const d = t(locale);
 const all = seasons.flatMap((s) => s.supporters);
 ---
 
-<div class="marquee" data-reveal="fade">
-  {[0, 1].map((copy) => (
-    <ul role="list" class="marquee-track" aria-hidden={copy === 1 ? 'true' : undefined}>
-      {all.map((s) => (
-        <li class="marquee-item">
-          {s.logo ? (
-            <span class="logo-chip">
-              <Image
-                src={s.logo}
-                alt={copy === 1 ? '' : fmt(d.supportersPage.logoAlt, { name: s.shortName ?? s.name })}
-                width={160}
-                height={Math.round((160 * s.logo.height) / s.logo.width)}
-                densities={[1, 2]}
-                format="webp"
-                loading="lazy"
-                decoding="async"
-              />
-            </span>
-          ) : (
-            <span class="name-chip">{s.name}</span>
-          )}
-        </li>
-      ))}
-    </ul>
-  ))}
+<div class="marquee-wrap">
+  <div class="marquee" data-reveal="fade">
+    {[0, 1].map((copy) => (
+      <ul role="list" class="marquee-track" aria-hidden={copy === 1 ? 'true' : undefined}>
+        {all.map((s) => (
+          <li class="marquee-item">
+            {s.logo ? (
+              <span class="logo-chip">
+                <Image
+                  src={s.logo}
+                  alt={copy === 1 ? '' : fmt(d.supportersPage.logoAlt, { name: s.shortName ?? s.name })}
+                  width={160}
+                  height={Math.round((160 * s.logo.height) / s.logo.width)}
+                  densities={[1, 2]}
+                  format="webp"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
+            ) : (
+              <span class="name-chip">{s.name}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    ))}
+  </div>
+  <div class="container marquee-controls">
+    <MotionToggle locale={locale} />
+  </div>
 </div>
 
 <style>
+  .marquee-controls {
+    display: flex;
+    justify-content: flex-end;
+  }
+
   .marquee {
     --gap: clamp(1rem, 0.5rem + 2vw, 2rem);
     display: flex;

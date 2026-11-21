@@ -25,7 +25,7 @@ export const GET: APIRoute = async () => {
     for (const entry of await getNews(locale)) {
       urls.push({
         loc: newsPath(locale, entrySlug(entry)),
-        lastmod: iso(entry.data.updated ?? site.updated),
+        lastmod: iso(entry.data.updated ?? entry.data.date ?? site.updated),
         alternates: await newsAlternates(entry),
       });
     }

@@ -8,11 +8,20 @@
 - [x] `sitemap.xml` with both languages, `lastmod` and `xhtml:link` alternates; `robots.txt` points to it; the 404 page is `noindex` and not in the sitemap.
 - [x] JSON-LD `@graph` on every page: `NGO`/`EducationalOrganization` (legal name, alternateName DRITZ, logo, address, foundingDate 2024, contactPoint, areaServed SI/HR/RS/ME, `sameAs` once social profiles are added), `WebSite` (`inLanguage`), `WebPage`/`AboutPage`/`ContactPage`/`CollectionPage`, `BreadcrumbList` on inner pages, `NewsArticle` on posts, `ItemList` on the news index. No `SearchAction` (the site has no search). No `Event` markup (all events so far were organised by others; add only for events DRITZ itself runs).
 - [x] OpenGraph + Twitter Card on every page; generated 1200×630 OG images per page and per language (`/og/<lang>/<page>.jpg`, news posts include their photo).
-- [x] Core Web Vitals: static HTML, AVIF/WebP `srcset` with width/height, lazy loading below the fold, only fonts preloaded, ~12 KB JS gzipped, no render-blocking third parties, CLS 0.
+- [x] Core Web Vitals: static HTML, AVIF/WebP `srcset` with width/height, lazy loading below the fold, only fonts preloaded, ~7 KB JS gzipped, no render-blocking third parties, CLS 0.
 - [x] Old URLs preserved: `/`, `/novice/`, all 6 `/novice/<slug>/`, homepage anchors.
 - [x] Internal linking: header + footer sitemap, breadcrumbs, related news, timeline → news, activity cards → pages.
 - [x] Keywords placed naturally: "Društvo DRITZ", "FIRST LEGO League Slovenija", "tekmovanje FLL", "robotika za mlade/otroke", "delavnice robotike", "društvo za tehnologijo in znanost" (SL); "FIRST LEGO League Slovenia", "robotics workshops", "STEM / science society" (EN).
 - [x] Google Search Console verification meta controlled by `PUBLIC_GOOGLE_SITE_VERIFICATION` (repository variable `GOOGLE_SITE_VERIFICATION`). Optional cookieless analytics, disabled by default.
+
+## Deliberate choices
+
+- The homepage `<h1>` is the motto ("Neznano je le še neraziskano."). Brand and topic keywords sit directly around
+  it — the eyebrow above ("Društvo DRITZ · robotika · znanost · FIRST LEGO League"), the lead paragraph, the
+  `<title>` and the meta description — and every inner page has a keyword-bearing `<h1>`/title. If rankings for
+  generic queries lag, swap the hero eyebrow and `<h1>` roles in `src/components/home/Hero.astro`.
+- Sitemap `lastmod`: news posts use `updated` or their publication `date`; static pages use `site.updated` in
+  `src/data/site.ts` — bump it when you make substantial content changes.
 
 ## Manual steps after deploying (do these in order)
 

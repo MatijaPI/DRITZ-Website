@@ -211,10 +211,9 @@ Inspiration only. No branding, copy, code or assets from the sites below go into
 
 ## Addendum — decisions after research (lead)
 
-- **Smooth scrolling (Lenis):** the research recommended against it; the brief explicitly asks for smooth scrolling,
-  so it is included in a constrained form: lazy-loaded on idle, only for fine pointers (mouse/trackpad), never on
-  touch devices or with `prefers-reduced-motion`, native keyboard/anchor scrolling preserved, ~5 KB gzipped.
-  It can be removed by deleting the `smooth-scroll.ts` import in `src/scripts/main.ts`.
+- **Smooth scrolling:** native CSS `scroll-behavior: smooth` (disabled with reduced motion). Lenis was tried and
+  removed during QA: it fought focus-driven scrolling (keyboard users tabbing through the contact form), which
+  confirmed this research's recommendation.
 - **Counters:** numbers count up from the real value already present in the HTML (no-JS and reduced-motion users
   see the final number immediately).
 - **Everything else** follows section 4 of this document.

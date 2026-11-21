@@ -12,7 +12,7 @@
 | Per-page OG images                                        | none                        | generated at build time (satori + sharp)                    |
 | Hosting                                                   | GitHub Pages                | **still GitHub Pages** — output is plain static HTML/CSS/JS |
 
-Astro ships zero JavaScript by default; the only client JS is ~12 KB gzipped of small vanilla modules, most of it
+Astro ships zero JavaScript by default; the only client JS is ~7 KB gzipped of small vanilla modules, most of it
 lazy-loaded. Next.js was rejected (its strengths need a server runtime; heavier client bundle). GSAP/Three.js
 were rejected: every effect on the site is achievable with CSS + a 2D canvas.
 
@@ -80,7 +80,6 @@ src/
 | `main.ts` + `ui.ts` + `language.ts` + `motion.ts` | always, deferred module (2.8 KB gz)              | menu, theme toggle, header state, reveals, counters, typewriter, banner, pause control |
 | `hero-canvas.ts`                                  | idle, homepage only, not with reduced motion     | circuit-trace animation                                                                |
 | `cursor.ts`                                       | idle, fine pointer only, not with reduced motion | cursor ring + magnetic buttons                                                         |
-| `smooth-scroll.ts` (Lenis)                        | idle, fine pointer only, not with reduced motion | inertial scrolling                                                                     |
 | `ContactForm` script                              | contact pages                                    | validation, honeypot, mailto/endpoint submit                                           |
 
 Everything degrades gracefully: without JavaScript, all content is visible, links work and the contact form

@@ -1,5 +1,6 @@
 ---
 import Icon from '../ui/Icon.astro';
+import MotionToggle from '../ui/MotionToggle.astro';
 import logoVerticalUrl from '../../assets/brand/logo-vertical.svg?url';
 import { t, path, type Locale } from '../../i18n/index.ts';
 import { activeMotto } from '../../i18n/motto.ts';
@@ -74,22 +75,7 @@ const ghost = cycle.reduce((a, b) => (b.length > a.length ? b : a), '') + tail;
       <span class="scroll-line" aria-hidden="true"></span>
       {d.a11y.scrollHint}
     </a>
-    <button
-      type="button"
-      class="motion-toggle mono"
-      data-motion-toggle
-      aria-pressed="false"
-      aria-label={d.motion.pause}
-      data-label-pause={d.motion.pause}
-      data-label-play={d.motion.play}
-    >
-      <span class="mt-pause" aria-hidden="true">
-        ❚❚
-      </span>
-      <span class="mt-play" aria-hidden="true">
-        ▶
-      </span>
-    </button>
+    <MotionToggle locale={locale} />
   </div>
 </section>
 
@@ -320,41 +306,9 @@ const ghost = cycle.reduce((a, b) => (b.length > a.length ? b : a), '') + tail;
     }
   }
 
-  .motion-toggle {
-    display: inline-grid;
-    place-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    background: transparent;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    cursor: pointer;
-  }
-
-  .motion-toggle:hover {
-    color: var(--accent-text);
-    border-color: var(--accent);
-  }
-
-  .mt-play,
-  :global([data-motion='paused']) .mt-pause {
-    display: none;
-  }
-
-  :global([data-motion='paused']) .mt-play {
-    display: inline;
-  }
-
-  :global([data-motion='paused']) .hero :is(.scroll-line::after, [data-cycle-word]::after) {
+  :global([data-motion='paused']) .scroll-line::after,
+  :global([data-motion='paused']) [data-cycle-word]::after {
     animation-play-state: paused;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .motion-toggle {
-      display: none;
-    }
   }
 
   @media (prefers-reduced-motion: no-preference) {

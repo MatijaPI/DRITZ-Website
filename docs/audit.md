@@ -63,7 +63,7 @@ Everything was preserved or migrated; nothing was dropped silently.
 
 | Old content                                                                                  | New location                                                                                                                                                                                                                                                                                                                                                                            |
 | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Hero title, slogan, lead, motto »Raziskujemo neznano, izobražujemo za prihodnost.«           | Reworked into the new motto/manifesto (meaning kept, see `brand-copy.md`); lead copy reused on `/` and `/o-nas/`. The old motto is listed among the candidates' sources.                                                                                                                                                                                                                |
+| Hero title, slogan, lead, motto »Raziskujemo neznano, izobražujemo za prihodnost.«           | Reworked into the new motto/manifesto (meaning kept, see `brand-copy.md`); lead copy reused on `/` and `/o-nas/`. The old motto is preserved verbatim on `/o-nas/` as "Naš prvotni moto" (EN: "Our original motto"). The old slogan's idea lives on in the manifesto ("Gradimo skupaj …") and the runner-up motto "Gradimo prihodnost. Kocko za kocko."                                 |
 | "Kdo smo", mission, vision, activities text                                                  | `/o-nas/` (story, mission, vision), `/aktivnosti/`, homepage "Kdo smo".                                                                                                                                                                                                                                                                                                                 |
 | News cards + 6 articles                                                                      | `/novice/` + `/novice/<same slug>/` (all 6 URLs unchanged), English versions under `/en/news/`. Wording kept; only clear typos fixed (listed in the content agent's report: "skrbela in" → "skrbela za", "Velik hvala" → "Velika hvala", "Slovenskega FLL programa" → "slovenskega programa FLL", hyphen → en dash, "so se sezone" → "so se tekmovanja sezone", lowercase after colon). |
 | Supporters 2024/25 and 2025/26, logos, "HVALA!" text                                         | `/podporniki/` (full list per season + thank-you text) and the homepage marquee.                                                                                                                                                                                                                                                                                                        |
@@ -76,4 +76,32 @@ Everything was preserved or migrated; nothing was dropped silently.
 
 ## Final scores
 
-See the table appended below after the last QA pass.
+Final run on the production build (`npm run build`, served statically), Lighthouse 13.6, 2026-11-21.
+Mobile = default mobile emulation with simulated slow 4G; desktop = `--preset=desktop`.
+
+| Page                                                 | Mobile P / A / BP / SEO | Mobile LCP | Desktop P / A / BP / SEO | Desktop LCP |
+| ---------------------------------------------------- | ----------------------- | ---------- | ------------------------ | ----------- |
+| `/`                                                  | 100 / 100 / 100 / 100   | 1.05 s     | 100 / 100 / 100 / 100    | 0.29 s      |
+| `/en/`                                               | 100 / 100 / 100 / 100   | 1.06 s     | 100 / 100 / 100 / 100    | 0.29 s      |
+| `/o-nas/`                                            | 100 / 100 / 100 / 100   | 1.66 s     | 100 / 100 / 100 / 100    | 0.40 s      |
+| `/en/about/`                                         | 100 / 100 / 100 / 100   | 1.66 s     | 100 / 100 / 100 / 100    | 0.21 s      |
+| `/first-lego-league/`                                | 100 / 100 / 100 / 100   | 0.75 s     | 100 / 100 / 100 / 100    | 0.21 s      |
+| `/en/first-lego-league/`                             | 100 / 100 / 100 / 100   | 0.76 s     | 100 / 100 / 100 / 100    | 0.21 s      |
+| `/novice/`                                           | 99 / 100 / 100 / 100    | 1.98 s     | 100 / 100 / 100 / 100    | 0.44 s      |
+| `/en/news/`                                          | 99 / 100 / 100 / 100    | 1.96 s     | 100 / 100 / 100 / 100    | 0.43 s      |
+| `/novice/fll-open-european-championship-bodo-2024/`  | 100 / 100 / 100 / 100   | 0.76 s     | 100 / 100 / 100 / 100    | 0.21 s      |
+| `/en/news/fll-open-european-championship-bodo-2024/` | 100 / 100 / 100 / 100   | 0.76 s     | 100 / 100 / 100 / 100    | 0.21 s      |
+| `/kontakt/`                                          | 100 / 100 / 100 / 100   | 0.91 s     | 100 / 100 / 100 / 100    | 0.25 s      |
+| `/en/contact/`                                       | 100 / 100 / 100 / 100   | 0.91 s     | 100 / 100 / 100 / 100    | 0.25 s      |
+| `/aktivnosti/`                                       | 100 / 100 / 100 / 100   | 0.76 s     | 100 / 100 / 100 / 100    | 0.41 s      |
+| `/podporniki/`                                       | 100 / 100 / 100 / 100   | 0.76 s     | 100 / 100 / 100 / 100    | 0.21 s      |
+| `/pridruzite-se/`                                    | 100 / 100 / 100 / 100   | 0.76 s     | 100 / 100 / 100 / 100    | 0.21 s      |
+
+CLS 0.000 and TBT ≤ 46 ms on every page. Other checks on the final build: 0 axe-core violations (dark + light,
+375 and 1440 px), 0 broken internal links, 0 console errors with the CSP enabled, no horizontal overflow from
+320 px up, 66/66 scripted interaction checks passing (menu, theme, language switcher on all 11 page pairs,
+remembered language, language banner, form validation/honeypot/topic preselect, keyboard/skip link, reduced
+motion, no-JS rendering).
+
+Real-world numbers on GitHub Pages will differ slightly (CDN latency); re-check with PageSpeed Insights after
+deploying (see `seo-checklist.md`).

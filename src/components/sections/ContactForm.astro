@@ -115,11 +115,11 @@ const topics = Object.entries(f.topics) as [keyof typeof f.topics, string][];
     {!endpoint && <p class="note">{f.mailtoNote}</p>}
   </div>
 
-  <p class="form-status field--full" role="status" aria-live="polite" data-status hidden></p>
+  <p class="form-status field--full" role="status" aria-live="polite" data-status></p>
 </form>
 
 <script>
-  const MIN_FILL_MS = 2500;
+  const MIN_FILL_MS = 1200;
   const clean = (v: string, max: number) =>
     v
       .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
@@ -163,21 +163,22 @@ const topics = Object.entries(f.topics) as [keyof typeof f.topics, string][];
       return { ok: !Object.values(errors).some(Boolean), name, email, message };
     };
 
-    form.querySelectorAll('input, textarea').forEach((el) =>
-      el.addEventListener('blur', () => {
-        if (el.getAttribute('aria-invalid') === 'true') validate();
-      }),
-    );
+    // Clear errors live while typing (not on blur: hiding a message on blur shifts the
+    // layout under the pointer and makes the next click miss its target).
+    const revalidate = (e: Event) => {
+      if ((e.target as HTMLElement).getAttribute('aria-invalid') === 'true') validate();
+    };
+    form.addEventListener('input', revalidate);
+    form.addEventListener('change', revalidate);
 
     const show = (text: string | undefined, kind: 'ok' | 'error') => {
       status.textContent = text ?? '';
       status.dataset.kind = kind;
-      status.hidden = false;
     };
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      status.hidden = true;
+      status.textContent = '';
       const { ok, name, email, message } = validate();
       if (!ok) {
         form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
@@ -352,6 +353,11 @@ const topics = Object.entries(f.topics) as [keyof typeof f.topics, string][];
     border-radius: var(--radius-m);
     border: 1px solid var(--go);
     background: color-mix(in srgb, var(--go) 12%, transparent);
+  }
+
+  .form-status:empty {
+    padding: 0;
+    border: 0;
   }
 
   .form-status[data-kind='error'] {

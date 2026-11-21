@@ -105,7 +105,7 @@ const ldJson = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
           if (lang && lang !== d.dataset.locale && !internal && !/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) {
             const alt = document.querySelector(`link[rel="alternate"][hreflang="${lang}"]`);
             const target = alt && new URL(alt.href).pathname;
-            if (target && target !== location.pathname) location.replace(target + location.hash);
+            if (target && target !== location.pathname) location.replace(target + location.search + location.hash);
           }
         } catch {
           /* storage blocked: keep defaults */

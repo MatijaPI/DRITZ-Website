@@ -24,14 +24,14 @@ const href = newsPath(locale, entrySlug(entry));
       alt={imageAlt}
       formats={['avif', 'webp']}
       fallbackFormat="jpg"
-      widths={featured ? [480, 800, 1200] : [400, 640, 900]}
+      widths={featured ? [480, 640, 800, 1200] : [400, 560, 720, 900]}
       width={featured ? 1200 : 900}
       height={Math.round(((featured ? 1200 : 900) * image.height) / image.width)}
       sizes={featured ? '(min-width: 64em) 58vw, 100vw' : '(min-width: 64em) 30vw, (min-width: 40em) 46vw, 100vw'}
       loading={featured ? 'eager' : 'lazy'}
       fetchpriority={featured ? 'high' : 'auto'}
       decoding="async"
-      quality={70}
+      quality={58}
     />
   </div>
   <div class="news-body">

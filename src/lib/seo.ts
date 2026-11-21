@@ -42,7 +42,6 @@ export function organizationLd(locale: Locale) {
     email: site.email,
     telephone: site.phone.international,
     foundingDate: String(site.foundingYear),
-    nonprofitStatus: 'Nonprofit',
     address: {
       '@type': 'PostalAddress',
       streetAddress: site.address.street,

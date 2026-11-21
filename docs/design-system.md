@@ -32,7 +32,8 @@ Source of truth: `src/styles/tokens.css` (tokens), `src/styles/global.css` (base
 | `--go` / `--go-text` | `#9bd21c` / `#b4e34a` | `#4a6b00`       | lime: "status OK", second pulse colour     |
 | `--alert`            | `#ff5a4e`             | `#b3261e`       | form errors only                           |
 
-Brand colours evolve the old palette: amber `#ffb300` (unchanged), lime `#8ac500` → `#9bd21c`, red `#ae0000` →
+Dark is the default for everyone (it is the hero of the art direction); the light theme is one click away in
+the header and the choice is remembered. Brand colours evolve the old palette: amber `#ffb300` (unchanged), lime `#8ac500` → `#9bd21c`, red `#ae0000` →
 `#ff5a4e` (used sparingly). Amber is never used for body-size text on the light theme — `--accent-text` swaps to a
 dark amber there.
 
@@ -91,7 +92,7 @@ themselves, signals pulse along lines. Rules:
 3. Only `transform`, `opacity`, `clip-path` and canvas are animated.
 4. Every looping animation (canvas, marquee, region pulses, robot arm, CTA border, typewriter) stops with the
    hero's pause button (`html[data-motion=paused]`) and is off with reduced motion.
-5. No scroll-jacking; Lenis smooth scrolling only for mouse/trackpad users.
+5. No scroll-jacking: smooth scrolling is native (`scroll-behavior: smooth` for in-page links, off with reduced motion).
 
 ## Components
 

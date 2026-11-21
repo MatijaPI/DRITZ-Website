@@ -26,7 +26,6 @@ document.querySelectorAll<HTMLButtonElement>('[data-motion-toggle]').forEach((bt
     if (paused) root.dataset.motion = 'paused';
     else delete root.dataset.motion;
     document.querySelectorAll<HTMLButtonElement>('[data-motion-toggle]').forEach((b) => {
-      b.setAttribute('aria-pressed', String(paused));
       b.setAttribute('aria-label', (paused ? b.dataset.labelPlay : b.dataset.labelPause) ?? '');
     });
   }),
@@ -41,6 +40,5 @@ if (!reducedMotion) {
 
   if (finePointer) {
     idle(() => void import('./cursor.ts').then((m) => m.initCursor()));
-    idle(() => void import('./smooth-scroll.ts').then((m) => m.initSmoothScroll()));
   }
 }

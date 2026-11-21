@@ -46,8 +46,8 @@ make the site stronger — each lists where to put it.
 
 - [ ] **Adria region post** has no date (the old page had none). If there is a representative date, add `date:` to
       both `src/content/news/*/fll-regija-adrija.md` / `fll-adria-region.md`.
-- [ ] **UK National Final 2024** text says the final covers "Anglijo, Irsko, Wales in Škotsko" (as on the old site).
-      The UK final covers Northern Ireland — consider "Severno Irsko" / "Northern Ireland" if that is what was meant.
+- [ ] **UK National Final 2024** says the final covered "Anglijo, Irsko, Wales in Škotsko" (as on the old site). This
+      is most likely correct — IET runs the programme as "FIRST LEGO League UK & Ireland" — but please confirm.
 
 - [ ] **Greece 2026 headline** ("Ekipa in prostovoljci Društva DRITZ z izjemnim uspehom …", kept from the old site)
       can be read as if Eco Robots (OŠ Šentvid) were a DRITZ team. If they are not, consider "Prostovoljci Društva

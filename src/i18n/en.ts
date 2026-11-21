@@ -113,7 +113,7 @@ const en: Dict = {
     who: {
       eyebrow: '01 // Who we are',
       title: 'A society that turns curiosity into know-how',
-      body: 'Društvo DRITZ is a non-profit society for research and education in technology and science. We have been officially registered since 2024, but our members were running workshops and judging competitions long before that. We help young people turn questions into experiments, experiments into code, and code into robots that actually work.',
+      body: 'Društvo DRITZ is a non-profit society for research and education in technology and science. We have been officially registered since 2024, but our members were running workshops and judging competitions before that. We help young people turn questions into experiments, experiments into code, and code into robots that actually work.',
       link: 'More about us',
     },
     manifesto: {
@@ -130,7 +130,7 @@ const en: Dict = {
       title: 'A small society with a big reach',
       items: [
         { value: 4, label: 'countries in the region where we help run FIRST LEGO League competitions' },
-        { value: 5, label: 'international FLL championships with DRITZ judges since 2023' },
+        { value: 5, label: 'FLL events abroad with DRITZ judges since 2023' },
         { value: 6, label: 'supporters across the 2024/25 and 2025/26 seasons' },
         { value: 2024, label: 'the year the society was officially registered' },
       ],
@@ -231,7 +231,7 @@ const en: Dict = {
       },
       founded: {
         title: 'Društvo DRITZ is officially registered',
-        text: 'Years of volunteering get a formal home: the Society for Research and Education in Technology and Science.',
+        text: 'Our members’ volunteering gets a formal home: the Society for Research and Education in Technology and Science.',
       },
       harrogate24: {
         title: 'Judging the UK final',
@@ -268,10 +268,12 @@ const en: Dict = {
       'Children and a mentor at a FIRST LEGO League competition table during a DRITZ workshop',
     ],
     story: {
+      heritageLabel: 'Our original motto',
+      heritage: '“We explore the unknown and educate for the future.”',
       title: 'Our story',
       paragraphs: [
         'Društvo DRITZ has been officially registered in Slovenia since 2024, with a clear goal: to promote scientific research, innovation and education in technology and science.',
-        'Our members were active in robotics long before that – as mentors, organisers and international FIRST LEGO League judges. The society gave that work a home, a name and a shared direction.',
+        'Our members were active in robotics before that – as mentors, organisers and international FIRST LEGO League judges. The society gave that work a home, a name and a shared direction.',
         'Through workshops, mentoring and competitions, we create an environment where young people can safely test ideas, work together and grow.',
       ],
     },
@@ -303,7 +305,7 @@ const en: Dict = {
 
   activitiesPage: {
     meta: {
-      title: 'Activities – robotics workshops, mentoring and FLL',
+      title: 'Activities – robotics workshops and FLL',
       description:
         'LEGO robotics and coding workshops, mentoring, competition prep and FIRST LEGO League: see what Društvo DRITZ offers young people in Slovenia.',
     },
@@ -405,7 +407,7 @@ const en: Dict = {
     },
     international: {
       title: 'On the international stage',
-      text: 'DRITZ volunteers have judged at championships in Morocco, the United Kingdom, Norway and Greece. Each event has its own news story.',
+      text: 'DRITZ volunteers have judged at FLL events in Morocco, the United Kingdom, Norway and Greece. Each event has its own news story.',
     },
     faq: {
       title: 'Frequently asked questions',
@@ -429,7 +431,7 @@ const en: Dict = {
 
   newsPage: {
     meta: {
-      title: 'News – FIRST LEGO League, robotics and events',
+      title: 'News – FIRST LEGO League and robotics',
       description:
         'News from Društvo DRITZ: international FIRST LEGO League championships, our volunteer judges, successes of Slovenian teams and robotics workshops.',
     },
@@ -446,7 +448,7 @@ const en: Dict = {
 
   supportersPage: {
     meta: {
-      title: 'Supporters and partners – back young scientists',
+      title: 'Supporters and partners of Društvo DRITZ',
       description:
         'Thank you to the donors and partners of Društvo DRITZ. See who supports us and how your support can fund robotics workshops and FLL competitions.',
     },
@@ -477,7 +479,7 @@ const en: Dict = {
 
   joinPage: {
     meta: {
-      title: 'Get involved – young people, volunteers, schools, partners',
+      title: 'Get involved – volunteers, schools, partners',
       description:
         'Join Društvo DRITZ as a young explorer, volunteer, FLL judge, mentor, school or partner, and help build the future of robotics and science together.',
     },
