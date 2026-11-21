@@ -62,7 +62,7 @@ GitHub Pages does not allow custom HTTP headers. The site therefore ships:
 
 - `Content-Security-Policy` as a `<meta>` tag with SHA-256 hashes for every inline script (Astro `security.csp`,
   configured in `astro.config.mjs`): `default-src 'self'`, no inline script without a hash, `object-src 'none'`,
-  `base-uri 'self'`, `form-action 'self' https: mailto:`, `upgrade-insecure-requests`.
+  `base-uri 'self'`, `form-action 'self' https: mailto:` (no `upgrade-insecure-requests`: GitHub Pages already forces HTTPS, and Safari would apply it to `http://localhost` previews and block all CSS/JS).
 - `<meta name="referrer" content="strict-origin-when-cross-origin">`.
 - HTTPS enforced by GitHub Pages.
 

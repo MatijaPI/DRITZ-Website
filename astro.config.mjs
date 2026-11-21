@@ -42,7 +42,6 @@ export default defineConfig({
         "form-action 'self' https: mailto:",
         "base-uri 'self'",
         "object-src 'none'",
-        'upgrade-insecure-requests',
       ],
       scriptDirective: { resources: ["'self'", ...(analyticsOrigin ? [analyticsOrigin] : [])] },
     },
