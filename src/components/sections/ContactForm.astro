@@ -102,8 +102,7 @@ const topics = Object.entries(f.topics) as [keyof typeof f.topics, string][];
   <div class="field field--full field--check">
     <input id="cf-consent" name="consent" type="checkbox" required aria-describedby="cf-consent-err" />
     <label for="cf-consent">
-      {f.consent}
-      <a href={path('privacy', locale)}>{f.privacyLink}</a>
+      {f.consent} <a href={path('privacy', locale)}>{f.privacyLink}</a>
     </label>
     <p class="field-error" id="cf-consent-err" hidden></p>
   </div>

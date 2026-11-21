@@ -28,7 +28,8 @@ const href = newsPath(locale, entrySlug(entry));
       width={featured ? 1200 : 900}
       height={Math.round(((featured ? 1200 : 900) * image.height) / image.width)}
       sizes={featured ? '(min-width: 64em) 58vw, 100vw' : '(min-width: 64em) 30vw, (min-width: 40em) 46vw, 100vw'}
-      loading="lazy"
+      loading={featured ? 'eager' : 'lazy'}
+      fetchpriority={featured ? 'high' : 'auto'}
       decoding="async"
       quality={70}
     />
@@ -74,6 +75,10 @@ const href = newsPath(locale, entrySlug(entry));
     aspect-ratio: 16 / 10;
     overflow: hidden;
     background: var(--surface-strong);
+  }
+
+  .news-media :global(picture) {
+    height: 100%;
   }
 
   .news-media :global(img) {

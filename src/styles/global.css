@@ -41,8 +41,11 @@ body {
   overflow-x: clip;
 }
 
+picture {
+  display: block;
+}
+
 img,
-picture,
 svg,
 video,
 canvas {
@@ -554,9 +557,12 @@ a {
     animation-delay: calc(80ms + var(--w-i, 0) * 45ms);
   }
 
-  /* Image reveal: clip from bottom with a slight zoom-out. */
-  .js [data-reveal-image] {
-    clip-path: inset(100% 0 0 0 round var(--radius-l));
+  /* Image reveal: clip from bottom with a slight zoom-out. The clip sits on the
+     child so the observed frame keeps its full intersection area. */
+  .js [data-reveal-image] > * {
+    display: block;
+    height: 100%;
+    clip-path: inset(100% 0 0 0);
     transition: clip-path 1100ms var(--ease-in-out);
   }
 
@@ -565,8 +571,8 @@ a {
     transition: transform 1400ms var(--ease-out);
   }
 
-  .js [data-reveal-image].is-visible {
-    clip-path: inset(0 0 0 0 round var(--radius-l));
+  .js [data-reveal-image].is-visible > * {
+    clip-path: inset(0 0 0 0);
   }
 
   .js [data-reveal-image].is-visible img {

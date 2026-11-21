@@ -26,10 +26,14 @@ export function otherLocale(locale: Locale): Locale {
   return locale === 'sl' ? 'en' : 'sl';
 }
 
-export function formatDate(date: Date, locale: Locale, style: 'long' | 'short' = 'long'): string {
-  return new Intl.DateTimeFormat(localeMeta[locale].htmlLang, {
+/**
+ * Slovenian: numeric "12. 5. 2026" (CLDR's long form gives the nominative "12. maj",
+ * while correct Slovenian needs "12. maja"). English: "12 May 2026".
+ */
+export function formatDate(date: Date, locale: Locale): string {
+  return new Intl.DateTimeFormat(locale === 'sl' ? 'sl' : 'en-GB', {
     day: 'numeric',
-    month: style === 'long' ? 'long' : 'numeric',
+    month: locale === 'sl' ? 'numeric' : 'long',
     year: 'numeric',
     timeZone: 'Europe/Ljubljana',
   }).format(date);
@@ -39,7 +43,7 @@ export function formatDate(date: Date, locale: Locale, style: 'long' | 'short' =
 export function formatMonth(value: string, locale: Locale): string {
   const [year, month] = value.split('-');
   if (!month) return year ?? value;
-  return new Intl.DateTimeFormat(localeMeta[locale].htmlLang, { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(
+  return new Intl.DateTimeFormat(locale === 'sl' ? 'sl' : 'en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(
     new Date(Date.UTC(Number(year), Number(month) - 1, 1)),
   );
 }

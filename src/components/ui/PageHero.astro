@@ -61,13 +61,12 @@ const { eyebrow, title, lead } = Astro.props;
 
   @media (prefers-reduced-motion: no-preference) {
     .lead {
-      animation: hero-fade 900ms var(--ease-out) 250ms both;
+      animation: hero-fade 900ms var(--ease-out) both;
     }
   }
 
   @keyframes hero-fade {
     from {
-      opacity: 0;
       transform: translateY(14px);
     }
   }

@@ -47,8 +47,13 @@ const d = t(locale);
     display: flex;
     flex-direction: column;
     gap: var(--space-s);
-    min-height: 19rem;
     overflow: hidden;
+  }
+
+  @media (min-width: 40em) {
+    .activity {
+      min-height: 19rem;
+    }
   }
 
   .activity::selection {
@@ -60,7 +65,7 @@ const d = t(locale);
     align-items: flex-start;
     justify-content: space-between;
     margin-bottom: auto;
-    padding-bottom: var(--space-l);
+    padding-bottom: var(--space-s);
   }
 
   .activity-icon {
