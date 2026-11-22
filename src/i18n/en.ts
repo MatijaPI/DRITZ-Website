@@ -98,17 +98,10 @@ const en: Dict = {
         'Društvo DRITZ from Celje, Slovenia, opens up robotics, coding and science to young people through workshops, mentoring and FIRST LEGO League competitions.',
     },
     hero: {
-      eyebrow: 'Društvo DRITZ · robotics · science · FIRST LEGO League',
+      eyebrow: 'Društvo DRITZ',
       lead: 'We open the door to robotics, coding and science for young people – through workshops, mentoring and FIRST LEGO League competitions in Slovenia and the wider region.',
       primary: 'Get involved',
       secondary: 'What we do',
-      console: [
-        { key: 'BASE', value: 'Celje, SI' },
-        { key: 'REGION', value: 'SI · HR · RS · ME' },
-        { key: 'PROGRAMME', value: 'FIRST LEGO League' },
-        { key: 'STATUS', value: 'building the future' },
-      ],
-      consoleLabel: 'The society at a glance',
     },
     who: {
       eyebrow: '01 // Who we are',
@@ -268,8 +261,6 @@ const en: Dict = {
       'Children and a mentor at a FIRST LEGO League competition table during a DRITZ workshop',
     ],
     story: {
-      heritageLabel: 'Our original motto',
-      heritage: '“We explore the unknown and educate for the future.”',
       title: 'Our story',
       paragraphs: [
         'Društvo DRITZ has been officially registered in Slovenia since 2024, with a clear goal: to promote scientific research, innovation and education in technology and science.',

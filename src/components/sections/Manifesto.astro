@@ -118,10 +118,6 @@ const tokens = (line: string) =>
     color: var(--accent-text);
   }
 
-  .m-hl em {
-    background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 92% / 100% 0.08em;
-  }
-
   @media (prefers-reduced-motion: no-preference) {
     :global(.js) .manifesto-title {
       opacity: 0;
@@ -143,15 +139,6 @@ const tokens = (line: string) =>
 
     :global(.js) .m-line:global(.is-visible) .m-word {
       opacity: 1;
-    }
-
-    :global(.js) .m-hl em {
-      background-size: 0% 0.08em;
-      transition: background-size 900ms var(--ease-out) 500ms;
-    }
-
-    :global(.js) .m-line:global(.is-visible) .m-hl em {
-      background-size: 100% 0.08em;
     }
 
     /* Word-by-word: stagger by position. */

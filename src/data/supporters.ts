@@ -25,9 +25,14 @@ export const seasons: SupporterSeason[] = [
   {
     season: '2025/26',
     supporters: [
-      { name: 'Sensum, sistemi z računalniškim vidom d. o. o.', shortName: 'Sensum', logo: sensum },
-      { name: 'Dewesoft d. o. o.', shortName: 'Dewesoft', logo: dewesoft },
-      { name: 'ETI Elektroelement d. o. o.', shortName: 'ETI', logo: eti },
+      {
+        name: 'Sensum, sistemi z računalniškim vidom d. o. o.',
+        shortName: 'Sensum',
+        logo: sensum,
+        url: 'https://www.sensum.eu/sl/sensum-slo/',
+      },
+      { name: 'Dewesoft d. o. o.', shortName: 'Dewesoft', logo: dewesoft, url: 'https://dewesoft.com' },
+      { name: 'ETI Elektroelement d. o. o.', shortName: 'ETI', logo: eti, url: 'https://www.eti.si' },
     ],
   },
   {
@@ -35,7 +40,7 @@ export const seasons: SupporterSeason[] = [
     supporters: [
       { name: 'Žan Močivnik' },
       { name: 'Urška Farčnik' },
-      { name: 'Trimo d. o. o.', shortName: 'Trimo', logo: trimo },
+      { name: 'Trimo d. o. o.', shortName: 'Trimo', logo: trimo, url: 'https://www.trimo-group.com/si' },
     ],
   },
 ];

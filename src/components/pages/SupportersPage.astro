@@ -43,28 +43,42 @@ const howIcons: IconName[] = ['heart', 'robot', 'users'];
           <article class="season card" data-reveal>
             <h3 class="season-name mono">{fmt(s.season, { season: season.season })}</h3>
             <ul role="list" class="season-list">
-              {season.supporters.map((sp) => (
-                <li>
-                  {sp.logo ? (
-                    <span class="logo-tile">
-                      <Image
-                        src={sp.logo}
-                        alt={fmt(s.logoAlt, { name: sp.shortName ?? sp.name })}
-                        width={120}
-                        height={Math.round((120 * sp.logo.height) / sp.logo.width)}
-                        densities={[1, 2]}
-                        format="webp"
-                        loading="lazy"
-                      />
-                    </span>
-                  ) : (
-                    <span class="logo-tile logo-tile--name" aria-hidden="true">
-                      <Icon name="heart" />
-                    </span>
-                  )}
-                  <span class="sp-name">{sp.name}</span>
-                </li>
-              ))}
+              {season.supporters.map((sp) => {
+                const Row = sp.url ? 'a' : 'div';
+                const linkProps = sp.url ? { href: sp.url, target: '_blank', rel: 'noopener noreferrer' } : {};
+                return (
+                  <li>
+                    <Row class:list={['sp-row', { 'sp-link': sp.url }]} {...linkProps}>
+                      {sp.logo ? (
+                        <span class="logo-tile">
+                          <Image
+                            src={sp.logo}
+                            alt={sp.url ? '' : fmt(s.logoAlt, { name: sp.shortName ?? sp.name })}
+                            width={120}
+                            height={Math.round((120 * sp.logo.height) / sp.logo.width)}
+                            densities={[1, 2]}
+                            format="webp"
+                            loading="lazy"
+                          />
+                        </span>
+                      ) : (
+                        <span class="logo-tile logo-tile--name" aria-hidden="true">
+                          <Icon name="heart" />
+                        </span>
+                      )}
+                      <span class="sp-name">
+                        {sp.name}
+                        {sp.url && (
+                          <>
+                            <Icon name="external" size={16} class="sp-ext" />
+                            <span class="sr-only"> {d.a11y.externalLink}</span>
+                          </>
+                        )}
+                      </span>
+                    </Row>
+                  </li>
+                );
+              })}
             </ul>
           </article>
         ))}
@@ -130,11 +144,34 @@ const howIcons: IconName[] = ['heart', 'robot', 'users'];
     list-style: none;
   }
 
-  .season-list li {
+  .sp-row {
     display: grid;
     grid-template-columns: 5rem 1fr;
     gap: var(--space-s);
     align-items: center;
+  }
+
+  .sp-link {
+    margin: -0.35rem;
+    padding: 0.35rem;
+    border-radius: var(--radius-m);
+    text-decoration: none;
+    transition: background-color var(--dur-fast) var(--ease-out);
+  }
+
+  .sp-link:hover {
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+
+  .sp-link:hover .sp-name {
+    color: var(--accent-text);
+  }
+
+  .sp-name :global(.sp-ext) {
+    display: inline-block;
+    margin-left: 0.35rem;
+    vertical-align: -0.15em;
+    color: var(--accent-text);
   }
 
   .logo-tile {
@@ -162,6 +199,7 @@ const howIcons: IconName[] = ['heart', 'robot', 'users'];
 
   .sp-name {
     font-weight: 600;
+    transition: color var(--dur-fast) var(--ease-out);
   }
 
   .thanks {

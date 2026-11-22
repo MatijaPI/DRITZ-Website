@@ -59,15 +59,6 @@ const ghost = cycle.reduce((a, b) => (b.length > a.length ? b : a), '') + tail;
         </svg>
       </div>
     </div>
-
-    <dl class="hero-console mono" aria-label={d.home.hero.consoleLabel}>
-      {d.home.hero.console.map((row) => (
-        <div>
-          <dt>{row.key}</dt>
-          <dd>{row.value}</dd>
-        </div>
-      ))}
-    </dl>
   </div>
 
   <div class="container hero-foot">
@@ -204,63 +195,12 @@ const ghost = cycle.reduce((a, b) => (b.length > a.length ? b : a), '') + tail;
 
   .hero-logo {
     color: var(--logo-ink);
-    filter: drop-shadow(0 0 30px var(--glow-accent));
   }
 
   .hero-logo svg {
     height: min(62svh, 34rem);
     width: auto;
     margin-inline: auto;
-  }
-
-  .hero-console {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-m);
-    background: var(--border);
-    overflow: hidden;
-    font-size: 0.75rem;
-  }
-
-  .hero-console > div {
-    padding: 0.7rem 0.9rem;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-
-  .hero-console dt {
-    color: var(--text-subtle);
-    letter-spacing: var(--tracking-mono);
-  }
-
-  .hero-console dd {
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .hero-console > div:last-child dd {
-    color: var(--go-text);
-  }
-
-  .hero-console > div:last-child dd::before {
-    content: '';
-    display: inline-block;
-    width: 0.5em;
-    height: 0.5em;
-    margin-right: 0.45em;
-    border-radius: 50%;
-    background: var(--go);
-    box-shadow: 0 0 10px var(--go);
-    animation: pulse-dot 2s var(--ease-in-out) infinite;
-  }
-
-  @keyframes pulse-dot {
-    50% {
-      opacity: 0.35;
-    }
   }
 
   .hero-foot {
@@ -313,7 +253,6 @@ const ghost = cycle.reduce((a, b) => (b.length > a.length ? b : a), '') + tail;
 
   @media (prefers-reduced-motion: no-preference) {
     .hero-actions,
-    .hero-console,
     .hero-logo {
       animation: rise 1s var(--ease-out) both;
     }
@@ -338,10 +277,6 @@ const ghost = cycle.reduce((a, b) => (b.length > a.length ? b : a), '') + tail;
 
     .hero-actions {
       animation-delay: 420ms;
-    }
-
-    .hero-console {
-      animation-delay: 560ms;
     }
 
     .hero-logo {
@@ -379,7 +314,6 @@ const ghost = cycle.reduce((a, b) => (b.length > a.length ? b : a), '') + tail;
     from {
       opacity: 0;
       transform: translateY(30px) scale(0.96);
-      filter: blur(8px) drop-shadow(0 0 0 transparent);
     }
   }
 
@@ -392,9 +326,7 @@ const ghost = cycle.reduce((a, b) => (b.length > a.length ? b : a), '') + tail;
   @media (min-width: 64em) {
     .hero-grid {
       grid-template-columns: minmax(0, 1fr) auto;
-      grid-template-areas:
-        'copy side'
-        'console side';
+      grid-template-areas: 'copy side';
       column-gap: var(--space-2xl);
     }
 
@@ -405,12 +337,6 @@ const ghost = cycle.reduce((a, b) => (b.length > a.length ? b : a), '') + tail;
     .hero-side {
       grid-area: side;
       display: block;
-    }
-
-    .hero-console {
-      grid-area: console;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      max-width: 48rem;
     }
   }
 </style>

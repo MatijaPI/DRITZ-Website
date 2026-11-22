@@ -96,24 +96,24 @@ themselves, signals pulse along lines. Rules:
 
 ## Components
 
-| Component               | File                                   | Notes                                                                          |
-| ----------------------- | -------------------------------------- | ------------------------------------------------------------------------------ |
-| Button                  | `.btn`, `.btn--primary`, `.btn--ghost` | mono label, pill, amber sheen sweep on hover, `data-magnetic`                  |
-| Arrow link              | `.link-arrow`                          | underline grows from left, arrow nudges                                        |
-| Card                    | `.card`, `.card--bracket`              | blueprint corner brackets appear on hover/focus                                |
-| Eyebrow                 | `.eyebrow`                             | mono, amber square marker, numbered `01 // …` on the homepage                  |
-| SplitText               | `ui/SplitText.astro`                   | masked word reveal; `onLoad` for above-the-fold                                |
-| SectionHead / PageHero  | `ui/`                                  | eyebrow + split heading + intro                                                |
-| NewsCard                | `ui/NewsCard.astro`                    | AVIF/WebP, zoom on hover, whole-card link, featured variant                    |
-| Logo / Icon             | `ui/`                                  | traced wordmark; 25 stroke icons in the logo's line style                      |
-| RobotArm                | `ui/RobotArm.astro`                    | animated SVG illustration                                                      |
-| Hero                    | `home/Hero.astro`                      | canvas circuit traces, typewriter motto (no CLS), console panel, vertical logo |
-| Manifesto               | `sections/Manifesto.astro`             | full-screen; words light up line by line, `*word*` = highlight                 |
-| Acronym                 | `sections/Acronym.astro`               | D-R-I-T-Z decoded with the logo's icon-letters                                 |
-| Stats                   | `sections/Stats.astro`                 | count-up numbers (final value is in the HTML)                                  |
-| RegionMap               | `sections/RegionMap.astro`             | schematic SVG of SI/HR/RS/ME with signal pulses                                |
-| Timeline                | `sections/Timeline.astro`              | scroll-driven progress line (`animation-timeline: view()`), alternating cards  |
-| SupportersMarquee       | `sections/SupportersMarquee.astro`     | CSS marquee, pauses on hover/focus                                             |
-| CtaBand                 | `sections/CtaBand.astro`               | animated conic-gradient border (`@property`)                                   |
-| ContactForm             | `sections/ContactForm.astro`           | validation, honeypot, mailto or endpoint                                       |
-| LangSwitch / LangBanner | `layout/`                              | SI                                                                             | EN pill; dismissible suggestion |
+| Component               | File                                   | Notes                                                                         |
+| ----------------------- | -------------------------------------- | ----------------------------------------------------------------------------- |
+| Button                  | `.btn`, `.btn--primary`, `.btn--ghost` | mono label, pill, amber sheen sweep on hover, `data-magnetic`                 |
+| Arrow link              | `.link-arrow`                          | underline grows from left, arrow nudges                                       |
+| Card                    | `.card`, `.card--bracket`              | blueprint corner brackets appear on hover/focus                               |
+| Eyebrow                 | `.eyebrow`                             | mono, amber square marker, numbered `01 // …` on the homepage                 |
+| SplitText               | `ui/SplitText.astro`                   | masked word reveal; `onLoad` for above-the-fold                               |
+| SectionHead / PageHero  | `ui/`                                  | eyebrow + split heading + intro                                               |
+| NewsCard                | `ui/NewsCard.astro`                    | AVIF/WebP, zoom on hover, whole-card link, featured variant                   |
+| Logo / Icon             | `ui/`                                  | traced wordmark; 25 stroke icons in the logo's line style                     |
+| RobotArm                | `ui/RobotArm.astro`                    | animated SVG illustration                                                     |
+| Hero                    | `home/Hero.astro`                      | canvas circuit traces, typewriter motto (no CLS), vertical logo               |
+| Manifesto               | `sections/Manifesto.astro`             | full-screen; words light up line by line, `*word*` = highlight                |
+| Acronym                 | `sections/Acronym.astro`               | D-R-I-T-Z decoded with the logo's icon-letters                                |
+| Stats                   | `sections/Stats.astro`                 | count-up numbers (final value is in the HTML)                                 |
+| RegionMap               | `sections/RegionMap.astro`             | schematic SVG of SI/HR/RS/ME with signal pulses                               |
+| Timeline                | `sections/Timeline.astro`              | scroll-driven progress line (`animation-timeline: view()`), alternating cards |
+| SupportersMarquee       | `sections/SupportersMarquee.astro`     | CSS marquee, pauses on hover/focus                                            |
+| CtaBand                 | `sections/CtaBand.astro`               | animated conic-gradient border (`@property`)                                  |
+| ContactForm             | `sections/ContactForm.astro`           | validation, honeypot, mailto or endpoint                                      |
+| LangSwitch / LangBanner | `layout/`                              | SI                                                                            | EN pill; dismissible suggestion |

@@ -98,17 +98,10 @@ const sl = {
         'Društvo DRITZ iz Celja mladim odpira svet robotike, programiranja in znanosti: delavnice, mentorstvo in tekmovanja FIRST LEGO League v Sloveniji in regiji.',
     },
     hero: {
-      eyebrow: 'Društvo DRITZ · robotika · znanost · FIRST LEGO League',
+      eyebrow: 'Društvo DRITZ',
       lead: 'Mladim odpiramo vrata v robotiko, programiranje in znanost – z delavnicami, mentorstvom in tekmovanji FIRST LEGO League v Sloveniji in regiji.',
       primary: 'Pridružite se',
       secondary: 'Kaj počnemo',
-      console: [
-        { key: 'SEDEŽ', value: 'Celje, SI' },
-        { key: 'REGIJA', value: 'SI · HR · RS · ME' },
-        { key: 'PROGRAM', value: 'FIRST LEGO League' },
-        { key: 'STATUS', value: 'gradimo prihodnost' },
-      ],
-      consoleLabel: 'Na kratko o društvu',
     },
     who: {
       eyebrow: '01 // Kdo smo',
@@ -164,7 +157,7 @@ const sl = {
     },
     contact: {
       eyebrow: '08 // Kontakt',
-      title: 'Pozdravljeni, človek!',
+      title: 'Zdravo, partner!',
       body: 'Vprašanje, ideja za delavnico ali predlog za sodelovanje? Pišite nam – z veseljem odgovorimo.',
       link: 'Odprite kontaktni obrazec',
     },
@@ -268,8 +261,6 @@ const sl = {
       'Otroci in mentor ob tekmovalni mizi FIRST LEGO League na delavnici Društva DRITZ',
     ],
     story: {
-      heritageLabel: 'Naš prvotni moto',
-      heritage: '»Raziskujemo neznano, izobražujemo za prihodnost.«',
       title: 'Naša zgodba',
       paragraphs: [
         'Društvo DRITZ v Sloveniji uradno deluje od leta 2024 z jasnim ciljem: spodbujati znanstveno raziskovanje, inovacije in izobraževanje na področju tehnologije in znanosti.',
@@ -535,7 +526,7 @@ const sl = {
     },
     hero: {
       eyebrow: 'Kontakt',
-      title: 'Pozdravljeni, človek!',
+      title: 'Zdravo, partner!',
       lead: 'Imate vprašanje, idejo ali predlog za sodelovanje? Pišite nam – odgovorili bomo čim prej.',
     },
     details: {

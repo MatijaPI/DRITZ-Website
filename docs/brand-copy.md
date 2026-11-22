@@ -72,9 +72,8 @@ Source: `manifesto`, `values`, `about.mission`, `about.vision` in `src/i18n/sl.t
 | Place            | Slovenian                                                  | English                                                    |
 | ---------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
 | Hero CTA         | Pridružite se · Kaj počnemo                                | Get involved · What we do                                  |
-| Contact heading  | Pozdravljeni, človek!                                      | Hello, human!                                              |
+| Contact heading  | Zdravo, partner!                                           | Hello, human!                                              |
 | 404              | Ta robot je zapeljal s proge. … napaka je samo podatek.    | This robot drove off the track. … a mistake is just data.  |
-| Hero console     | STATUS: gradimo prihodnost                                 | STATUS: building the future                                |
 | Activities intro | vedno z rokami pri delu in glavo v oblakih                 | always hands-on, with our heads in the clouds              |
 | Join hero        | V tej ekipi je prostor še za enega                         | There is always room for one more on this team             |
 | Form error       | Vpišite veljaven e-poštni naslov, na primer ime@primer.si. | Please enter a valid email address, e.g. name@example.com. |
@@ -85,7 +84,7 @@ Source: `manifesto`, `values`, `about.mission`, `about.vision` in `src/i18n/sl.t
 - **Hero:** the motto's last word is typed and re-typed (typewriter, caret) — the full sentence is the real `<h1>`
   text and its accessible name stays fixed; the box reserves the width of the longest word (no layout shift).
 - **Manifesto:** a full-screen section; each line lights up word by word as it enters the viewport, highlighted
-  words get an amber underline drawn in. Without JS / with reduced motion everything is simply lit.
+  words are set in amber. Without JS / with reduced motion everything is simply lit.
 - **Headings:** words slide up from a mask.
 - **Footer:** the motto as outlined giant type.
 - All motion respects `prefers-reduced-motion` and the hero's pause button.
