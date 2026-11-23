@@ -1,0 +1,134 @@
+---
+import Icon from '../ui/Icon.astro';
+import { activityIds, activityIcons as icons } from '../../data/activities.ts';
+import { t, path, type Locale } from '../../i18n/index.ts';
+
+interface Props {
+  locale: Locale;
+  headingLevel?: 'h2' | 'h3';
+}
+
+const { locale, headingLevel: H = 'h3' } = Astro.props;
+const d = t(locale);
+---
+
+<ul role="list" class="activity-grid" data-stagger>
+  {activityIds.map((id, i) => (
+    <li class="activity card card--bracket" data-reveal>
+      <div class="activity-top">
+        <span class="activity-icon">
+          <Icon name={icons[id]} size={30} strokeWidth={1.5} />
+        </span>
+        <span class="mono activity-idx" aria-hidden="true">
+          {String(i + 1).padStart(2, '0')}/04
+        </span>
+      </div>
+      <H class="activity-title">
+        <a href={id === 'fll' ? path('fll', locale) : `${path('activities', locale)}#${id}`} class="stretched-link">
+          {d.activities[id].title}
+        </a>
+      </H>
+      <p>{d.activities[id].text}</p>
+      <Icon name="arrow" class="activity-arrow" />
+    </li>
+  ))}
+</ul>
+
+<style>
+  .activity-grid {
+    display: grid;
+    gap: var(--space-m);
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15.5rem), 1fr));
+  }
+
+  .activity {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    overflow: hidden;
+  }
+
+  @media (min-width: 40em) {
+    .activity {
+      min-height: 19rem;
+    }
+  }
+
+  .activity::selection {
+    background: var(--selection);
+  }
+
+  .activity-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: auto;
+    padding-bottom: var(--space-s);
+  }
+
+  .activity-icon {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-m);
+    color: var(--accent-text);
+    transition:
+      transform var(--dur-slow) var(--ease-spring),
+      background-color var(--dur-base) var(--ease-out),
+      color var(--dur-base) var(--ease-out);
+  }
+
+  .activity:hover .activity-icon,
+  .activity:focus-within .activity-icon {
+    transform: rotate(-8deg) scale(1.06);
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  .activity-idx {
+    font-size: 0.75rem;
+    color: var(--text-subtle);
+  }
+
+  .activity-title {
+    font-size: var(--step-2);
+    line-height: 1.15;
+  }
+
+  .activity-title a {
+    text-decoration: none;
+  }
+
+  .activity-title a:focus-visible {
+    outline: none;
+  }
+
+  .activity:has(a:focus-visible) {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  .activity p {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .activity :global(.activity-arrow) {
+    align-self: flex-end;
+    color: var(--accent-text);
+    transform: translateX(-6px);
+    opacity: 0.5;
+    transition:
+      transform var(--dur-base) var(--ease-out),
+      opacity var(--dur-base) var(--ease-out);
+  }
+
+  .activity:hover :global(.activity-arrow) {
+    transform: none;
+    opacity: 1;
+  }
+</style>

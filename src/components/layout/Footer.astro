@@ -1,0 +1,252 @@
+---
+import Logo from '../ui/Logo.astro';
+import Icon from '../ui/Icon.astro';
+import { site } from '../../data/site.ts';
+import { t, fmt, path, type Locale, type RouteKey } from '../../i18n/index.ts';
+import { activeMotto } from '../../i18n/motto.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const motto = activeMotto()[locale].text;
+const year = new Date().getFullYear();
+
+const columns: { title: string; links: { key: RouteKey; label: string }[] }[] = [
+  {
+    title: d.footer.explore,
+    links: [
+      { key: 'home', label: d.nav.home },
+      { key: 'about', label: d.nav.about },
+      { key: 'activities', label: d.nav.activities },
+      { key: 'fll', label: d.nav.fll },
+      { key: 'news', label: d.nav.news },
+    ],
+  },
+  {
+    title: d.footer.involved,
+    links: [
+      { key: 'join', label: d.nav.join },
+      { key: 'supporters', label: d.nav.supporters },
+      { key: 'contact', label: d.nav.contact },
+      { key: 'privacy', label: d.nav.privacy },
+    ],
+  },
+];
+---
+
+<footer class="site-footer">
+  <div class="footer-glow" aria-hidden="true"></div>
+  <div class="container">
+    <p class="footer-motto" aria-hidden="true">
+      {motto}
+    </p>
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href={path('home', locale)} class="footer-logo" aria-label={d.a11y.homeLink}>
+          <Logo />
+        </a>
+        <p class="muted">{d.footer.tagline}</p>
+        <p class="legal-name mono">{site.legalName}</p>
+      </div>
+
+      <nav class="footer-nav" aria-label={d.a11y.footerNav}>
+        {columns.map((col) => (
+          <div>
+            <p class="footer-title mono">{col.title}</p>
+            <ul role="list">
+              {col.links.map((l) => (
+                <li>
+                  <a href={path(l.key, locale)}>{l.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </nav>
+
+      <div class="footer-contact">
+        <p class="footer-title mono">{d.footer.reach}</p>
+        <ul role="list">
+          <li>
+            <Icon name="mail" size={18} />
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+          </li>
+          <li>
+            <Icon name="phone" size={18} />
+            <a href={site.phone.href}>{locale === 'sl' ? site.phone.display : site.phone.international}</a>
+          </li>
+          <li>
+            <Icon name="pin" size={18} />
+            <span>
+              {site.address.street}, {site.address.postalCode} {site.address.city}
+            </span>
+          </li>
+        </ul>
+        {site.social.length > 0 && (
+          <ul role="list" class="social" aria-label={d.footer.social}>
+            {site.social.map((s) => (
+              <li>
+                <a href={s.url} target="_blank" rel="noopener noreferrer me">
+                  {s.label}
+                  <span class="sr-only"> {d.a11y.externalLink}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>{fmt(d.footer.copyright, { year })}</p>
+      <p class="muted">{d.footer.built}</p>
+      <a href="#main" class="to-top mono" data-cursor="hover">
+        {d.a11y.backToTop}
+        <Icon name="arrow-up" size={16} />
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    overflow: hidden;
+    margin-top: var(--space-2xl);
+    padding-block: var(--space-2xl) var(--space-l);
+    border-top: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+
+  .footer-glow {
+    position: absolute;
+    inset: auto -20% -60% -20%;
+    height: 80%;
+    background: radial-gradient(closest-side, var(--glow-accent), transparent);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .footer-motto {
+    font-family: var(--font-display);
+    font-size: var(--step-5);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: var(--tracking-tight);
+    color: transparent;
+    -webkit-text-stroke: 1px var(--border-strong);
+    margin-bottom: var(--space-xl);
+    text-wrap: balance;
+  }
+
+  .footer-grid {
+    position: relative;
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .footer-logo {
+    display: inline-block;
+    width: 11rem;
+    color: var(--logo-ink);
+    margin-bottom: var(--space-s);
+  }
+
+  .footer-brand p {
+    max-width: 40ch;
+    font-size: 0.9375rem;
+  }
+
+  .legal-name {
+    margin-top: var(--space-s);
+    font-size: 0.75rem !important;
+    color: var(--text-subtle);
+  }
+
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-l);
+  }
+
+  .footer-title {
+    margin-bottom: var(--space-s);
+    font-size: 0.75rem;
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--text-subtle);
+  }
+
+  ul {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer-nav a,
+  .footer-contact a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .footer-nav a:hover,
+  .footer-contact a:hover {
+    color: var(--accent-text);
+  }
+
+  .footer-contact li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    color: var(--text-muted);
+  }
+
+  .footer-contact :global(.icon) {
+    color: var(--accent-text);
+    flex: none;
+  }
+
+  .social {
+    margin-top: var(--space-s);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+
+  .footer-bottom {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s) var(--space-l);
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--border);
+    font-size: 0.875rem;
+  }
+
+  .to-top {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .to-top:hover {
+    color: var(--accent-text);
+  }
+
+  @media (min-width: 48em) {
+    .footer-grid {
+      grid-template-columns: 1.4fr 1fr 1fr;
+    }
+  }
+</style>

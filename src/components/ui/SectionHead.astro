@@ -1,0 +1,25 @@
+---
+import SplitText from './SplitText.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  id?: string;
+  as?: 'h2' | 'h1';
+  class?: string;
+}
+
+const { eyebrow, title, intro, id, as = 'h2', class: className } = Astro.props;
+---
+
+<div class:list={['section-head', className]}>
+  {eyebrow && (
+    <p class="eyebrow" data-reveal="fade">
+      {eyebrow}
+    </p>
+  )}
+  <SplitText as={as} text={title} class="h2" {...(id ? { id } : {})} />
+  {intro && <p data-reveal>{intro}</p>}
+  <slot />
+</div>

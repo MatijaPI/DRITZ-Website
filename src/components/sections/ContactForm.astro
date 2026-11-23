@@ -1,0 +1,381 @@
+---
+/**
+ * Contact form.
+ * - PUBLIC_FORM_ENDPOINT set → POST to that endpoint (e.g. Formspree), via fetch with JS
+ *   and as a normal form submission without JS.
+ * - Not set → the message is composed in the visitor's e-mail app (mailto:), nothing is
+ *   sent to any third party.
+ * Spam protection: honeypot field, minimum fill time, length limits and input sanitising.
+ */
+import Icon from '../ui/Icon.astro';
+import { env, site } from '../../data/site.ts';
+import { t, path, type Locale } from '../../i18n/index.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const f = t(locale).contactPage.form;
+const endpoint = env.formEndpoint;
+const topics = Object.entries(f.topics) as [keyof typeof f.topics, string][];
+---
+
+<form
+  class="contact-form"
+  data-contact-form
+  action={endpoint || `mailto:${site.email}`}
+  method="post"
+  enctype={endpoint ? undefined : 'text/plain'}
+  novalidate
+  data-endpoint={endpoint}
+  data-email={site.email}
+  data-subject={f.subjectPrefix}
+  data-msg-name={f.errors.name}
+  data-msg-email={f.errors.email}
+  data-msg-message={f.errors.message}
+  data-msg-consent={f.errors.consent}
+  data-msg-spam={f.errors.spam}
+  data-msg-success={f.success}
+  data-msg-success-mailto={f.successMailto}
+  data-msg-error={f.error}
+  data-msg-sending={f.sending}
+>
+  <div class="field">
+    <label for="cf-name">
+      {f.name} <span class="req">({f.required})</span>
+    </label>
+    <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="100" aria-describedby="cf-name-err" />
+    <p class="field-error" id="cf-name-err" hidden></p>
+  </div>
+
+  <div class="field">
+    <label for="cf-email">
+      {f.email} <span class="req">({f.required})</span>
+    </label>
+    <input
+      id="cf-email"
+      name="email"
+      type="email"
+      autocomplete="email"
+      inputmode="email"
+      required
+      maxlength="160"
+      aria-describedby="cf-email-err"
+    />
+    <p class="field-error" id="cf-email-err" hidden></p>
+  </div>
+
+  <div class="field">
+    <label for="cf-topic">{f.topic}</label>
+    <div class="select-wrap">
+      <select id="cf-topic" name="topic">
+        {topics.map(([value, label]) => (
+          <option value={value}>{label}</option>
+        ))}
+      </select>
+    </div>
+  </div>
+
+  <div class="field field--full">
+    <label for="cf-message">
+      {f.message} <span class="req">({f.required})</span>
+    </label>
+    <textarea
+      id="cf-message"
+      name="message"
+      rows="6"
+      required
+      minlength="10"
+      maxlength="4000"
+      aria-describedby="cf-message-err"
+    ></textarea>
+    <p class="field-error" id="cf-message-err" hidden></p>
+  </div>
+
+  <!-- Honeypot: hidden from people and assistive tech, attractive to bots. -->
+  <div class="hp" aria-hidden="true">
+    <label for="cf-website">{f.honeypot}</label>
+    <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="field field--full field--check">
+    <input id="cf-consent" name="consent" type="checkbox" required aria-describedby="cf-consent-err" />
+    <label for="cf-consent">
+      {f.consent} <a href={path('privacy', locale)}>{f.privacyLink}</a>
+    </label>
+    <p class="field-error" id="cf-consent-err" hidden></p>
+  </div>
+
+  <div class="form-foot field--full">
+    <button type="submit" class="btn btn--primary" data-submit>
+      <span data-submit-label>{f.submit}</span>
+      <Icon name="arrow" />
+    </button>
+    {!endpoint && <p class="note">{f.mailtoNote}</p>}
+  </div>
+
+  <p class="form-status field--full" role="status" aria-live="polite" data-status></p>
+</form>
+
+<script>
+  const MIN_FILL_MS = 1200;
+  const clean = (v: string, max: number) =>
+    v
+      .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+      .trim()
+      .slice(0, max);
+
+  document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
+    const started = Date.now();
+    const ds = form.dataset;
+    const status = form.querySelector<HTMLElement>('[data-status]')!;
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const submitLabel = form.querySelector<HTMLElement>('[data-submit-label]')!;
+    const defaultLabel = submitLabel.textContent ?? '';
+    const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement | null;
+
+    // Preselect the topic from ?topic=… (links from the Get involved page).
+    const topic = new URLSearchParams(location.search).get('topic');
+    const select = form.querySelector<HTMLSelectElement>('select[name="topic"]');
+    if (topic && select && [...select.options].some((o) => o.value === topic)) select.value = topic;
+
+    const setError = (name: string, message: string | undefined) => {
+      const input = field(name);
+      const err = form.querySelector<HTMLElement>(`#cf-${name}-err`);
+      if (!input || !err) return;
+      input.setAttribute('aria-invalid', String(Boolean(message)));
+      err.textContent = message ?? '';
+      err.hidden = !message;
+    };
+
+    const validate = () => {
+      const name = clean(field('name')?.value ?? '', 100);
+      const email = clean(field('email')?.value ?? '', 160);
+      const message = clean(field('message')?.value ?? '', 4000);
+      const errors: Record<string, string | undefined> = {
+        name: name.length < 2 ? ds.msgName : undefined,
+        email: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? undefined : ds.msgEmail,
+        message: message.length < 10 ? ds.msgMessage : undefined,
+        consent: field('consent')?.checked ? undefined : ds.msgConsent,
+      };
+      Object.entries(errors).forEach(([k, v]) => setError(k, v));
+      return { ok: !Object.values(errors).some(Boolean), name, email, message };
+    };
+
+    // Clear errors live while typing (not on blur: hiding a message on blur shifts the
+    // layout under the pointer and makes the next click miss its target).
+    const revalidate = (e: Event) => {
+      if ((e.target as HTMLElement).getAttribute('aria-invalid') === 'true') validate();
+    };
+    form.addEventListener('input', revalidate);
+    form.addEventListener('change', revalidate);
+
+    const show = (text: string | undefined, kind: 'ok' | 'error') => {
+      status.textContent = text ?? '';
+      status.dataset.kind = kind;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = '';
+      const { ok, name, email, message } = validate();
+      if (!ok) {
+        form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
+        return;
+      }
+      if (field('website')?.value || Date.now() - started < MIN_FILL_MS) {
+        show(ds.msgSpam, 'error');
+        return;
+      }
+      const topicLabel = select?.selectedOptions[0]?.textContent ?? '';
+
+      if (!ds.endpoint) {
+        const subject = `${ds.subject}: ${topicLabel}`;
+        const body = `${message}\n\n— ${name} <${email}>`;
+        window.location.href = `mailto:${ds.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        show(ds.msgSuccessMailto, 'ok');
+        return;
+      }
+
+      submit.disabled = true;
+      submitLabel.textContent = ds.msgSending ?? defaultLabel;
+      try {
+        const data = new FormData();
+        data.set('name', name);
+        data.set('email', email);
+        data.set('topic', topicLabel);
+        data.set('message', message);
+        data.set('_subject', `${ds.subject}: ${topicLabel}`);
+        const res = await fetch(ds.endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        show(ds.msgSuccess, 'ok');
+      } catch {
+        show(ds.msgError, 'error');
+      } finally {
+        submit.disabled = false;
+        submitLabel.textContent = defaultLabel;
+      }
+    });
+  });
+</script>
+
+<style>
+  .contact-form {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  .field {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  .req {
+    font-weight: 400;
+    color: var(--text-subtle);
+    font-size: 0.8125rem;
+  }
+
+  input:not([type='checkbox']),
+  textarea,
+  select {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-m);
+    background: var(--bg);
+    color: var(--text);
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-fast) var(--ease-out);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 9rem;
+  }
+
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--selection);
+  }
+
+  [aria-invalid='true'] {
+    border-color: var(--alert) !important;
+  }
+
+  .select-wrap {
+    position: relative;
+  }
+
+  .select-wrap::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  select {
+    appearance: none;
+    padding-right: 2.5rem;
+  }
+
+  .field--check {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 0.75rem;
+  }
+
+  .field--check label {
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .field--check a {
+    color: var(--accent-text);
+  }
+
+  .field--check .field-error {
+    grid-column: 1 / -1;
+  }
+
+  input[type='checkbox'] {
+    width: 1.35rem;
+    height: 1.35rem;
+    margin-top: 0.15rem;
+    accent-color: var(--accent);
+  }
+
+  .field-error {
+    font-size: 0.875rem;
+    color: var(--alert);
+  }
+
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .form-foot {
+    display: grid;
+    gap: var(--space-s);
+    justify-items: start;
+  }
+
+  .note {
+    font-size: 0.875rem;
+    color: var(--text-subtle);
+    max-width: 52ch;
+  }
+
+  .form-status {
+    padding: var(--space-s) var(--space-m);
+    border-radius: var(--radius-m);
+    border: 1px solid var(--go);
+    background: color-mix(in srgb, var(--go) 12%, transparent);
+  }
+
+  .form-status:empty {
+    padding: 0;
+    border: 0;
+  }
+
+  .form-status[data-kind='error'] {
+    border-color: var(--alert);
+    background: color-mix(in srgb, var(--alert) 12%, transparent);
+  }
+
+  @media (min-width: 40em) {
+    .contact-form {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .field--full {
+      grid-column: 1 / -1;
+    }
+
+    .field:nth-of-type(3) {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

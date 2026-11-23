@@ -1,0 +1,152 @@
+/* =========================================================================
+   DRITZ design tokens — "Blueprint Lab"
+   Documented in docs/design-system.md. Dark is the default theme;
+   [data-theme='light'] on <html> switches to the light palette.
+   ========================================================================= */
+:root {
+  /* Brand palette (theme-independent) */
+  --amber-300: #ffd166;
+  --amber-400: #ffc233;
+  --amber-500: #ffb300; /* DRITZ amber — signal colour */
+  --amber-700: #8a5a00;
+  --lime-400: #b4e34a;
+  --lime-500: #9bd21c; /* evolved from #8ac500 */
+  --lime-700: #4a6b00;
+  --red-500: #ff5a4e; /* evolved from #ae0000, used sparingly */
+  --red-700: #b3261e;
+  --ink-950: #05070d;
+  --ink-900: #070a12;
+  --ink-850: #0b1020;
+  --ink-800: #10172a;
+  --ink-700: #1a2440;
+  --ink-600: #2a3658;
+  --paper-50: #fbf9f3;
+  --paper-100: #f4f1e8;
+  --paper-200: #e8e3d4;
+  --slate-300: #b9c2d8;
+  --slate-400: #8f9bb8;
+  --slate-500: #6b7896;
+
+  /* Semantic colours — dark (default) */
+  --bg: var(--ink-900);
+  --bg-elevated: var(--ink-850);
+  --surface: rgb(16 23 42 / 0.72);
+  --surface-strong: var(--ink-800);
+  --border: rgb(185 194 216 / 0.14);
+  --border-strong: rgb(185 194 216 / 0.28);
+  --text: var(--paper-100);
+  --text-muted: var(--slate-300);
+  --text-subtle: var(--slate-400);
+  --accent: var(--amber-500);
+  --accent-text: var(--amber-400); /* AA on --bg */
+  --accent-contrast: var(--ink-950); /* text on accent fills */
+  --go: var(--lime-500);
+  --go-text: var(--lime-400);
+  --alert: var(--red-500);
+  --grid-line: rgb(155 175 220 / 0.07);
+  --grid-line-strong: rgb(155 175 220 / 0.13);
+  --glow-accent: rgb(255 179 0 / 0.35);
+  --glow-go: rgb(155 210 28 / 0.28);
+  --overlay: rgb(5 7 13 / 0.82);
+  --logo-ink: var(--paper-100);
+  --focus: var(--amber-400);
+  --selection: rgb(255 179 0 / 0.32);
+  color-scheme: dark;
+
+  /* Typography */
+  --font-display: 'Bricolage Grotesque', 'Bricolage Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  /* Fluid type scale (min @ 360px → max @ 1440px) */
+  --step--1: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-0: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+  --step-1: clamp(1.1875rem, 1.12rem + 0.33vw, 1.4rem);
+  --step-2: clamp(1.4rem, 1.27rem + 0.6vw, 1.85rem);
+  --step-3: clamp(1.7rem, 1.45rem + 1.1vw, 2.5rem);
+  --step-4: clamp(2.05rem, 1.6rem + 2vw, 3.5rem);
+  --step-5: clamp(2.4rem, 1.7rem + 3.2vw, 4.75rem);
+  --step-6: clamp(2.6rem, 1.6rem + 4.6vw, 6.25rem);
+  --leading-tight: 1.02;
+  --leading-snug: 1.2;
+  --leading-body: 1.65;
+  --tracking-tight: -0.035em;
+  --tracking-mono: 0.08em;
+
+  /* Spacing (4px base, fluid at the large end) */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2rem;
+  --space-xl: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  --space-2xl: clamp(3.5rem, 2.6rem + 4vw, 6rem);
+  --space-3xl: clamp(5rem, 3.5rem + 6vw, 9rem);
+
+  /* Layout */
+  --container: 76rem;
+  --container-narrow: 46rem;
+  --gutter: clamp(1.25rem, 0.6rem + 3vw, 3rem);
+  --header-h: 4.5rem;
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-s: 8px;
+  --radius-m: 14px;
+  --radius-l: 22px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-s: 0 1px 2px rgb(0 0 0 / 0.35);
+  --shadow-m: 0 10px 30px -10px rgb(0 0 0 / 0.55);
+  --shadow-l: 0 30px 80px -20px rgb(0 0 0 / 0.7);
+  --shadow-glow: 0 0 0 1px rgb(255 179 0 / 0.4), 0 12px 40px -8px var(--glow-accent);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 200ms;
+  --dur-base: 350ms;
+  --dur-slow: 800ms;
+  --dur-xslow: 1400ms;
+  --stagger: 70ms;
+
+  /* Z-index scale */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-header: 50;
+  --z-menu: 60;
+  --z-banner: 70;
+  --z-cursor: 90;
+}
+
+[data-theme='light'] {
+  --bg: var(--paper-50);
+  --bg-elevated: #ffffff;
+  --surface: rgb(255 255 255 / 0.78);
+  --surface-strong: #ffffff;
+  --border: rgb(16 23 42 / 0.12);
+  --border-strong: rgb(16 23 42 / 0.24);
+  --text: var(--ink-900);
+  --text-muted: #3d4766;
+  --text-subtle: #5a6584;
+  --accent: var(--amber-500);
+  --accent-text: var(--amber-700);
+  --accent-contrast: var(--ink-950);
+  --go: var(--lime-700);
+  --go-text: var(--lime-700);
+  --alert: var(--red-700);
+  --grid-line: rgb(16 23 42 / 0.06);
+  --grid-line-strong: rgb(16 23 42 / 0.11);
+  --glow-accent: rgb(255 179 0 / 0.3);
+  --glow-go: rgb(74 107 0 / 0.2);
+  --overlay: rgb(251 249 243 / 0.9);
+  --logo-ink: var(--ink-900);
+  --focus: #b06f00;
+  --selection: rgb(255 179 0 / 0.35);
+  --shadow-m: 0 10px 30px -12px rgb(16 23 42 / 0.25);
+  --shadow-l: 0 30px 70px -24px rgb(16 23 42 / 0.3);
+  color-scheme: light;
+}

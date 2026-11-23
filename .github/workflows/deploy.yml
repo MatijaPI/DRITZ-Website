@@ -1,0 +1,65 @@
+# Builds the Astro site and deploys it to GitHub Pages (custom domain dritz.si via public/CNAME).
+# One-time setup: Settings → Pages → Build and deployment → Source: "GitHub Actions".
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint & type-check
+        run: |
+          npm run lint
+          npm run check
+
+      - name: Build
+        run: npm run build
+        env:
+          # Optional, non-secret settings from Settings → Secrets and variables → Actions → Variables.
+          PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION }}
+          PUBLIC_FORM_ENDPOINT: ${{ vars.FORM_ENDPOINT }}
+          PUBLIC_ANALYTICS_PROVIDER: ${{ vars.ANALYTICS_PROVIDER }}
+          PUBLIC_ANALYTICS_DOMAIN: ${{ vars.ANALYTICS_DOMAIN }}
+          PUBLIC_ANALYTICS_SRC: ${{ vars.ANALYTICS_SRC }}
+          PUBLIC_ANALYTICS_ID: ${{ vars.ANALYTICS_ID }}
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

@@ -1,0 +1,36 @@
+{
+  "name": "dritz-website",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Spletna stran Društva DRITZ – dritz.si",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "npm run check:i18n && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "check:i18n": "node scripts/check-i18n.ts",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "astro": "^7.4.13",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@types/node": "^26.6.6",
+    "astro-eslint-parser": "^1.4.0",
+    "eslint": "^10.15.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "prettier": "^3.10.1",
+    "prettier-plugin-astro": "^1.1.2",
+    "satori": "^0.63.2",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.73.0"
+  }
+}

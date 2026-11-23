@@ -1,0 +1,242 @@
+---
+import { Picture } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../ui/PageHero.astro';
+import Icon from '../ui/Icon.astro';
+import Logo from '../ui/Logo.astro';
+import CtaBand from '../sections/CtaBand.astro';
+import imgFll from '../../assets/images/fll-regija-adrija.jpg';
+import imgWorkshops from '../../assets/images/fll-delavnica-robot.jpg';
+import imgMentoring from '../../assets/images/fll-delavnica.jpg';
+import { activityIds, activityIcons } from '../../data/activities.ts';
+import { t, routes, path, type Locale } from '../../i18n/index.ts';
+import { ogImagePath } from '../../lib/seo.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const p = d.activitiesPage;
+const images = { fll: imgFll, workshops: imgWorkshops, mentoring: imgMentoring } as const;
+---
+
+<BaseLayout
+  locale={locale}
+  title={p.meta.title}
+  description={p.meta.description}
+  alternates={routes.activities}
+  ogImage={ogImagePath(locale, 'activities')}
+  breadcrumbs={[
+    { name: d.breadcrumbs.home, path: path('home', locale) },
+    { name: d.nav.activities, path: path('activities', locale) },
+  ]}
+>
+  <PageHero eyebrow={p.hero.eyebrow} title={p.hero.title} lead={p.hero.lead} />
+
+  <nav class="container jump" aria-label={p.hero.eyebrow}>
+    <ul role="list">
+      {activityIds.map((id, i) => (
+        <li>
+          <a href={`#${id}`}>
+            <span class="mono">{String(i + 1).padStart(2, '0')}</span>
+            {d.activities[id].title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  {activityIds.map((id, i) => (
+    <section class="section section--tight activity-block" id={id} aria-labelledby={`${id}-title`}>
+      <div class:list={['container', 'block-grid', { flip: i % 2 === 1 }]}>
+        <div class="block-copy">
+          <p class="eyebrow">
+            <Icon name={activityIcons[id]} size={16} />
+            {String(i + 1).padStart(2, '0')} / 04
+          </p>
+          <h2 id={`${id}-title`} class="h2">
+            {d.activities[id].title}
+          </h2>
+          <p class="lead">{d.activities[id].text}</p>
+          <ul role="list" class="points" data-stagger>
+            {p.detail[id].points.map((pt) => (
+              <li data-reveal>
+                <Icon name="check" size={18} />
+                {pt}
+              </li>
+            ))}
+          </ul>
+          {id === 'fll' && (
+            <a class="btn btn--ghost" href={path('fll', locale)} data-magnetic>
+              {d.cta.discoverFll}
+              <Icon name="arrow" />
+            </a>
+          )}
+        </div>
+        {id === 'research' ? (
+          <div class="block-media block-art blueprint" data-reveal="scale">
+            <Logo letter={2} class="art-glyph" />
+          </div>
+        ) : (
+          <div class="block-media" data-reveal-image>
+            <Picture
+              src={images[id]}
+              alt={p.imageAlts[id]}
+              formats={['avif', 'webp']}
+              fallbackFormat="jpg"
+              widths={[480, 800, 1100]}
+              width={1100}
+              height={Math.round((1100 * images[id].height) / images[id].width)}
+              sizes="(min-width: 60em) 46vw, 100vw"
+              quality={68}
+              loading="lazy"
+            />
+          </div>
+        )}
+      </div>
+    </section>
+  ))}
+
+  <section class="section section--tight" aria-labelledby="schools-title">
+    <div class="container schools card">
+      <div class="schools-copy">
+        <h2 id="schools-title" class="h3">
+          {p.schools.title}
+        </h2>
+        <p class="muted">{p.schools.text}</p>
+        <a class="btn btn--primary" href={`${path('contact', locale)}?topic=school`} data-magnetic>
+          {d.cta.contact}
+          <Icon name="arrow" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand locale={locale} />
+</BaseLayout>
+
+<style>
+  .jump ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .jump a {
+    display: inline-flex;
+    gap: 0.6rem;
+    align-items: center;
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+
+  .jump a:hover {
+    border-color: var(--accent);
+    color: var(--accent-text);
+  }
+
+  .jump .mono {
+    font-size: 0.75rem;
+    color: var(--accent-text);
+  }
+
+  .block-grid {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .block-copy {
+    display: grid;
+    gap: var(--space-m);
+    justify-items: start;
+  }
+
+  .points {
+    display: grid;
+    gap: 0.6rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .points li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    color: var(--text-muted);
+  }
+
+  .points :global(.icon) {
+    flex: none;
+    margin-top: 0.25em;
+    color: var(--go-text);
+  }
+
+  .block-media {
+    overflow: hidden;
+    border-radius: var(--radius-l);
+    aspect-ratio: 4 / 3;
+    background: var(--surface-strong);
+  }
+
+  .block-media :global(picture) {
+    height: 100%;
+  }
+
+  .block-media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .block-art {
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    color: var(--logo-ink);
+  }
+
+  .block-art :global(.art-glyph) {
+    width: auto;
+    height: 62%;
+    filter: drop-shadow(0 0 28px var(--glow-accent));
+  }
+
+  .schools {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+    padding: var(--space-xl);
+  }
+
+  .schools-copy {
+    display: grid;
+    gap: var(--space-m);
+    justify-items: start;
+  }
+
+  @media (min-width: 60em) {
+    .block-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .block-grid.flip .block-copy {
+      order: 2;
+    }
+
+    .schools-copy {
+      max-width: 48rem;
+    }
+  }
+</style>

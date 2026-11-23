@@ -1,0 +1,67 @@
+---
+import { t, type Locale } from '../../i18n/index.ts';
+import type { Crumb } from '../../lib/seo.ts';
+
+interface Props {
+  locale: Locale;
+  crumbs: Crumb[];
+}
+
+const { locale, crumbs } = Astro.props;
+const d = t(locale);
+---
+
+<nav class="breadcrumbs container" aria-label={d.a11y.breadcrumbs}>
+  <ol role="list">
+    {crumbs.map((c, i) => (
+      <li>{i < crumbs.length - 1 ? <a href={c.path}>{c.name}</a> : <span aria-current="page">{c.name}</span>}</li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumbs {
+    padding-top: var(--space-m);
+  }
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-subtle);
+  }
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  li + li::before {
+    content: '/';
+    margin-inline: 0.6rem;
+    color: var(--accent);
+  }
+
+  a {
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--accent-text);
+    text-decoration: underline;
+  }
+
+  [aria-current='page'] {
+    color: var(--text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: min(60ch, 70vw);
+  }
+</style>

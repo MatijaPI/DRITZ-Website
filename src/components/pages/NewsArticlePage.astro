@@ -1,0 +1,216 @@
+---
+import { Picture, getImage } from 'astro:assets';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../ui/Icon.astro';
+import NewsCard from '../ui/NewsCard.astro';
+import { t, formatDate, path, newsPath, type Locale } from '../../i18n/index.ts';
+import { getNews, newsAlternates, entrySlug, type NewsEntry } from '../../lib/news.ts';
+import { absolute, articleLd, ogImagePath } from '../../lib/seo.ts';
+
+interface Props {
+  locale: Locale;
+  entry: NewsEntry;
+}
+
+const { locale, entry } = Astro.props;
+const d = t(locale);
+const { title, seoTitle, description, date, dateLabel, updated, image, imageAlt, location } = entry.data;
+const { Content } = await render(entry);
+const slug = entrySlug(entry);
+const url = absolute(newsPath(locale, slug));
+const alternates = await newsAlternates(entry);
+
+const all = await getNews(locale);
+const index = all.findIndex((e) => e.id === entry.id);
+const related = [...all.slice(index + 1), ...all.slice(0, index)].slice(0, 2);
+
+const ogImage = ogImagePath(locale, `news/${slug}`);
+const schemaImage = await getImage({ src: image, width: 1200, format: 'jpg', quality: 75 });
+---
+
+<BaseLayout
+  locale={locale}
+  title={seoTitle}
+  description={description}
+  alternates={alternates}
+  ogImage={ogImage}
+  ogImageAlt={imageAlt}
+  ogType="article"
+  article={{ published: date, modified: updated ?? date }}
+  breadcrumbs={[
+    { name: d.breadcrumbs.home, path: path('home', locale) },
+    { name: d.nav.news, path: path('news', locale) },
+    { name: title, path: newsPath(locale, slug) },
+  ]}
+  jsonLd={
+    // NewsArticle needs a publication date; undated posts keep the generic WebPage node.
+    date
+      ? [
+          articleLd({
+            locale,
+            url,
+            headline: title,
+            description,
+            images: [absolute(schemaImage.src), absolute(ogImage)],
+            datePublished: date,
+            dateModified: updated,
+          }),
+        ]
+      : []
+  }
+>
+  <article class="article">
+    <header class="container--narrow article-head">
+      <p class="eyebrow">{d.nav.news}</p>
+      <h1 class="article-title">{title}</h1>
+      <p class="article-meta mono">
+        {date ? (
+          <span>
+            <Icon name="calendar" size={16} />
+            <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, locale)}</time>
+          </span>
+        ) : (
+          <span>{dateLabel}</span>
+        )}
+        {location && date && (
+          <span>
+            <Icon name="pin" size={16} />
+            {location}
+          </span>
+        )}
+      </p>
+    </header>
+
+    <figure class="container article-figure">
+      <Picture
+        src={image}
+        alt={imageAlt}
+        formats={['avif', 'webp']}
+        fallbackFormat="jpg"
+        widths={[480, 800, 1200, 1600].filter((w) => w <= image.width)}
+        width={Math.min(1600, image.width)}
+        height={Math.round((Math.min(1600, image.width) * image.height) / image.width)}
+        sizes="(min-width: 76rem) 76rem, 100vw"
+        quality={72}
+        loading="eager"
+        fetchpriority="high"
+        class:list={{ portrait: image.height > image.width }}
+      />
+    </figure>
+
+    <div class="container--narrow prose article-body">
+      <Content />
+    </div>
+
+    <footer class="container--narrow article-foot">
+      <a class="btn btn--ghost" href={path('news', locale)}>
+        <Icon name="arrow-left" />
+        {d.cta.backToNews}
+      </a>
+    </footer>
+  </article>
+
+  {related.length > 0 && (
+    <section class="section section--tight" aria-labelledby="related-title">
+      <div class="container">
+        <h2 id="related-title" class="h3 related-title">
+          {d.newsPage.related}
+        </h2>
+        <div class="news-grid">
+          {related.map((r) => (
+            <NewsCard entry={r} locale={locale} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .article-head {
+    display: grid;
+    gap: var(--space-m);
+    padding-block: var(--space-xl) var(--space-l);
+  }
+
+  .article-title {
+    font-size: var(--step-4);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .article-title,
+    .article-meta,
+    .article-figure {
+      animation: rise 900ms var(--ease-out) both;
+    }
+
+    .article-meta {
+      animation-delay: 120ms;
+    }
+
+    .article-figure {
+      animation-delay: 200ms;
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s) var(--space-l);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .article-meta span {
+    display: inline-flex;
+    gap: 0.45rem;
+    align-items: center;
+  }
+
+  .article-meta :global(.icon) {
+    color: var(--accent-text);
+  }
+
+  .article-figure {
+    margin-bottom: var(--space-xl);
+  }
+
+  .article-figure :global(img) {
+    width: 100%;
+    max-height: 78vh;
+    object-fit: cover;
+    border-radius: var(--radius-l);
+    background: var(--surface-strong);
+  }
+
+  .article-figure :global(img.portrait) {
+    width: auto;
+    max-width: 100%;
+    margin-inline: auto;
+    object-fit: contain;
+  }
+
+  .article-foot {
+    padding-block: var(--space-xl) 0;
+  }
+
+  .related-title {
+    margin-bottom: var(--space-l);
+  }
+
+  .news-grid {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  }
+</style>

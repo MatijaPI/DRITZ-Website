@@ -1,0 +1,69 @@
+---
+import Icon, { type IconName } from '../ui/Icon.astro';
+import SectionHead from '../ui/SectionHead.astro';
+import { t, type Locale } from '../../i18n/index.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale).values;
+const icons: IconName[] = ['spark', 'gear', 'users', 'globe'];
+---
+
+<section class="section" aria-labelledby="values-title">
+  <div class="container">
+    <SectionHead eyebrow={d.eyebrow} title={d.title} id="values-title" />
+    <ul role="list" class="values" data-stagger>
+      {d.items.map((v, i) => (
+        <li class="value card card--bracket" data-reveal>
+          <span class="value-icon">
+            <Icon name={icons[i] ?? 'spark'} size={28} strokeWidth={1.5} />
+          </span>
+          <h3 class="value-title">{v.title}</h3>
+          <p>{v.text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .values {
+    display: grid;
+    gap: var(--space-m);
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+
+  .value {
+    display: grid;
+    align-content: start;
+    gap: var(--space-s);
+  }
+
+  .value-icon {
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent-text);
+  }
+
+  .value:nth-child(even) .value-icon {
+    background: color-mix(in srgb, var(--go) 14%, transparent);
+    color: var(--go-text);
+  }
+
+  .value-title {
+    font-size: var(--step-2);
+  }
+
+  .value p {
+    color: var(--text-muted);
+  }
+</style>

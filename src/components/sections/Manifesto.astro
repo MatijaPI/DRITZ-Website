@@ -1,0 +1,185 @@
+---
+/**
+ * Full-screen manifesto. Lines light up word by word as they enter the viewport
+ * (IntersectionObserver + CSS transitions — no scroll-jacking). *word* in the
+ * copy marks an accent highlight. Without JS / with reduced motion all text is lit.
+ */
+import { t, type Locale } from '../../i18n/index.ts';
+
+interface Props {
+  locale: Locale;
+  eyebrow?: string;
+}
+
+const { locale, eyebrow } = Astro.props;
+const d = t(locale).manifesto;
+
+const tokens = (line: string) =>
+  line
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((raw) => {
+      const m = /^([^*]*)\*([^*]+)\*(.*)$/.exec(raw);
+      return m ? { pre: m[1] ?? '', word: m[2] ?? '', post: m[3] ?? '', hl: true } : { pre: '', word: raw, post: '', hl: false };
+    });
+---
+
+<section class="manifesto" aria-labelledby="manifesto-title">
+  <div class="manifesto-bg" aria-hidden="true"></div>
+  <div class="container manifesto-inner">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h2 id="manifesto-title" class="manifesto-title" data-inview>
+      {d.title}
+    </h2>
+    <div class="manifesto-lines">
+      {d.lines.map((line, li) => (
+        <p class="m-line" data-inview>
+          <span class="m-idx mono" aria-hidden="true">
+            {String(li + 1).padStart(2, '0')}
+          </span>
+          <span class="m-text">
+            {tokens(line).map((tk) => (
+              <>
+                <span class:list={['m-word', { 'm-hl': tk.hl }]}>
+                  {tk.pre}
+                  {tk.hl ? <em>{tk.word}</em> : tk.word}
+                  {tk.post}
+                </span>{' '}
+              </>
+            ))}
+          </span>
+        </p>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .manifesto {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100svh;
+    padding-block: var(--space-3xl);
+    overflow: hidden;
+    border-block: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+
+  .manifesto-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 20%, var(--glow-accent), transparent 35%),
+      radial-gradient(circle at 85% 85%, var(--glow-go), transparent 35%);
+    opacity: 0.35;
+  }
+
+  .manifesto-inner {
+    position: relative;
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .manifesto-title {
+    font-size: var(--step-6);
+    font-weight: 800;
+    line-height: 0.98;
+    letter-spacing: var(--tracking-tight);
+    max-width: 14ch;
+  }
+
+  .manifesto-lines {
+    display: grid;
+    gap: var(--space-l);
+    max-width: 58rem;
+    margin-left: auto;
+  }
+
+  .m-line {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: var(--space-s);
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .m-idx {
+    padding-top: 0.6em;
+    font-size: 0.8rem;
+    color: var(--accent-text);
+  }
+
+  em {
+    font-style: normal;
+    color: var(--accent-text);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.js) .manifesto-title {
+      opacity: 0;
+      transform: translateY(30px);
+      transition:
+        opacity 1s var(--ease-out),
+        transform 1s var(--ease-out);
+    }
+
+    :global(.js) .manifesto-title:global(.is-visible) {
+      opacity: 1;
+      transform: none;
+    }
+
+    :global(.js) .m-word {
+      opacity: 0.16;
+      transition: opacity 600ms var(--ease-out);
+    }
+
+    :global(.js) .m-line:global(.is-visible) .m-word {
+      opacity: 1;
+    }
+
+    /* Word-by-word: stagger by position. */
+    .m-word:nth-child(2) {
+      transition-delay: 40ms;
+    }
+    .m-word:nth-child(3) {
+      transition-delay: 80ms;
+    }
+    .m-word:nth-child(4) {
+      transition-delay: 120ms;
+    }
+    .m-word:nth-child(5) {
+      transition-delay: 160ms;
+    }
+    .m-word:nth-child(6) {
+      transition-delay: 200ms;
+    }
+    .m-word:nth-child(7) {
+      transition-delay: 240ms;
+    }
+    .m-word:nth-child(8) {
+      transition-delay: 280ms;
+    }
+    .m-word:nth-child(9) {
+      transition-delay: 320ms;
+    }
+    .m-word:nth-child(10) {
+      transition-delay: 360ms;
+    }
+    .m-word:nth-child(11) {
+      transition-delay: 400ms;
+    }
+    .m-word:nth-child(12) {
+      transition-delay: 440ms;
+    }
+    .m-word:nth-child(13) {
+      transition-delay: 480ms;
+    }
+    .m-word:nth-child(n + 14) {
+      transition-delay: 520ms;
+    }
+  }
+</style>

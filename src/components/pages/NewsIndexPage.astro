@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../ui/PageHero.astro';
+import NewsCard from '../ui/NewsCard.astro';
+import Icon from '../ui/Icon.astro';
+import { t, fmt, routes, path, newsPath, type Locale } from '../../i18n/index.ts';
+import { getNews, entrySlug } from '../../lib/news.ts';
+import { absolute, ogImagePath } from '../../lib/seo.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const n = d.newsPage;
+const news = await getNews(locale);
+const [featured, ...rest] = news;
+
+const itemList = {
+  '@type': 'ItemList',
+  itemListElement: news.map((entry, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: absolute(newsPath(locale, entrySlug(entry))),
+    name: entry.data.title,
+  })),
+};
+---
+
+<BaseLayout
+  locale={locale}
+  title={n.meta.title}
+  description={n.meta.description}
+  alternates={routes.news}
+  ogImage={ogImagePath(locale, 'news')}
+  pageType="CollectionPage"
+  jsonLd={[itemList]}
+  breadcrumbs={[
+    { name: d.breadcrumbs.home, path: path('home', locale) },
+    { name: d.nav.news, path: path('news', locale) },
+  ]}
+>
+  <PageHero eyebrow={n.hero.eyebrow} title={n.hero.title} lead={n.hero.lead}>
+    <p class="mono count">{fmt(n.count, { count: news.length })}</p>
+  </PageHero>
+
+  <section class="section section--tight" aria-label={n.hero.eyebrow}>
+    <div class="container">
+      {featured ? (
+        <div class="news-grid" data-stagger>
+          <NewsCard entry={featured} locale={locale} headingLevel="h2" featured />
+          {rest.map((entry) => (
+            <NewsCard entry={entry} locale={locale} headingLevel="h2" />
+          ))}
+        </div>
+      ) : (
+        <div class="empty card">
+          <Icon name="robot" size={40} />
+          <p>{n.empty}</p>
+          <a class="btn btn--primary" href={path('contact', locale)}>
+            {d.cta.contact}
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .count {
+    font-size: 0.8125rem;
+    color: var(--text-subtle);
+  }
+
+  .news-grid {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  }
+
+  .empty {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-m);
+    padding: var(--space-2xl);
+    text-align: center;
+    color: var(--text-muted);
+  }
+</style>

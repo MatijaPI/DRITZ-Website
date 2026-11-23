@@ -1,0 +1,171 @@
+---
+/**
+ * Schematic (not geographic) diagram of the four FLL countries DRITZ works in,
+ * drawn as a circuit with signal pulses. Decorative motion stops with reduced
+ * motion or the global pause control.
+ */
+import { t, type Locale } from '../../i18n/index.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const names = Object.fromEntries(d.fllPage.countries.items.map((c) => [c.code, c.name]));
+
+const nodes = [
+  { code: 'SI', x: 90, y: 70, home: true },
+  { code: 'HR', x: 190, y: 160 },
+  { code: 'RS', x: 380, y: 170 },
+  { code: 'ME', x: 300, y: 300 },
+];
+const traces = [
+  'M90 70 H140 L190 120 V160',
+  'M190 160 H300 L330 130 H380 V170',
+  'M190 160 V230 L260 300 H300',
+  'M380 170 V250 L330 300 H300',
+];
+---
+
+<figure class="region">
+  <svg viewBox="0 0 470 370" role="img" aria-label={d.home.region.mapLabel}>
+    <defs>
+      <pattern id="region-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+        <path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-width="0.5" class="grid-line"></path>
+      </pattern>
+    </defs>
+    <rect width="470" height="370" fill="url(#region-grid)" class="grid"></rect>
+    <g class="traces" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      {traces.map((p) => (
+        <path d={p} class="trace" />
+      ))}
+      {traces.map((p, i) => (
+        <path d={p} class:list={['pulse', `pulse-${i}`]} pathLength="100" />
+      ))}
+    </g>
+    {nodes.map((n) => (
+      <g class:list={['node', { 'node-home': n.home }]} transform={`translate(${n.x} ${n.y})`}>
+        <circle r="22" class="node-halo" />
+        <circle r="11" class="node-core" />
+        <text y="-30" text-anchor="middle" class="node-code">
+          {n.code}
+        </text>
+        <text y="44" text-anchor="middle" class="node-name">
+          {names[n.code]}
+        </text>
+      </g>
+    ))}
+  </svg>
+</figure>
+
+<style>
+  .region {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-l);
+    background: var(--surface);
+    padding: var(--space-s);
+    color: var(--text-subtle);
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .grid-line {
+    color: var(--grid-line-strong);
+  }
+
+  .trace {
+    stroke: var(--border-strong);
+    stroke-width: 2;
+  }
+
+  .pulse {
+    stroke: var(--accent);
+    stroke-width: 3;
+    stroke-dasharray: 6 94;
+    stroke-dashoffset: 100;
+    filter: drop-shadow(0 0 4px var(--accent));
+  }
+
+  .pulse-1,
+  .pulse-3 {
+    stroke: var(--go);
+    filter: drop-shadow(0 0 4px var(--go));
+  }
+
+  .node-halo {
+    fill: var(--glow-accent);
+    opacity: 0.35;
+  }
+
+  .node-core {
+    fill: var(--bg);
+    stroke: var(--accent);
+    stroke-width: 3;
+  }
+
+  .node-home .node-core {
+    fill: var(--accent);
+  }
+
+  .node-code {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 700;
+    fill: var(--accent-text);
+    letter-spacing: 0.08em;
+  }
+
+  .node-name {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    fill: var(--text);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .pulse {
+      animation: pulse-run 3.2s linear infinite;
+    }
+
+    .pulse-1 {
+      animation-delay: -0.8s;
+      animation-duration: 3.8s;
+    }
+
+    .pulse-2 {
+      animation-delay: -1.6s;
+    }
+
+    .pulse-3 {
+      animation-delay: -2.4s;
+      animation-duration: 4.2s;
+    }
+
+    .node-halo {
+      animation: halo 3s var(--ease-in-out) infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+
+    :global([data-motion='paused']) .region :is(.pulse, .node-halo) {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes pulse-run {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes halo {
+    50% {
+      transform: scale(1.35);
+      opacity: 0.1;
+    }
+  }
+</style>

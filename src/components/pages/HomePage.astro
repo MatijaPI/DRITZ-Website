@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../home/Hero.astro';
+import Acronym from '../sections/Acronym.astro';
+import Manifesto from '../sections/Manifesto.astro';
+import ActivityCards from '../sections/ActivityCards.astro';
+import Stats from '../sections/Stats.astro';
+import RegionMap from '../sections/RegionMap.astro';
+import Timeline from '../sections/Timeline.astro';
+import SupportersMarquee from '../sections/SupportersMarquee.astro';
+import CtaBand from '../sections/CtaBand.astro';
+import ContactTeaser from '../sections/ContactTeaser.astro';
+import SectionHead from '../ui/SectionHead.astro';
+import NewsCard from '../ui/NewsCard.astro';
+import Icon from '../ui/Icon.astro';
+import { t, routes, path, type Locale } from '../../i18n/index.ts';
+import { getNews } from '../../lib/news.ts';
+import { ogImagePath } from '../../lib/seo.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const news = (await getNews(locale)).slice(0, 3);
+---
+
+<BaseLayout
+  locale={locale}
+  title={d.home.meta.title}
+  description={d.home.meta.description}
+  alternates={routes.home}
+  ogImage={ogImagePath(locale, 'home')}
+>
+  <Hero locale={locale} />
+
+  <section class="section" id="o-drustvu" aria-labelledby="who-title">
+    <div class="container who">
+      <div class="who-copy">
+        <SectionHead eyebrow={d.home.who.eyebrow} title={d.home.who.title} id="who-title" />
+        <p class="who-body" data-reveal>
+          {d.home.who.body}
+        </p>
+        <a class="link-arrow" href={path('about', locale)} data-reveal>
+          {d.home.who.link}
+          <Icon name="arrow" />
+        </a>
+      </div>
+      <Acronym locale={locale} />
+    </div>
+  </section>
+
+  <Manifesto locale={locale} eyebrow={d.home.manifesto.eyebrow} />
+
+  <section class="section" id="aktivnosti" aria-labelledby="activities-title">
+    <div class="container">
+      <SectionHead
+        eyebrow={d.home.activities.eyebrow}
+        title={d.home.activities.title}
+        intro={d.home.activities.intro}
+        id="activities-title"
+      />
+      <ActivityCards locale={locale} />
+      <p class="section-link">
+        <a class="link-arrow" href={path('activities', locale)}>
+          {d.home.activities.link}
+          <Icon name="arrow" />
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <Stats locale={locale} />
+
+  <section class="section" aria-labelledby="region-title">
+    <div class="container region-grid">
+      <div class="region-copy">
+        <SectionHead eyebrow={d.home.region.eyebrow} title={d.home.region.title} id="region-title" />
+        <p class="muted" data-reveal>
+          {d.home.region.body}
+        </p>
+        <a class="btn btn--ghost" href={path('fll', locale)} data-reveal data-magnetic>
+          {d.home.region.link}
+          <Icon name="arrow" />
+        </a>
+      </div>
+      <div data-reveal="scale">
+        <RegionMap locale={locale} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section timeline-section" aria-labelledby="timeline-title">
+    <div class="container">
+      <SectionHead eyebrow={d.home.timeline.eyebrow} title={d.home.timeline.title} id="timeline-title" />
+      <Timeline locale={locale} />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="news-title">
+    <div class="container">
+      <div class="news-head">
+        <SectionHead eyebrow={d.home.news.eyebrow} title={d.home.news.title} id="news-title" />
+        <a class="btn btn--ghost" href={path('news', locale)} data-magnetic>
+          {d.cta.allNews}
+          <Icon name="arrow" />
+        </a>
+      </div>
+      <div class="news-grid" data-stagger>
+        {news.map((entry) => (
+          <NewsCard entry={entry} locale={locale} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section supporters" id="podporniki" aria-labelledby="supporters-title">
+    <div class="container">
+      <SectionHead
+        eyebrow={d.home.supporters.eyebrow}
+        title={d.home.supporters.title}
+        intro={d.home.supporters.body}
+        id="supporters-title"
+      />
+    </div>
+    <SupportersMarquee locale={locale} />
+    <div class="container">
+      <p class="section-link">
+        <a class="link-arrow" href={path('supporters', locale)}>
+          {d.home.supporters.link}
+          <Icon name="arrow" />
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <CtaBand locale={locale} />
+  <ContactTeaser locale={locale} />
+</BaseLayout>
+
+<style>
+  .who {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .who-copy {
+    display: grid;
+    gap: var(--space-m);
+    align-content: start;
+  }
+
+  .who-copy :global(.section-head) {
+    margin-bottom: 0;
+  }
+
+  .who-body {
+    font-size: var(--step-1);
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 58ch;
+  }
+
+  .section-link {
+    margin-top: var(--space-l);
+  }
+
+  .region-grid {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .region-copy {
+    display: grid;
+    gap: var(--space-m);
+    justify-items: start;
+  }
+
+  .region-copy :global(.section-head) {
+    margin-bottom: 0;
+  }
+
+  .news-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-m);
+    margin-bottom: var(--space-xl);
+  }
+
+  .news-head :global(.section-head) {
+    margin-bottom: 0;
+  }
+
+  .news-grid {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  }
+
+  @media (min-width: 60em) {
+    .who {
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .region-grid {
+      grid-template-columns: 1fr 1.1fr;
+      gap: var(--space-2xl);
+    }
+  }
+</style>

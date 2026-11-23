@@ -1,0 +1,11 @@
+/* TEAM */
+Organisation: Društvo DRITZ – Društvo za raziskovanje in izobraževanje o tehnologiji in znanosti
+Contact: info@dritz.si
+From: Celje, Slovenia
+
+/* SITE */
+Last update: 2026/11/21
+Languages: Slovenian, English
+Standards: HTML5, CSS3, WCAG 2.2 AA
+Software: Astro, TypeScript
+Fonts: Bricolage Grotesque, Inter, JetBrains Mono (SIL OFL 1.1)

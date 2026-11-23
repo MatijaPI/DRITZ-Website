@@ -1,0 +1,70 @@
+---
+/**
+ * Pauses / resumes all ambient animation on the page (WCAG 2.2.2). Every instance
+ * toggles html[data-motion="paused"]; handled in src/scripts/main.ts.
+ * Hidden when the visitor prefers reduced motion (nothing moves then anyway).
+ */
+import { t, type Locale } from '../../i18n/index.ts';
+
+interface Props {
+  locale: Locale;
+  class?: string;
+}
+
+const { locale, class: className } = Astro.props;
+const d = t(locale).motion;
+---
+
+<button
+  type="button"
+  class:list={['motion-toggle', className]}
+  data-motion-toggle
+  aria-label={d.pause}
+  data-label-pause={d.pause}
+  data-label-play={d.play}
+  data-cursor="hover"
+>
+  <svg class="mt-pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+    <path d="M3 1.5v9M9 1.5v9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path>
+  </svg>
+  <svg class="mt-play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+    <path d="M3 1.5l7 4.5-7 4.5z" fill="currentColor"></path>
+  </svg>
+</button>
+
+<style>
+  .motion-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition:
+      color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out);
+  }
+
+  .motion-toggle:hover {
+    color: var(--accent-text);
+    border-color: var(--accent);
+  }
+
+  .mt-play,
+  :global([data-motion='paused']) .mt-pause {
+    display: none;
+  }
+
+  :global([data-motion='paused']) .mt-play {
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .motion-toggle {
+      display: none;
+    }
+  }
+</style>
