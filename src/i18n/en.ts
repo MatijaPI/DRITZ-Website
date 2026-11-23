@@ -219,7 +219,7 @@ const en: Dict = {
     readStory: 'Read the story',
     items: {
       marrakech: {
-        title: 'The first FLL stage in Africa',
+        title: 'On the FLL stage in Morocco',
         text: 'Three of our volunteers judge at the Morocco Open International in Marrakech, where Valentin Šeško receives the trophy for the tournament’s top volunteer.',
       },
       founded: {

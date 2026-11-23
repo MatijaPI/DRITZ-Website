@@ -219,7 +219,7 @@ const sl = {
     readStory: 'Preberite novico',
     items: {
       marrakech: {
-        title: 'Prvi afriški oder FLL',
+        title: 'Na odru FLL v Maroku',
         text: 'Trije naši prostovoljci sodijo na prvenstvu Morocco Open International v Marakešu. Valentin Šeško prejme pokal za najboljšega prostovoljca tekmovanja.',
       },
       founded: {
