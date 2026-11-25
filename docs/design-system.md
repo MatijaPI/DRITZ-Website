@@ -14,8 +14,10 @@ Source of truth: `src/styles/tokens.css` (tokens), `src/styles/global.css` (base
   `<Logo />` references the cached file with `<use href="…#dritz">` and colours it from CSS (`--logo-ink`).
 - `<Logo letter={0..4} />` crops one icon-letter (used in the "What does DRITZ stand for?" acronym block and
   as the iodine-tile illustration on the Activities page).
-- Favicon/app icon: `src/assets/brand/mark.svg` — a rounded "D" whose window and speed lines echo the logo's
-  rocket. Regenerate the PNG/ICO set with `node scripts/generate-icons.ts`.
+- Favicon/app icon: `src/assets/brand/mark.svg` — the logo's "D" rocket on a full square ink (`#070a12`) tile
+  without rounded corners. All artwork sits inside the inscribed circle (≈ 90 % of its radius), so nothing is cut
+  off where Google Search crops favicons to a circle. Regenerate the PNG/ICO set with
+  `node scripts/generate-icons.ts`.
 - The original PNG logos remain at `/assets/images/logo-*.png`.
 
 ## Colour
