@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { routes, locales, localeMeta, newsPath, type Locale } from '../i18n/index.ts';
+import { routes, locales, localeMeta, newsPath, type Locale, type RouteKey } from '../i18n/index.ts';
 import { getNews, newsAlternates, entrySlug } from '../lib/news.ts';
 import { site } from '../data/site.ts';
 import { absolute } from '../lib/seo.ts';
@@ -12,12 +12,18 @@ interface Url {
 
 const iso = (d: Date | string) => new Date(d).toISOString().slice(0, 10);
 
+/** Static pages that list news cards: they change whenever a newer post is published. */
+const listsNews: readonly RouteKey[] = ['home', 'news', 'fll'];
+
 export const GET: APIRoute = async () => {
   const urls: Url[] = [];
 
-  for (const paths of Object.values(routes)) {
+  for (const [key, paths] of Object.entries(routes) as [RouteKey, (typeof routes)[RouteKey]][]) {
     for (const locale of locales) {
-      urls.push({ loc: paths[locale], lastmod: site.updated, alternates: paths });
+      // getNews() is newest first; ISO date strings compare chronologically.
+      const newest = listsNews.includes(key) ? (await getNews(locale)).find((e) => e.data.date)?.data.date : undefined;
+      const lastmod = newest && iso(newest) > site.updated ? iso(newest) : site.updated;
+      urls.push({ loc: paths[locale], lastmod, alternates: paths });
     }
   }
 

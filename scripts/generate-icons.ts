@@ -11,15 +11,19 @@ const mark = readFileSync(join(root, 'src/assets/brand/mark.svg'));
 const out = join(root, 'public');
 mkdirSync(join(out, 'icons'), { recursive: true });
 
+// Rasterise at 2× the target size, whatever units the mark's viewBox uses.
+const viewBoxWidth = Number(/viewBox="[\d.-]+\s+[\d.-]+\s+([\d.]+)/.exec(mark.toString())?.[1] ?? 64);
+const density = (size: number) => 72 * (size / viewBoxWidth) * 2;
+
 const png = (size: number) =>
-  sharp(mark, { density: 72 * (size / 64) * 2 })
+  sharp(mark, { density: density(size) })
     .resize(size, size)
     .png({ compressionLevel: 9 })
     .toBuffer();
 
 // Maskable icon: full-bleed background with the mark inside the 80 % safe zone.
 const maskable = async (size: number) => {
-  const inner = await sharp(mark, { density: 600 })
+  const inner = await sharp(mark, { density: density(size) })
     .resize(Math.round(size * 0.72))
     .png()
     .toBuffer();

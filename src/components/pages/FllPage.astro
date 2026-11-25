@@ -10,7 +10,7 @@ import RegionMap from '../sections/RegionMap.astro';
 import CtaBand from '../sections/CtaBand.astro';
 import { t, routes, path, type Locale } from '../../i18n/index.ts';
 import { getNews } from '../../lib/news.ts';
-import { ogImagePath } from '../../lib/seo.ts';
+import { absolute, faqLd, ogImagePath } from '../../lib/seo.ts';
 
 interface Props {
   locale: Locale;
@@ -34,6 +34,7 @@ const official = 'https://firstlegoleague.org/';
     { name: d.breadcrumbs.home, path: path('home', locale) },
     { name: d.nav.fll, path: path('fll', locale) },
   ]}
+  jsonLd={[faqLd({ locale, url: absolute(path('fll', locale)), items: f.faq.items })]}
 >
   <PageHero eyebrow={f.hero.eyebrow} title={f.hero.title} lead={f.hero.lead} />
 

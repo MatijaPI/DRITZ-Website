@@ -115,6 +115,21 @@ export function breadcrumbLd(crumbs: Crumb[]) {
   };
 }
 
+/** FAQPage node for a page's visible FAQ block; question and answer text must match what is on the page. */
+export function faqLd(opts: { locale: Locale; url: string; items: readonly { q: string; a: string }[] }) {
+  return {
+    '@type': 'FAQPage',
+    '@id': `${opts.url}#faq`,
+    inLanguage: localeMeta[opts.locale].htmlLang,
+    isPartOf: { '@id': `${opts.url}#webpage` },
+    mainEntity: opts.items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  };
+}
+
 export function articleLd(opts: {
   locale: Locale;
   url: string;
